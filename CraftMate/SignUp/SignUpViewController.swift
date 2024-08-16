@@ -6,7 +6,29 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
 
 class SignUpViewContoller: BaseViewController<SignUpView> {
+    
+    let disposeBag = DisposeBag()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        bind()
+    }
+    
+    func bind() {
+        rootView.loginButton
+            .rx
+            .tap
+            .bind(with: self) { owner, _ in
+                
+                owner.changeRootViewController(MainTabBarController())
+                
+            }
+            .disposed(by: disposeBag)
+    }
     
 }

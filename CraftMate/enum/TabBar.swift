@@ -26,29 +26,42 @@ enum MainTabBar {
         }
     }
     
+    var title: String {
+        switch self {
+        case .mainHome:
+            return CraftMate.Phrase.homeTabBar
+        case .searchPage:
+            return CraftMate.Phrase.searchTabBar
+        case .savePage:
+            return CraftMate.Phrase.saveTabBar
+        case .setting:
+            return CraftMate.Phrase.myPageTabBar
+        }
+    }
+    
     var image: UIImage? {
         switch self {
         case .mainHome:
-            return UIImage(named: CraftMate.Phrase.homeImage)
+            return UIImage(systemName: CraftMate.Phrase.homeImage)
         case .searchPage:
-            return UIImage(named:CraftMate.Phrase.searchImage)
+            return UIImage(systemName:CraftMate.Phrase.searchImage)
         case .savePage:
-            return UIImage(named: CraftMate.Phrase.saveImage)
+            return UIImage(systemName: CraftMate.Phrase.saveImage)
         case .setting:
-            return UIImage(named: CraftMate.Phrase.myPageImage)
+            return UIImage(systemName: CraftMate.Phrase.myPageImage)
         }
     }
     
     var selectImage: UIImage? {
         switch self {
         case .mainHome:
-            return UIImage(named: CraftMate.Phrase.homeSelectImage)
+            return UIImage(systemName: CraftMate.Phrase.homeSelectImage)
         case .searchPage:
-            return UIImage(named:CraftMate.Phrase.searchImage)
+            return UIImage(systemName:CraftMate.Phrase.searchImage)
         case .savePage:
-            return UIImage(named: CraftMate.Phrase.saveSelectImage)
+            return UIImage(systemName: CraftMate.Phrase.saveSelectImage)
         case .setting:
-            return UIImage(named: CraftMate.Phrase.myPageSelectImage)
+            return UIImage(systemName: CraftMate.Phrase.myPageSelectImage)
         }
     }
 }

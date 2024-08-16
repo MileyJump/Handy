@@ -14,6 +14,16 @@
 		B02CFDCE2C6F42BD00462EF9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDCD2C6F42BD00462EF9 /* SignUpViewController.swift */; };
 		B02CFDD12C6F461A00462EF9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD02C6F461A00462EF9 /* SnapKit */; };
 		B02CFDD42C6F462300462EF9 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD32C6F462300462EF9 /* Then */; };
+		B02CFDD72C6F75C500462EF9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD62C6F75C500462EF9 /* RxCocoa */; };
+		B02CFDD92C6F75C500462EF9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD82C6F75C500462EF9 /* RxSwift */; };
+		B02CFDDC2C6F779A00462EF9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDDB2C6F779A00462EF9 /* HomeView.swift */; };
+		B02CFDDE2C6F927C00462EF9 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDDD2C6F927C00462EF9 /* HomeTableViewCell.swift */; };
+		B02CFDE12C6F92EE00462EF9 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDE02C6F92EE00462EF9 /* Reusable.swift */; };
+		B02CFDE32C6F932900462EF9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDE22C6F932900462EF9 /* HomeViewModel.swift */; };
+		B02CFDE62C6F96E700462EF9 /* SearchPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDE52C6F96E700462EF9 /* SearchPageView.swift */; };
+		B02CFDE82C6F9A8A00462EF9 /* UINavigationBar +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDE72C6F9A8A00462EF9 /* UINavigationBar +.swift */; };
+		B02CFDEB2C6FA5FE00462EF9 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDEA2C6FA5FE00462EF9 /* DetailView.swift */; };
+		B02CFDED2C6FA61800462EF9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDEC2C6FA61800462EF9 /* DetailViewController.swift */; };
 		B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */; };
 		B0DF57602C6CE84C00CAB497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */; };
 		B0DF57622C6CE84C00CAB497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF57612C6CE84C00CAB497 /* ViewController.swift */; };
@@ -47,6 +57,14 @@
 		B02CFDC92C6F40DC00462EF9 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B02CFDCB2C6F428300462EF9 /* UIViewController +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController +.swift"; sourceTree = "<group>"; };
 		B02CFDCD2C6F42BD00462EF9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B02CFDDB2C6F779A00462EF9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B02CFDDD2C6F927C00462EF9 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		B02CFDE02C6F92EE00462EF9 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		B02CFDE22C6F932900462EF9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B02CFDE52C6F96E700462EF9 /* SearchPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageView.swift; sourceTree = "<group>"; };
+		B02CFDE72C6F9A8A00462EF9 /* UINavigationBar +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar +.swift"; sourceTree = "<group>"; };
+		B02CFDEA2C6FA5FE00462EF9 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		B02CFDEC2C6FA61800462EF9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B0DF575A2C6CE84C00CAB497 /* CraftMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraftMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +99,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02CFDD72C6F75C500462EF9 /* RxCocoa in Frameworks */,
 				B02CFDD12C6F461A00462EF9 /* SnapKit in Frameworks */,
+				B02CFDD92C6F75C500462EF9 /* RxSwift in Frameworks */,
 				B02CFDD42C6F462300462EF9 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +116,43 @@
 				B02CFDCD2C6F42BD00462EF9 /* SignUpViewController.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		B02CFDDA2C6F778700462EF9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B0DF578E2C6F3A5A00CAB497 /* HomeViewController.swift */,
+				B02CFDDB2C6F779A00462EF9 /* HomeView.swift */,
+				B02CFDE22C6F932900462EF9 /* HomeViewModel.swift */,
+				B02CFDDD2C6F927C00462EF9 /* HomeTableViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B02CFDDF2C6F92E700462EF9 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B02CFDE02C6F92EE00462EF9 /* Reusable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		B02CFDE42C6F96D800462EF9 /* SearchPage */ = {
+			isa = PBXGroup;
+			children = (
+				B0DF57902C6F3A9E00CAB497 /* SearchPageViewController.swift */,
+				B02CFDE52C6F96E700462EF9 /* SearchPageView.swift */,
+			);
+			path = SearchPage;
+			sourceTree = "<group>";
+		};
+		B02CFDE92C6FA5F400462EF9 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B02CFDEA2C6FA5FE00462EF9 /* DetailView.swift */,
+				B02CFDEC2C6FA61800462EF9 /* DetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		B0DF57512C6CE84C00CAB497 = {
@@ -118,6 +175,10 @@
 		B0DF575C2C6CE84C00CAB497 /* CraftMate */ = {
 			isa = PBXGroup;
 			children = (
+				B02CFDE92C6FA5F400462EF9 /* Detail */,
+				B02CFDE42C6F96D800462EF9 /* SearchPage */,
+				B02CFDDF2C6F92E700462EF9 /* Protocol */,
+				B02CFDDA2C6F778700462EF9 /* Home */,
 				B02CFDC82C6F40CB00462EF9 /* SignUp */,
 				B0DF57992C6F3F0500CAB497 /* Base */,
 				B0DF57962C6F3B0100CAB497 /* enum */,
@@ -134,8 +195,6 @@
 				B0DF57752C6CE8BF00CAB497 /* SesacKey.swift */,
 				B0DF57772C6CE8C600CAB497 /* BaseURL.swift */,
 				B0DF578C2C6F3A1100CAB497 /* MainTabBarController.swift */,
-				B0DF578E2C6F3A5A00CAB497 /* HomeViewController.swift */,
-				B0DF57902C6F3A9E00CAB497 /* SearchPageViewController.swift */,
 				B0DF57922C6F3AB900CAB497 /* SaveViewController.swift */,
 				B0DF57942C6F3AC800CAB497 /* SettingViewController.swift */,
 			);
@@ -147,6 +206,7 @@
 			children = (
 				B0DF577A2C6E3F9B00CAB497 /* UIColor +.swift */,
 				B02CFDCB2C6F428300462EF9 /* UIViewController +.swift */,
+				B02CFDE72C6F9A8A00462EF9 /* UINavigationBar +.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -210,6 +270,8 @@
 			packageProductDependencies = (
 				B02CFDD02C6F461A00462EF9 /* SnapKit */,
 				B02CFDD32C6F462300462EF9 /* Then */,
+				B02CFDD62C6F75C500462EF9 /* RxCocoa */,
+				B02CFDD82C6F75C500462EF9 /* RxSwift */,
 			);
 			productName = CraftMate;
 			productReference = B0DF575A2C6CE84C00CAB497 /* CraftMate.app */;
@@ -242,6 +304,7 @@
 			packageReferences = (
 				B02CFDCF2C6F461A00462EF9 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				B02CFDD22C6F462300462EF9 /* XCRemoteSwiftPackageReference "Then" */,
+				B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = B0DF575B2C6CE84C00CAB497 /* Products */;
 			projectDirPath = "";
@@ -279,20 +342,28 @@
 				B0DF577B2C6E3F9B00CAB497 /* UIColor +.swift in Sources */,
 				B0DF57932C6F3AB900CAB497 /* SaveViewController.swift in Sources */,
 				B0DF57882C6F35B100CAB497 /* CustomFont.swift in Sources */,
+				B02CFDE32C6F932900462EF9 /* HomeViewModel.swift in Sources */,
 				B0DF57952C6F3AC800CAB497 /* SettingViewController.swift in Sources */,
 				B0DF578D2C6F3A1100CAB497 /* MainTabBarController.swift in Sources */,
+				B02CFDDC2C6F779A00462EF9 /* HomeView.swift in Sources */,
 				B02CFDCA2C6F40DC00462EF9 /* SignUpView.swift in Sources */,
 				B0DF578B2C6F378900CAB497 /* Phrase.swift in Sources */,
+				B02CFDED2C6FA61800462EF9 /* DetailViewController.swift in Sources */,
 				B02CFDCC2C6F428300462EF9 /* UIViewController +.swift in Sources */,
 				B0DF578F2C6F3A5A00CAB497 /* HomeViewController.swift in Sources */,
 				B0DF57622C6CE84C00CAB497 /* ViewController.swift in Sources */,
 				B0DF57912C6F3A9E00CAB497 /* SearchPageViewController.swift in Sources */,
+				B02CFDE12C6F92EE00462EF9 /* Reusable.swift in Sources */,
 				B0DF57762C6CE8BF00CAB497 /* SesacKey.swift in Sources */,
+				B02CFDE82C6F9A8A00462EF9 /* UINavigationBar +.swift in Sources */,
 				B0DF57782C6CE8C600CAB497 /* BaseURL.swift in Sources */,
+				B02CFDEB2C6FA5FE00462EF9 /* DetailView.swift in Sources */,
 				B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */,
 				B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */,
 				B02CFDCE2C6F42BD00462EF9 /* SignUpViewController.swift in Sources */,
+				B02CFDDE2C6F927C00462EF9 /* HomeTableViewCell.swift in Sources */,
 				B02CFDC52C6F403200462EF9 /* BaseTableViewCell.swift in Sources */,
+				B02CFDE62C6F96E700462EF9 /* SearchPageView.swift in Sources */,
 				B0DF579B2C6F3F0B00CAB497 /* BaseView.swift in Sources */,
 				B0DF579D2C6F3F4900CAB497 /* BaseViewController.swift in Sources */,
 				B0DF57602C6CE84C00CAB497 /* SceneDelegate.swift in Sources */,
@@ -535,6 +606,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -547,6 +626,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B02CFDD22C6F462300462EF9 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		B02CFDD62C6F75C500462EF9 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		B02CFDD82C6F75C500462EF9 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

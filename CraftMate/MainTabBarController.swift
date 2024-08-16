@@ -14,12 +14,14 @@ final class MainTabBarController: UITabBarController {
         
         let tabs: [MainTabBar] = [.mainHome, .searchPage, .savePage, .setting]
         
-        var viewControllers: [UINavigationController] = []
+//        var viewControllers: [UINavigationController] = []
+//        var viewControllers = tabs.map { $0.viewController }
+        var viewControllers: [UIViewController] = []
         
         for (index, tabBar) in tabs.enumerated() {
             let vc = tabBar.viewController
             let nav = UINavigationController(rootViewController: vc)
-            nav.tabBarItem = UITabBarItem(title: nil, image: tabBar.image, tag: index)
+            nav.tabBarItem = UITabBarItem(title: tabBar.title, image: tabBar.image, tag: index)
             nav.tabBarItem.selectedImage = tabBar.selectImage
             viewControllers.append(nav)
         }

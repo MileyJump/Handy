@@ -37,14 +37,14 @@ final class SignUpView: BaseView {
         $0.backgroundColor = CraftMate.color.LightGrayColor
     }
     
-    private let loginButton = UIButton().then {
+     let loginButton = UIButton().then {
         $0.setTitle("로그인", for: .normal)
         $0.titleLabel?.font = CraftMate.CustomFont.bold14
         $0.backgroundColor = CraftMate.color.mainColor
         $0.layer.cornerRadius = 20
     }
     
-    private let signUpButton = UIButton().then {
+     let signUpButton = UIButton().then {
         $0.setTitle("회원가입", for: .normal)
         $0.setTitleColor(CraftMate.color.blackColor, for: .normal)
         $0.titleLabel?.font = CraftMate.CustomFont.bold14

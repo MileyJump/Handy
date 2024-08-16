@@ -30,6 +30,9 @@ extension CraftMate {
         static let  myPageImage = "person"
         static let  myPageSelectImage = "person.fill"
         
+        static let heartImage = "heart"
+        static let heartFillImage = "heart.fill"
+        
         
         
     }
