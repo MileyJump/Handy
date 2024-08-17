@@ -12,19 +12,26 @@ final class HomeView: BaseView {
     
     let tableView = UITableView()
     
+    let floatingButton = FloatingButton()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
     override func configureHierarchy() {
         addSubview(tableView)
-        tableView.backgroundColor = .blue
+        addSubview(floatingButton)
     }
     
     override func configureLayout() {
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide)
-            
+        }
+        
+        floatingButton.snp.makeConstraints { make in
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
+            make.trailing.equalTo(safeAreaLayoutGuide).inset(20)
+            make.size.equalTo(60)
         }
     }
     

@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 
-class SignUpViewContoller: BaseViewController<SignUpView> {
+class LoginViewController: BaseViewController<LoginView> {
     
     let disposeBag = DisposeBag()
     
@@ -24,9 +24,15 @@ class SignUpViewContoller: BaseViewController<SignUpView> {
             .rx
             .tap
             .bind(with: self) { owner, _ in
-                
                 owner.changeRootViewController(MainTabBarController())
-                
+            }
+            .disposed(by: disposeBag)
+        
+        rootView.signUpButton
+            .rx
+            .tap
+            .bind(with: self) { owner, _ in
+                owner.navigationController?.pushViewController(SignUpViewController(), animated: true)
             }
             .disposed(by: disposeBag)
     }

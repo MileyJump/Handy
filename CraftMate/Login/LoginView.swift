@@ -9,7 +9,7 @@ import UIKit
 import Then
 import SnapKit
 
-final class SignUpView: BaseView {
+final class LoginView: BaseView {
     
     private let serviceNameLabel = UILabel().then {
         $0.text = CraftMate.Phrase.serviceName

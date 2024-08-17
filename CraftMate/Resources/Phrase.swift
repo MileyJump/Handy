@@ -15,6 +15,19 @@ extension CraftMate {
         
         static let email = "Email"
         static let password = "Password"
+        static let PleaseEmail = "이메일을 입력해주세요."
+        static let PleasePassword = "비밀번호를 입력해주세요."
+        static let PleaseNickName = "닉네임을 입력해주세요."
+        static let pleasephoneNum = "전화번호를 입력해주세요."
+        static let pleaseBirth = "생일을 입력해주세요. (20021107)"
+        static let signUp = "회원가입"
+        static let idString = "아이디 *"
+        static let passwordString = "비밀번호 *"
+        static let nickNameString = "닉네임 *"
+        static let phoneNumString = "전화번호"
+        static let birthString = "생년월일"
+        static let options = "선택사항"
+        
         
         // 탭바
         static let homeTabBar = "홈"
