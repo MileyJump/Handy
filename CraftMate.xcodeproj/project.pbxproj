@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0128A0A2C71ED0000B72622 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A092C71ED0000B72622 /* SignUpViewModel.swift */; };
+		B0128A0C2C71ED6300B72622 /* EmailDuplicateCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */; };
+		B0128A0E2C71EF2B00B72622 /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0D2C71EF2B00B72622 /* SignUpQuery.swift */; };
 		B02CFDC52C6F403200462EF9 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC42C6F403200462EF9 /* BaseTableViewCell.swift */; };
 		B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC62C6F404500462EF9 /* BaseCollectionViewCell.swift */; };
 		B02CFDCA2C6F40DC00462EF9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC92C6F40DC00462EF9 /* LoginView.swift */; };
@@ -36,7 +39,7 @@
 		B037B0982C70D7A400A17CD7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0972C70D7A400A17CD7 /* NetworkManager.swift */; };
 		B037B09B2C70E04D00A17CD7 /* PostRetrievalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B09A2C70E04D00A17CD7 /* PostRetrievalModel.swift */; };
 		B037B09D2C70E58E00A17CD7 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B09C2C70E58E00A17CD7 /* LoginModel.swift */; };
-		B037B09F2C70E5DE00A17CD7 /* SingUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B09E2C70E5DE00A17CD7 /* SingUpModel.swift */; };
+		B037B09F2C70E5DE00A17CD7 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B09E2C70E5DE00A17CD7 /* SignUpModel.swift */; };
 		B037B0A22C70E84400A17CD7 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0A12C70E84400A17CD7 /* SignUpView.swift */; };
 		B037B0A42C70EC6D00A17CD7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0A32C70EC6D00A17CD7 /* SignUpViewController.swift */; };
 		B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */; };
@@ -67,6 +70,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B0128A092C71ED0000B72622 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailDuplicateCheckModel.swift; sourceTree = "<group>"; };
+		B0128A0D2C71EF2B00B72622 /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
 		B02CFDC42C6F403200462EF9 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC62C6F404500462EF9 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC92C6F40DC00462EF9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -91,7 +97,7 @@
 		B037B0972C70D7A400A17CD7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B037B09A2C70E04D00A17CD7 /* PostRetrievalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRetrievalModel.swift; sourceTree = "<group>"; };
 		B037B09C2C70E58E00A17CD7 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
-		B037B09E2C70E5DE00A17CD7 /* SingUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpModel.swift; sourceTree = "<group>"; };
+		B037B09E2C70E5DE00A17CD7 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		B037B0A12C70E84400A17CD7 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B037B0A32C70EC6D00A17CD7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B0DF575A2C6CE84C00CAB497 /* CraftMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraftMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				B037B0912C70CA4600A17CD7 /* LoginQuery.swift */,
+				B0128A0D2C71EF2B00B72622 /* SignUpQuery.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -227,18 +234,20 @@
 			children = (
 				B037B09A2C70E04D00A17CD7 /* PostRetrievalModel.swift */,
 				B037B09C2C70E58E00A17CD7 /* LoginModel.swift */,
-				B037B09E2C70E5DE00A17CD7 /* SingUpModel.swift */,
+				B037B09E2C70E5DE00A17CD7 /* SignUpModel.swift */,
+				B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
 		};
-		B037B0A02C70E83300A17CD7 /* New Group */ = {
+		B037B0A02C70E83300A17CD7 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
 				B037B0A12C70E84400A17CD7 /* SignUpView.swift */,
 				B037B0A32C70EC6D00A17CD7 /* SignUpViewController.swift */,
+				B0128A092C71ED0000B72622 /* SignUpViewModel.swift */,
 			);
-			path = "New Group";
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		B0DF57512C6CE84C00CAB497 = {
@@ -261,7 +270,7 @@
 		B0DF575C2C6CE84C00CAB497 /* CraftMate */ = {
 			isa = PBXGroup;
 			children = (
-				B037B0A02C70E83300A17CD7 /* New Group */,
+				B037B0A02C70E83300A17CD7 /* SignUp */,
 				B037B0992C70E03400A17CD7 /* ResponseModel */,
 				B037B0902C70CA3A00A17CD7 /* RequestModel */,
 				B02CFDF62C70C64900462EF9 /* Network */,
@@ -442,6 +451,7 @@
 				B037B09D2C70E58E00A17CD7 /* LoginModel.swift in Sources */,
 				B0DF57952C6F3AC800CAB497 /* SettingViewController.swift in Sources */,
 				B0DF578D2C6F3A1100CAB497 /* MainTabBarController.swift in Sources */,
+				B0128A0C2C71ED6300B72622 /* EmailDuplicateCheckModel.swift in Sources */,
 				B037B09B2C70E04D00A17CD7 /* PostRetrievalModel.swift in Sources */,
 				B02CFDDC2C6F779A00462EF9 /* HomeView.swift in Sources */,
 				B037B0A22C70E84400A17CD7 /* SignUpView.swift in Sources */,
@@ -462,19 +472,21 @@
 				B02CFDEB2C6FA5FE00462EF9 /* DetailView.swift in Sources */,
 				B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */,
 				B02CFDF82C70C65600462EF9 /* Router.swift in Sources */,
+				B0128A0E2C71EF2B00B72622 /* SignUpQuery.swift in Sources */,
 				B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */,
 				B037B0922C70CA4600A17CD7 /* LoginQuery.swift in Sources */,
 				B02CFDCE2C6F42BD00462EF9 /* LoginViewController.swift in Sources */,
 				B02CFDDE2C6F927C00462EF9 /* HomeTableViewCell.swift in Sources */,
 				B037B0942C70CFB500A17CD7 /* Header.swift in Sources */,
 				B02CFDC52C6F403200462EF9 /* BaseTableViewCell.swift in Sources */,
-				B037B09F2C70E5DE00A17CD7 /* SingUpModel.swift in Sources */,
+				B037B09F2C70E5DE00A17CD7 /* SignUpModel.swift in Sources */,
 				B02CFDF52C70781500462EF9 /* WritePostView.swift in Sources */,
 				B037B0962C70D00F00A17CD7 /* UserDefaultsManager.swift in Sources */,
 				B02CFDE62C6F96E700462EF9 /* SearchPageView.swift in Sources */,
 				B0DF579B2C6F3F0B00CAB497 /* BaseView.swift in Sources */,
 				B0DF579D2C6F3F4900CAB497 /* BaseViewController.swift in Sources */,
 				B0DF57602C6CE84C00CAB497 /* SceneDelegate.swift in Sources */,
+				B0128A0A2C71ED0000B72622 /* SignUpViewModel.swift in Sources */,
 				B0DF57982C6F3B0800CAB497 /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

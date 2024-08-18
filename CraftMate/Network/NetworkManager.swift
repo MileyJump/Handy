@@ -14,6 +14,24 @@ final class NetworkManager {
     
     private init() { }
     
+    static func emailDuplicateCheck(email: String) {
+        do {
+            let query = SignUpQuery(email: email)
+            let request = try Router.emailDuplicateCheck(query: query).asURLRequest()
+            
+            AF.request(request).responseDecodable(of: EmailDuplicateCheckModel.self) { response in
+                switch response.result {
+                case .success(let success):
+                    print(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        } catch {
+            print("error \(error)")
+        }
+    }
+    
     func postRetrieval() {
         do {
             let request = try Router.postRetrieval.asURLRequest()

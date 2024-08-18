@@ -24,7 +24,7 @@ final class SignUpView: BaseView {
         $0.font = CraftMate.CustomFont.SemiBold13
     }
     
-    private let emailTextField = UITextField().then {
+     let emailTextField = UITextField().then {
         $0.placeholder = CraftMate.Phrase.PleaseEmail
         $0.font = CraftMate.CustomFont.regular14
         $0.borderStyle = .roundedRect
@@ -85,8 +85,10 @@ final class SignUpView: BaseView {
     
     let signUpButton = UIButton().then {
         $0.setTitle("가입하기", for: .normal)
-        $0.setTitleColor(CraftMate.color.blackColor, for: .normal)
+        $0.setTitleColor(CraftMate.color.whiteColor, for: .normal)
         $0.titleLabel?.font = CraftMate.CustomFont.bold14
+        $0.backgroundColor = CraftMate.color.mainColor
+        $0.layer.cornerRadius = 10
     }
     
     override init(frame: CGRect) {
@@ -174,10 +176,11 @@ final class SignUpView: BaseView {
             make.height.horizontalEdges.equalTo(emailTextField)
         }
         
-        //        signUpButton.snp.makeConstraints { make in
-        //            make.top.equalTo(birthTextField)
-        //        }
-        
+        signUpButton.snp.makeConstraints { make in
+            make.top.equalTo(birthTextField.snp.bottom).offset(15)
+            make.horizontalEdges.equalTo(emailTextField)
+            make.height.equalTo(40)
+        }
         
     }
 }

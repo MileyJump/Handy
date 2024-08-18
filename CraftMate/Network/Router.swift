@@ -16,6 +16,7 @@ enum Router {
     case refresh
     case createPost
     case postRetrieval
+    case emailDuplicateCheck(query: SignUpQuery)
     
 }
 
@@ -26,6 +27,8 @@ extension Router: TargetType {
     
     var method: Alamofire.HTTPMethod {
         switch self {
+        case .emailDuplicateCheck:
+            return .post
         case .signUp:
             return .post
         case .login:
@@ -45,6 +48,8 @@ extension Router: TargetType {
     
     var path: String {
         switch self {
+        case .emailDuplicateCheck:
+            return "/v1/validation/email"
         case .signUp:
             return "/users/join"
         case .login:
@@ -62,7 +67,7 @@ extension Router: TargetType {
     
     var header: [String : String] {
         switch self {
-        case .signUp,.login:
+        case .emailDuplicateCheck,.signUp,.login:
             return [
                 Header.contentType.rawValue: Header.json.rawValue,
                 Header.sesacKey.rawValue: Key.key
@@ -110,6 +115,10 @@ extension Router: TargetType {
     
     var body: Data? {
         switch self {
+        case .emailDuplicateCheck(let query):
+            let encoder = JSONEncoder()
+            return try? encoder.encode(query)
+            
         case .login(let query):
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
