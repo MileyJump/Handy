@@ -6,8 +6,14 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class SignUpViewModel {
+    let disposeBag = DisposeBag()
     
+    struct Input {
+        
+    }
     
 }

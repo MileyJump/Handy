@@ -19,7 +19,7 @@ final class LoginView: BaseView {
         $0.textAlignment = .center
     }
     
-    private let emailTextField = UITextField().then {
+     let emailTextField = UITextField().then {
         $0.placeholder = CraftMate.Phrase.email
         $0.font = CraftMate.CustomFont.regular15
     }
@@ -28,7 +28,7 @@ final class LoginView: BaseView {
         $0.backgroundColor = CraftMate.color.LightGrayColor
     }
     
-    private let passwordTextField = UITextField().then {
+     let passwordTextField = UITextField().then {
         $0.placeholder = CraftMate.Phrase.password
         $0.font = CraftMate.CustomFont.regular15
     }

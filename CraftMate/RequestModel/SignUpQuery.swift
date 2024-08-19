@@ -9,4 +9,8 @@ import Foundation
 
 struct SignUpQuery: Encodable {
     let email: String
+    let password: String
+    let nick: String
+    let phoneNum: String?
+    let birthDay: String?
 }

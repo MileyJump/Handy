@@ -24,6 +24,11 @@ final class SignUpView: BaseView {
         $0.font = CraftMate.CustomFont.SemiBold13
     }
     
+    let emailDuplicateCheckLabel = UILabel().then {
+        $0.font = CraftMate.CustomFont.regular13
+        $0.textAlignment = .left
+    }
+    
      let emailTextField = UITextField().then {
         $0.placeholder = CraftMate.Phrase.PleaseEmail
         $0.font = CraftMate.CustomFont.regular14
@@ -43,7 +48,7 @@ final class SignUpView: BaseView {
     }
     
     
-    private let passwordTextField = UITextField().then {
+     let passwordTextField = UITextField().then {
         $0.placeholder = CraftMate.Phrase.PleasePassword
         $0.font = CraftMate.CustomFont.regular14
         $0.borderStyle = .roundedRect
@@ -55,18 +60,18 @@ final class SignUpView: BaseView {
         $0.font = CraftMate.CustomFont.SemiBold13
     }
     
-    private let nickNameTextField = UITextField().then {
+     let nickNameTextField = UITextField().then {
         $0.placeholder = CraftMate.Phrase.PleaseNickName
         $0.font = CraftMate.CustomFont.regular14
         $0.borderStyle = .roundedRect
     }
     
-    private let phoneNumberLabel = UILabel().then {
+     private let phoneNumberLabel = UILabel().then {
         $0.text = CraftMate.Phrase.phoneNumString
         $0.font = CraftMate.CustomFont.SemiBold13
     }
     
-    private let phoneNumberTextField = UITextField().then {
+     let phoneNumberTextField = UITextField().then {
         $0.placeholder = CraftMate.Phrase.pleasephoneNum
         $0.font = CraftMate.CustomFont.regular14
         $0.borderStyle = .roundedRect
@@ -77,7 +82,7 @@ final class SignUpView: BaseView {
         $0.font = CraftMate.CustomFont.SemiBold13
     }
     
-    private let birthTextField = UITextField().then {
+     let birthTextField = UITextField().then {
         $0.placeholder = CraftMate.Phrase.pleaseBirth
         $0.font = CraftMate.CustomFont.regular14
         $0.borderStyle = .roundedRect
@@ -89,6 +94,7 @@ final class SignUpView: BaseView {
         $0.titleLabel?.font = CraftMate.CustomFont.bold14
         $0.backgroundColor = CraftMate.color.mainColor
         $0.layer.cornerRadius = 10
+        $0.isEnabled = false
     }
     
     override init(frame: CGRect) {
@@ -99,6 +105,7 @@ final class SignUpView: BaseView {
         addSubview(signUpLabel)
         addSubview(emailTextField)
         addSubview(emailLabel)
+        addSubview(emailDuplicateCheckLabel)
         addSubview(emailDuplicateCheckButton)
         addSubview(passwordTextField)
         addSubview(passwordLabel)
@@ -122,6 +129,10 @@ final class SignUpView: BaseView {
             make.horizontalEdges.equalTo(emailTextField).inset(5)
         }
         
+        emailDuplicateCheckLabel.snp.makeConstraints { make in // 레이아웃 수정하기🍎
+            make.top.equalTo(emailLabel.snp.top)
+            make.leading.equalTo(emailLabel.snp.trailing).offset(5)
+        }
         
         emailTextField.snp.makeConstraints { make in
             make.top.equalTo(emailLabel.snp.bottom).offset(5)

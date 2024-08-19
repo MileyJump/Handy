@@ -9,14 +9,14 @@ import Foundation
 import Alamofire
 
 enum Router {
-    case signUp
+    case signUp(query: SignUpQuery)
     case login(query: LoginQuery)
     case fetchProfile
     case editProfile
     case refresh
     case createPost
     case postRetrieval
-    case emailDuplicateCheck(query: SignUpQuery)
+    case emailDuplicateCheck(query: EmailDuplicateCheckQuery)
     
 }
 
@@ -49,11 +49,11 @@ extension Router: TargetType {
     var path: String {
         switch self {
         case .emailDuplicateCheck:
-            return "/v1/validation/email"
+            return "v1/validation/email"
         case .signUp:
-            return "/users/join"
+            return "v1/users/join"
         case .login:
-            return "/users/login"
+            return "v1/users/login"
         case .fetchProfile, .editProfile:
             return "/users/me/profile"
         case .refresh:
@@ -116,6 +116,9 @@ extension Router: TargetType {
     var body: Data? {
         switch self {
         case .emailDuplicateCheck(let query):
+            let encoder = JSONEncoder()
+            return try? encoder.encode(query)
+        case .signUp(let query):
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
             

@@ -8,6 +8,6 @@
 import Foundation
 
 struct EmailDuplicateCheckModel: Decodable {
-    let email: String
+    let message: String
     
 }

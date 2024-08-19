@@ -11,7 +11,7 @@ struct LoginModel: Decodable {
     let id: String
     let email: String
     let nick: String
-    let profile: String
+    let profile: String?
     let access: String
     let refresh: String
     

@@ -24,7 +24,14 @@ class LoginViewController: BaseViewController<LoginView> {
             .rx
             .tap
             .bind(with: self) { owner, _ in
-                owner.changeRootViewController(MainTabBarController())
+                let email = owner.rootView.emailTextField.text ?? ""
+                let password = owner.rootView.passwordTextField.text ?? ""
+                NetworkManager.createLogin(email: email, password: password) { value, isEnabled  in
+                    if isEnabled {
+                        print("돼요?")
+                        owner.changeRootViewController(MainTabBarController())
+                    }
+                }
             }
             .disposed(by: disposeBag)
         

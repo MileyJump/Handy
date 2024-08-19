@@ -7,10 +7,22 @@
 
 import Foundation
 
+//struct SignUpModel: Decodable {
+//    let email: String
+//    let password: String
+//    let nick: String
+//    let phoneNum: String
+//    let birthDay: String
+//}
+
 struct SignUpModel: Decodable {
+    let id: String
+//    let user_id: String
     let email: String
-    let password: String
     let nick: String
-    let phoneNum: String
-    let birthDay: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "user_id"
+        case email, nick
+    }
 }
