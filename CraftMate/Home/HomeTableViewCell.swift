@@ -15,7 +15,7 @@ final class HomeTableViewCell: BaseTableViewCell {
         $0.backgroundColor = .blue
     }
     
-    private let nickNameLabel = UILabel().then {
+     let nickNameLabel = UILabel().then {
         $0.font = CraftMate.CustomFont.regular13
         $0.textColor = CraftMate.color.blackColor
         $0.text = "마일리에요"
@@ -27,7 +27,7 @@ final class HomeTableViewCell: BaseTableViewCell {
         $0.contentMode = .scaleAspectFill
     }
     
-    private let titleLabel = UILabel().then {
+     let titleLabel = UILabel().then {
         $0.font = CraftMate.CustomFont.SemiBold14
         $0.text = "오늘은 저의 첫 비즈공예 목걸이를 보여드릴게요!"
         $0.textColor = CraftMate.color.blackColor
@@ -44,6 +44,11 @@ final class HomeTableViewCell: BaseTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
     }
+    
+    func configure(with post: Post) {
+        titleLabel.text = post.title ?? "No Title"  // Post의 title을 셀에 표시
+        
+        }
     
     override func layoutSubviews() {
         super.layoutSubviews()

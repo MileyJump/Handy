@@ -66,7 +66,9 @@ final class NetworkManager {
                 case 200:
                     switch response.result {
                     case .success(let success):
-                        print(success)
+//                        print(success)
+                        UserDefaultsManager.shared.token = success.access
+                        UserDefaultsManager.shared.refreshToken = success.refresh
                         completionHandler("", true)
                     case .failure(let failure):
                         print(failure)
@@ -86,29 +88,100 @@ final class NetworkManager {
         }
     }
     
-    
-    func postRetrieval() {
+    static func fetchProfile() {
+        
         do {
-            let request = try Router.postRetrieval.asURLRequest()
+            let request = try Router.fetchProfile.asURLRequest()
             
-            AF.request(request).responseDecodable(of: PostData.self) { response in
-                switch response.result {
-                case .success(let success):
-                    print(success)
-                case .failure(let failure):
-                    print(failure)
+            AF.request(request)
+                .responseDecodable(of: ProfileModel.self) { response in
+                    
+                    if response.response?.statusCode == 419 {
+                        self.refreshToken()
+                    } else {
+                        switch response.result {
+                        case .success(let success):
+                            print("OK", success)
+                            //                        self.profileView.emailLabel.text = success.email
+                            //                        self.profileView.userNameLabel.text = success.nick
+                        case .failure(let failure):
+                            print("Fail", failure)
+                        }
+                    }
                 }
-            }
+        } catch {
+            print(error, "URLRequestConvertible 에서 asURLRequest 로 요청 만드는거 실패!!")
+        }
+        
+    }
+    
+    static func refreshToken() {
+        
+        do {
+            let request = try Router.refresh.asURLRequest()
+            
+            AF.request(request)
+                .responseDecodable(of: RefreshModel.self) { response in
+                    
+                    if response.response?.statusCode == 418 {
+                        //리프레시 토큰 만료
+                    } else {
+                        switch response.result {
+                        case .success(let success):
+                            print("OK", success)
+                            
+                            UserDefaultsManager.shared.token = success.accessToken
+                            
+                            self.fetchProfile()
+                            
+                        case .failure(let failure):
+                            print("Fail", failure)
+                        }
+                    }
+                }
+            
         } catch {
             print(error)
         }
     }
     
-    func createPost() {
-        
+    
+    
+    static func fetchPost(completionHandler: @escaping (Post?, String?) -> Void)  {
         do {
-          
-            
+            let request = try Router.fetchPost.asURLRequest()
+            AF.request(request).responseDecodable(of: Post.self) { response in
+                guard let statusCode = response.response?.statusCode else {
+                    print("Failed to get statusCode !!")
+                    return
+                }
+                switch statusCode {
+                case 200:
+                    switch response.result {
+                    case .success(let success):
+                        completionHandler(success, nil)
+                    case .failure(let failure):
+                        print(failure)
+                        print("실패!!")
+                    }
+                case 400:
+                    completionHandler(nil, "필수값을 채워주세요")
+                    print("400번 : 필수값을 채워주세요")
+                case 401:
+                    print("401번: 계정을 확인해주세요!")
+                    completionHandler(nil, "계정을 확인해주세요")
+                case 419:
+                    print("??????")
+                    self.refreshToken()
+                    
+                default:
+                    print("fetchPost5")
+                    print("상태코드 : \(statusCode)")
+                }
+            }
+        } catch {
+            print("error \(error)")
         }
     }
+    
 }

@@ -15,7 +15,9 @@ enum Router {
     case editProfile
     case refresh
     case createPost
-    case postRetrieval
+    case fetchPost
+//    case getPost
+//    case postRetrieval
     case emailDuplicateCheck(query: EmailDuplicateCheckQuery)
     
 }
@@ -41,8 +43,10 @@ extension Router: TargetType {
             return .get
         case .createPost:
             return .post
-        case .postRetrieval:
+        case .fetchPost:
             return .get
+//        case .postRetrieval:
+//            return .get
         }
     }
     
@@ -57,11 +61,14 @@ extension Router: TargetType {
         case .fetchProfile, .editProfile:
             return "/users/me/profile"
         case .refresh:
-            return "/auth/refresh"
+            return "v1/auth/refresh"
         case .createPost:
             return "/posts"
-        case .postRetrieval:
-            return "/post"
+        case .fetchPost:
+            return "v1/posts/66c46a852701b5f91d1a4eb0" 
+//        case .fetchPost:
+//            return "v1/posts"
+
         }
     }
     
@@ -97,11 +104,12 @@ extension Router: TargetType {
                 Header.contentType.rawValue: Header.json.rawValue,
                 Header.sesacKey.rawValue: Key.key
             ]
-        case .postRetrieval:
+        case .fetchPost:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
                 Header.sesacKey.rawValue: Key.key
             ]
+            
         }
     }
     

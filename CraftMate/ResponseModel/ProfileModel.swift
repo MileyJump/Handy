@@ -1,19 +1,21 @@
 //
-//  SingUpModel.swift
+//  ProfileModel.swift
 //  CraftMate
 //
-//  Created by 최민경 on 8/17/24.
+//  Created by 최민경 on 8/20/24.
 //
 
 import Foundation
 
-struct SignUpModel: Decodable {
+struct ProfileModel: Decodable {
     let id: String
     let email: String
     let nick: String
     
     enum CodingKeys: String, CodingKey {
         case id = "user_id"
-        case email, nick
+        case email
+        case nick
     }
 }
+

@@ -26,6 +26,7 @@ final class SignUpView: BaseView {
     
     let emailDuplicateCheckLabel = UILabel().then {
         $0.font = CraftMate.CustomFont.regular13
+        $0.textColor = CraftMate.color.redColor
         $0.textAlignment = .left
     }
     
@@ -126,11 +127,12 @@ final class SignUpView: BaseView {
         
         emailLabel.snp.makeConstraints { make in
             make.top.equalTo(signUpLabel.snp.bottom).offset(40)
-            make.horizontalEdges.equalTo(emailTextField).inset(5)
+            make.leading.equalTo(emailTextField.snp.leading).offset(5)
         }
         
         emailDuplicateCheckLabel.snp.makeConstraints { make in // 레이아웃 수정하기🍎
-            make.top.equalTo(emailLabel.snp.top)
+//            make.top.equalTo(emailLabel.snp.top)
+            make.centerY.equalTo(emailLabel)
             make.leading.equalTo(emailLabel.snp.trailing).offset(5)
         }
         

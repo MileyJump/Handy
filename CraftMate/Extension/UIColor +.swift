@@ -18,6 +18,7 @@ extension CraftMate {
         static let LightGrayColor = UIColor(hexCode: "F2F2F2")
         static let blackColor = UIColor(hexCode: "000000")
         static let whiteColor = UIColor(hexCode: "FFFFFF")
+        static let redColor = UIColor(hexCode: "A02334")
         
         
     }

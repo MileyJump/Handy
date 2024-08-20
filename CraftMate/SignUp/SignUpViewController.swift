@@ -19,7 +19,6 @@ final class SignUpViewController: BaseViewController<SignUpView> {
     }
     
     func bind() {  // 🍎
-        print("==")
         rootView.emailDuplicateCheckButton.rx.tap
             .bind(with: self) { owner, _ in
                 let email = owner.rootView.emailTextField.text ?? ""
@@ -33,7 +32,7 @@ final class SignUpViewController: BaseViewController<SignUpView> {
             .disposed(by: disposeBag)
         
         rootView.signUpButton.rx.tap
-            .bind(with: self) { owner, _ in
+            .bind(with: self) { owner, _ in // 🍎
                 let email = owner.rootView.emailTextField.text ?? ""
                 let password = owner.rootView.passwordTextField.text ?? ""
                 let nick = owner.rootView.nickNameTextField.text ?? ""

@@ -9,8 +9,19 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class HomeViewModel {
-    let disposeBage = DisposeBag()
+
+final class HomeViewModel {
     
-    var list = ["b", "b"]
+    let posts = BehaviorRelay<[Post]>(value: [])
+    let disposeBag = DisposeBag()
+    
+    func fetchPosts() {
+        NetworkManager.fetchPost { [weak self] post, errorMessage in
+            if let post = post {
+                self?.posts.accept([post])  // 하나의 Post를 배열로 만들어 전달
+            } else if let errorMessage = errorMessage {
+                print("Error: \(errorMessage)")
+            }
+        }
+    }
 }
