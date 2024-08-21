@@ -35,6 +35,8 @@ class BaseViewController<RootView: UIView>: UIViewController {
     func setupAddTarget() { }
     
     func setupNavigationBar() {
+        
+        
         navigationItem.backBarButtonItem?.tintColor = CraftMate.color.blackColor
         
         navigationItem.backButtonTitle = ""

@@ -18,6 +18,9 @@ final class HomeViewController: BaseViewController<HomeView> {
         super.viewDidLoad()
 
         rootView.tableView.delegate = self
+        rootView.collectionView.delegate = self
+        rootView.collectionView.dataSource = self
+        rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         
         // 네트워크 요청 실행
         viewModel.fetchPosts()
@@ -25,6 +28,9 @@ final class HomeViewController: BaseViewController<HomeView> {
         bindTableView()
         bind()
     }
+    
+  
+  
     
     func bind() {
         rootView.floatingButton.floatingButton
@@ -34,6 +40,16 @@ final class HomeViewController: BaseViewController<HomeView> {
                 owner.navigationController?.pushViewController(WritePostViewController(), animated: true)
             }
             .disposed(by: disposeBag)
+        
+        // 수정하기..
+        rootView.segmentControl.rx.selectedSegmentIndex
+            .bind(with: self, onNext: { owner, index in
+              owner.rootView.updateSelectionIndicatorPosition(for: index)
+                print(index)
+            })
+            .disposed(by: disposeBag)
+        
+        
     }
 
     func bindTableView() {
@@ -46,13 +62,18 @@ final class HomeViewController: BaseViewController<HomeView> {
     }
     
     override func setupNavigationBar() {
+        let search = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.searchImage), style: .plain, target: nil, action: nil)
+//        let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
+        
+        navigationItem.rightBarButtonItems = [search]
+        
         navigationItem.title = "CraftMate"
         if let font = CraftMate.CustomFont.SemiBold20 {
             navigationController?.navigationBar.configureNavigationBarTitle(font: font, textColor: CraftMate.color.mainColor)
         }
     }
     
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         } else {
@@ -61,6 +82,22 @@ final class HomeViewController: BaseViewController<HomeView> {
     }
 }
 
+
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as? HomeCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        return cell
+    }
+    
+    
+}
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

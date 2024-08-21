@@ -42,6 +42,7 @@ extension CraftMate {
         static let  saveSelectImage = "bookmark.fill"
         static let  myPageImage = "person"
         static let  myPageSelectImage = "person.fill"
+        static let  shoppingBagImage = "쇼핑백"
         
         static let heartImage = "heart"
         static let heartFillImage = "heart.fill"

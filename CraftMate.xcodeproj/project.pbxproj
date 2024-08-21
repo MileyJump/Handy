@@ -13,6 +13,8 @@
 		B0128A102C72037400B72622 /* SignUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0F2C72037400B72622 /* SignUpQuery.swift */; };
 		B0128A1A2C74835B00B72622 /* RefreshModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A192C74835B00B72622 /* RefreshModel.swift */; };
 		B0128A1C2C74854200B72622 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A1B2C74854200B72622 /* ProfileModel.swift */; };
+		B0128A3A2C76332100B72622 /* UICollectionViewLayout +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A392C76332100B72622 /* UICollectionViewLayout +.swift */; };
+		B0128A3C2C76342C00B72622 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A3B2C76342C00B72622 /* HomeCollectionViewCell.swift */; };
 		B02CFDC52C6F403200462EF9 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC42C6F403200462EF9 /* BaseTableViewCell.swift */; };
 		B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC62C6F404500462EF9 /* BaseCollectionViewCell.swift */; };
 		B02CFDCA2C6F40DC00462EF9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC92C6F40DC00462EF9 /* LoginView.swift */; };
@@ -79,6 +81,8 @@
 		B0128A0F2C72037400B72622 /* SignUpQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpQuery.swift; sourceTree = "<group>"; };
 		B0128A192C74835B00B72622 /* RefreshModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshModel.swift; sourceTree = "<group>"; };
 		B0128A1B2C74854200B72622 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		B0128A392C76332100B72622 /* UICollectionViewLayout +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout +.swift"; sourceTree = "<group>"; };
+		B0128A3B2C76342C00B72622 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC42C6F403200462EF9 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC62C6F404500462EF9 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC92C6F40DC00462EF9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 				B02CFDDB2C6F779A00462EF9 /* HomeView.swift */,
 				B02CFDE22C6F932900462EF9 /* HomeViewModel.swift */,
 				B02CFDDD2C6F927C00462EF9 /* HomeTableViewCell.swift */,
+				B0128A3B2C76342C00B72622 /* HomeCollectionViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 				B0DF577A2C6E3F9B00CAB497 /* UIColor +.swift */,
 				B02CFDCB2C6F428300462EF9 /* UIViewController +.swift */,
 				B02CFDE72C6F9A8A00462EF9 /* UINavigationBar +.swift */,
+				B0128A392C76332100B72622 /* UICollectionViewLayout +.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0128A3A2C76332100B72622 /* UICollectionViewLayout +.swift in Sources */,
 				B037B0982C70D7A400A17CD7 /* NetworkManager.swift in Sources */,
 				B0DF577B2C6E3F9B00CAB497 /* UIColor +.swift in Sources */,
 				B0128A102C72037400B72622 /* SignUpQuery.swift in Sources */,
@@ -494,6 +501,7 @@
 				B02CFDF52C70781500462EF9 /* WritePostView.swift in Sources */,
 				B037B0962C70D00F00A17CD7 /* UserDefaultsManager.swift in Sources */,
 				B02CFDE62C6F96E700462EF9 /* SearchPageView.swift in Sources */,
+				B0128A3C2C76342C00B72622 /* HomeCollectionViewCell.swift in Sources */,
 				B0DF579B2C6F3F0B00CAB497 /* BaseView.swift in Sources */,
 				B0DF579D2C6F3F4900CAB497 /* BaseViewController.swift in Sources */,
 				B0DF57602C6CE84C00CAB497 /* SceneDelegate.swift in Sources */,
