@@ -22,6 +22,14 @@ final class HomeContentViewController: BaseViewController<HomeView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        rootView.collectionView.dataSource = self
+        rootView.collectionView.delegate = self
+        rootView.tableView.delegate = self
+        
+        rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
+        
+        
+        rootView.tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
         // 네트워크 요청 실행
         viewModel.fetchPosts()
         bind()
@@ -54,11 +62,13 @@ final class HomeContentViewController: BaseViewController<HomeView> {
            // ViewModel의 posts와 TableView 바인딩
            viewModel.posts
                .bind(to: rootView.tableView.rx.items(cellIdentifier: HomeTableViewCell.identifier, cellType: HomeTableViewCell.self)) { row, post, cell in
+                   print(cell, post)
                    cell.configure(with: post)
                }
                .disposed(by: disposeBag)
        }
-   
+    
+    
        
    }
    
@@ -77,5 +87,12 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
         
         
         return cell
+    }
+}
+
+extension HomeContentViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedPost = viewModel.posts.value[indexPath.row]
+        // 선택된 포스트에 대한 처리 추가
     }
 }

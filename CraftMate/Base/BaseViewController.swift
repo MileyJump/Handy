@@ -24,9 +24,13 @@ class BaseViewController<RootView: UIView>: UIViewController {
         setupNavigationBar()
     }
     
-    func configureHierarchy() { }
+    func configureHierarchy() {
+        
+    }
     
-    func configureLayout() { }
+    func configureLayout() { 
+      
+    }
     
     func configureView() {
         view.backgroundColor = .white

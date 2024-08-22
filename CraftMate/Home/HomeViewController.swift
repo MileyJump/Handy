@@ -37,7 +37,7 @@ final class HomeViewController: TabmanViewController {
         
         
         let search = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.searchImage), style: .plain, target: nil, action: nil)
-        let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
+        //let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
         
         navigationItem.rightBarButtonItems = [search]
         
@@ -69,7 +69,6 @@ final class HomeViewController: TabmanViewController {
     
     private func setupTabBar() {
         let bar = TMBar.ButtonBar()
-        
         
         let systemBar = bar.systemBar()
         
@@ -228,43 +227,5 @@ extension HomeViewController: PageboyViewControllerDataSource, TMBarDataSource {
 //        // 선택된 포스트에 대한 처리 추가
 //    }
 //}
-
-// pageViewController.dataSource = self
-//extension HomeViewController: UIPageViewControllerDataSource {
-//  func pageViewController(
-//    _ pageViewController: UIPageViewController,
-//    viewControllerBefore viewController: UIViewController
-//  ) -> UIViewController? {
-//    guard
-//      let index = self.dataViewControllers.firstIndex(of: viewController),
-//      index - 1 >= 0
-//    else { return nil }
-//    return self.dataViewControllers[index - 1]
-//  }
-//  func pageViewController(
-//    _ pageViewController: UIPageViewController,
-//    viewControllerAfter viewController: UIViewController
-//  ) -> UIViewController? {
-//    guard
-//      let index = self.dataViewControllers.firstIndex(of: viewController),
-//      index + 1 < self.dataViewControllers.count
-//    else { return nil }
-//    return self.dataViewControllers[index + 1]
-//  }
-//}
 //
-//extension HomeViewController: UIPageViewControllerDelegate {
-//  func pageViewController(
-//    _ pageViewController: UIPageViewController,
-//    didFinishAnimating finished: Bool,
-//    previousViewControllers: [UIViewController],
-//    transitionCompleted completed: Bool
-//  ) {
-//    guard
-//      let viewController = pageViewController.viewControllers?[0],
-//      let index = self.dataViewControllers.firstIndex(of: viewController)
-//    else { return }
-//    self.currentPage = index
-//      rootView.segmentControl.selectedSegmentIndex = index
-//  }
-//}
+//
