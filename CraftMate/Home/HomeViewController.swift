@@ -4,66 +4,40 @@
 //
 //  Created by 최민경 on 8/16/24.
 //
-
 import UIKit
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
+import Tabman
+import Pageboy
 
-final class HomeViewController: BaseViewController<HomeView> {
+final class HomeViewController: TabmanViewController {
     
-    let disposeBag = DisposeBag()
-    let viewModel = HomeViewModel()
+    //   let disposeBag = DisposeBag()
+    
+    var items = ["홈", "구매"]
+    
+    // 탭을 통해 보여줄 뷰 컨트롤러들
+    private var viewControllers: [UIViewController] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        rootView.tableView.delegate = self
-        rootView.collectionView.delegate = self
-        rootView.collectionView.dataSource = self
-        rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         
-        // 네트워크 요청 실행
-        viewModel.fetchPosts()
+        // 각 탭에 연결될 ViewController들을 초기화
+        setupViewControllers()
         
-        bindTableView()
-        bind()
+        // PageboyViewController의 데이터 소스를 self로 설정
+        self.dataSource = self
+        
+        // Tabman의 탭 바 설정
+        setupTabBar()
+        setupNavigationBar()
     }
     
-  
-  
-    
-    func bind() {
-        rootView.floatingButton.floatingButton
-            .rx
-            .tap
-            .bind(with: self) { owner, _ in
-                owner.navigationController?.pushViewController(WritePostViewController(), animated: true)
-            }
-            .disposed(by: disposeBag)
-        
-        // 수정하기..
-        rootView.segmentControl.rx.selectedSegmentIndex
-            .bind(with: self, onNext: { owner, index in
-              owner.rootView.updateSelectionIndicatorPosition(for: index)
-                print(index)
-            })
-            .disposed(by: disposeBag)
+    func setupNavigationBar() {
         
         
-    }
-
-    func bindTableView() {
-        // ViewModel의 posts와 TableView 바인딩
-        viewModel.posts
-            .bind(to: rootView.tableView.rx.items(cellIdentifier: HomeTableViewCell.identifier, cellType: HomeTableViewCell.self)) { row, post, cell in
-                cell.configure(with: post)
-            }
-            .disposed(by: disposeBag)
-    }
-    
-    override func setupNavigationBar() {
         let search = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.searchImage), style: .plain, target: nil, action: nil)
-//        let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
+        let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
         
         navigationItem.rightBarButtonItems = [search]
         
@@ -71,62 +45,110 @@ final class HomeViewController: BaseViewController<HomeView> {
         if let font = CraftMate.CustomFont.SemiBold20 {
             navigationController?.navigationBar.configureNavigationBarTitle(font: font, textColor: CraftMate.color.mainColor)
         }
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
     
-     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
-}
-
-
-
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+    
+    private func setupViewControllers() {
+        // HomeViewController를 포함한 다른 뷰 컨트롤러들을 생성하고 배열에 추가
+        let homeVC = HomeContentViewController()  // 첫 번째 탭
+        let orderVC = OrderViewController()  // 두 번째 탭
+        // ... 필요에 따라 더 추가
+        
+        viewControllers = [homeVC, orderVC] // 각 탭에 연결될 뷰 컨트롤러 추가
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as? HomeCollectionViewCell else {
-            return UICollectionViewCell()
+    private func setupTabBar() {
+        let bar = TMBar.ButtonBar()
+        
+        
+        let systemBar = bar.systemBar()
+        
+        bar.layout.contentMode = .fit
+        
+        bar.backgroundColor = .white
+        
+        bar.layout.transitionStyle = .snap
+        
+        bar.buttons.customize { button in
+            button.tintColor = .gray
+            button.selectedTintColor = .black
+            button.font = CraftMate.CustomFont.bold14 ?? UIFont.boldSystemFont(ofSize: 14)
+            button.backgroundColor = .white
         }
-        return cell
+        
+        bar.layout.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        bar.indicator.tintColor = .black
+        
+        
+        
+        // 탭 바를 현재 뷰 컨트롤러에 추가
+        addBar(bar, dataSource: self, at: .top)
     }
     
     
 }
 
-extension HomeViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selectedPost = viewModel.posts.value[indexPath.row]
-        // 선택된 포스트에 대한 처리 추가
+extension HomeViewController: PageboyViewControllerDataSource, TMBarDataSource {
+    
+    func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {
+        return viewControllers.count
+    }
+    
+    func viewController(for pageboyViewController: PageboyViewController, at index: PageboyViewController.PageIndex) -> UIViewController? {
+        return viewControllers[index]
+    }
+    
+    func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
+        return .first
+    }
+    
+    func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
+        return TMBarItem(title: items[index])  // 탭의 제목 설정
     }
 }
 
-//final class HomeViewController: BaseViewController<HomeView> {
-//    
-//    var posts = BehaviorRelay<[Post]>(value: [])
-//      let disposeBag = DisposeBag()
+
+
+//import UIKit
+//import RxSwift
+//import RxCocoa
+//import Tabman
 //
-//    
+//final class HomeViewController: BaseViewController<HomeView> {
+//
+//    let disposeBag = DisposeBag()
+//    let viewModel = HomeViewModel()
+//
+//    // 나중에 Rx로 수정
+//    var items = ["홈데코", "공예", "리폼", "아이들", "주방", "기타"]
+//    var images = ["홈", "비즈", "비즈", "홈", "주방", "비즈" ]
+//
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //
 //        rootView.tableView.delegate = self
-//        rootView.tableView.dataSource = self
-//        
-//       
-//        fetchPost()
+//        rootView.collectionView.delegate = self
+//        rootView.collectionView.dataSource = self
+//        rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
+//
+//        // 네트워크 요청 실행
+//        viewModel.fetchPosts()
+//
+//        bindTableView()
 //        bind()
 //    }
-//    
-//    func fetchPost() {
-//     
-//    }
-//    
+//
 //    func bind() {
 //        rootView.floatingButton.floatingButton
 //            .rx
@@ -135,37 +157,114 @@ extension HomeViewController: UITableViewDelegate {
 //                owner.navigationController?.pushViewController(WritePostViewController(), animated: true)
 //            }
 //            .disposed(by: disposeBag)
+//
+//        // 수정하기..
+//        rootView.segmentControl.rx.selectedSegmentIndex
+//            .bind(with: self, onNext: { owner, index in
+//              owner.rootView.updateSelectionIndicatorPosition(for: index)
+//                print(index)
+//
+//
+//            })
+//            .disposed(by: disposeBag)
 //    }
-//    
+//
+//    func bindTableView() {
+//        // ViewModel의 posts와 TableView 바인딩
+//        viewModel.posts
+//            .bind(to: rootView.tableView.rx.items(cellIdentifier: HomeTableViewCell.identifier, cellType: HomeTableViewCell.self)) { row, post, cell in
+//                cell.configure(with: post)
+//            }
+//            .disposed(by: disposeBag)
+//    }
+//
 //    override func setupNavigationBar() {
+//        let search = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.searchImage), style: .plain, target: nil, action: nil)
+//        let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
+//
+//        navigationItem.rightBarButtonItems = [search]
+//
 //        navigationItem.title = "CraftMate"
 //        if let font = CraftMate.CustomFont.SemiBold20 {
 //            navigationController?.navigationBar.configureNavigationBarTitle(font: font, textColor: CraftMate.color.mainColor)
 //        }
+//
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        navigationController?.navigationBar.shadowImage = UIImage()
 //    }
-//    
-//    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+//
+//     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
 //        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
 //            self.navigationController?.setNavigationBarHidden(true, animated: true)
 //        } else {
 //            self.navigationController?.setNavigationBarHidden(false, animated: true)
 //        }
 //    }
-//    
-//    
-//    
 //}
 //
-//extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
+//
+//
+//extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return items.count
 //    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = rootView.tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
-////        cell.nickNameLabel.text = posts?.title
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as? HomeCollectionViewCell else {
+//            return UICollectionViewCell()
+//        }
+//        cell.configureCell(title: items[indexPath.row], image: images[indexPath.row])
+//
+//
 //        return cell
 //    }
-//    
-//    
+//
+//
+//}
+//
+//extension HomeViewController: UITableViewDelegate {
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+////        let selectedPost = viewModel.posts.value[indexPath.row]
+//        // 선택된 포스트에 대한 처리 추가
+//    }
+//}
+
+// pageViewController.dataSource = self
+//extension HomeViewController: UIPageViewControllerDataSource {
+//  func pageViewController(
+//    _ pageViewController: UIPageViewController,
+//    viewControllerBefore viewController: UIViewController
+//  ) -> UIViewController? {
+//    guard
+//      let index = self.dataViewControllers.firstIndex(of: viewController),
+//      index - 1 >= 0
+//    else { return nil }
+//    return self.dataViewControllers[index - 1]
+//  }
+//  func pageViewController(
+//    _ pageViewController: UIPageViewController,
+//    viewControllerAfter viewController: UIViewController
+//  ) -> UIViewController? {
+//    guard
+//      let index = self.dataViewControllers.firstIndex(of: viewController),
+//      index + 1 < self.dataViewControllers.count
+//    else { return nil }
+//    return self.dataViewControllers[index + 1]
+//  }
+//}
+//
+//extension HomeViewController: UIPageViewControllerDelegate {
+//  func pageViewController(
+//    _ pageViewController: UIPageViewController,
+//    didFinishAnimating finished: Bool,
+//    previousViewControllers: [UIViewController],
+//    transitionCompleted completed: Bool
+//  ) {
+//    guard
+//      let viewController = pageViewController.viewControllers?[0],
+//      let index = self.dataViewControllers.firstIndex(of: viewController)
+//    else { return }
+//    self.currentPage = index
+//      rootView.segmentControl.selectedSegmentIndex = index
+//  }
 //}

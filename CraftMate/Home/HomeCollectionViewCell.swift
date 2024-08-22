@@ -31,6 +31,11 @@ final class HomeCollectionViewCell: BaseCollectionViewCell {
         
     }
     
+    func configureCell(title: String, image: String ) {
+        titleLabel.text = title
+        imageButton.setImage(UIImage(named: image), for: .normal)
+    }
+    
     override func configureHierarchy() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(imageButton)
@@ -39,9 +44,10 @@ final class HomeCollectionViewCell: BaseCollectionViewCell {
     
     override func configureLayout() {
         imageButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(4)
+            make.top.equalToSuperview().inset(8)
             make.horizontalEdges.equalToSuperview().offset(4)
             make.height.equalTo(35)
+            make.width.equalTo(30)
         }
         
         

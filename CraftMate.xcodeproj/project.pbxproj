@@ -15,6 +15,8 @@
 		B0128A1C2C74854200B72622 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A1B2C74854200B72622 /* ProfileModel.swift */; };
 		B0128A3A2C76332100B72622 /* UICollectionViewLayout +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A392C76332100B72622 /* UICollectionViewLayout +.swift */; };
 		B0128A3C2C76342C00B72622 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A3B2C76342C00B72622 /* HomeCollectionViewCell.swift */; };
+		B0128A3F2C763B3600B72622 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A3E2C763B3500B72622 /* OrderViewController.swift */; };
+		B0128A412C763B4D00B72622 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A402C763B4D00B72622 /* OrderView.swift */; };
 		B02CFDC52C6F403200462EF9 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC42C6F403200462EF9 /* BaseTableViewCell.swift */; };
 		B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC62C6F404500462EF9 /* BaseCollectionViewCell.swift */; };
 		B02CFDCA2C6F40DC00462EF9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC92C6F40DC00462EF9 /* LoginView.swift */; };
@@ -47,6 +49,8 @@
 		B037B09F2C70E5DE00A17CD7 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B09E2C70E5DE00A17CD7 /* SignUpModel.swift */; };
 		B037B0A22C70E84400A17CD7 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0A12C70E84400A17CD7 /* SignUpView.swift */; };
 		B037B0A42C70EC6D00A17CD7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0A32C70EC6D00A17CD7 /* SignUpViewController.swift */; };
+		B03934AE2C7724BA00EB34CD /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = B03934AD2C7724BA00EB34CD /* Tabman */; };
+		B03934B02C77293B00EB34CD /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03934AF2C77293B00EB34CD /* HomeContentViewController.swift */; };
 		B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */; };
 		B0DF57602C6CE84C00CAB497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */; };
 		B0DF57622C6CE84C00CAB497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF57612C6CE84C00CAB497 /* ViewController.swift */; };
@@ -83,6 +87,8 @@
 		B0128A1B2C74854200B72622 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		B0128A392C76332100B72622 /* UICollectionViewLayout +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout +.swift"; sourceTree = "<group>"; };
 		B0128A3B2C76342C00B72622 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		B0128A3E2C763B3500B72622 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		B0128A402C763B4D00B72622 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		B02CFDC42C6F403200462EF9 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC62C6F404500462EF9 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC92C6F40DC00462EF9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -110,6 +116,7 @@
 		B037B09E2C70E5DE00A17CD7 /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		B037B0A12C70E84400A17CD7 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B037B0A32C70EC6D00A17CD7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B03934AF2C77293B00EB34CD /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
 		B0DF575A2C6CE84C00CAB497 /* CraftMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraftMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,12 +156,22 @@
 				B02CFDD12C6F461A00462EF9 /* SnapKit in Frameworks */,
 				B02CFDD92C6F75C500462EF9 /* RxSwift in Frameworks */,
 				B02CFDD42C6F462300462EF9 /* Then in Frameworks */,
+				B03934AE2C7724BA00EB34CD /* Tabman in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B0128A3D2C763B2000B72622 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				B0128A3E2C763B3500B72622 /* OrderViewController.swift */,
+				B0128A402C763B4D00B72622 /* OrderView.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
 		B02CFDC82C6F40CB00462EF9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,11 +184,13 @@
 		B02CFDDA2C6F778700462EF9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B0128A3D2C763B2000B72622 /* Order */,
 				B0DF578E2C6F3A5A00CAB497 /* HomeViewController.swift */,
 				B02CFDDB2C6F779A00462EF9 /* HomeView.swift */,
 				B02CFDE22C6F932900462EF9 /* HomeViewModel.swift */,
 				B02CFDDD2C6F927C00462EF9 /* HomeTableViewCell.swift */,
 				B0128A3B2C76342C00B72622 /* HomeCollectionViewCell.swift */,
+				B03934AF2C77293B00EB34CD /* HomeContentViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -389,6 +408,7 @@
 				B02CFDD62C6F75C500462EF9 /* RxCocoa */,
 				B02CFDD82C6F75C500462EF9 /* RxSwift */,
 				B02CFDFC2C70C74900462EF9 /* Alamofire */,
+				B03934AD2C7724BA00EB34CD /* Tabman */,
 			);
 			productName = CraftMate;
 			productReference = B0DF575A2C6CE84C00CAB497 /* CraftMate.app */;
@@ -423,6 +443,7 @@
 				B02CFDD22C6F462300462EF9 /* XCRemoteSwiftPackageReference "Then" */,
 				B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B02CFDFB2C70C74900462EF9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B03934AC2C7724BA00EB34CD /* XCRemoteSwiftPackageReference "Tabman" */,
 			);
 			productRefGroup = B0DF575B2C6CE84C00CAB497 /* Products */;
 			projectDirPath = "";
@@ -460,6 +481,8 @@
 				B0128A3A2C76332100B72622 /* UICollectionViewLayout +.swift in Sources */,
 				B037B0982C70D7A400A17CD7 /* NetworkManager.swift in Sources */,
 				B0DF577B2C6E3F9B00CAB497 /* UIColor +.swift in Sources */,
+				B03934B02C77293B00EB34CD /* HomeContentViewController.swift in Sources */,
+				B0128A412C763B4D00B72622 /* OrderView.swift in Sources */,
 				B0128A102C72037400B72622 /* SignUpQuery.swift in Sources */,
 				B0DF57932C6F3AB900CAB497 /* SaveViewController.swift in Sources */,
 				B0DF57882C6F35B100CAB497 /* CustomFont.swift in Sources */,
@@ -472,6 +495,7 @@
 				B037B09B2C70E04D00A17CD7 /* FetchPostModel.swift in Sources */,
 				B02CFDDC2C6F779A00462EF9 /* HomeView.swift in Sources */,
 				B037B0A22C70E84400A17CD7 /* SignUpView.swift in Sources */,
+				B0128A3F2C763B3600B72622 /* OrderViewController.swift in Sources */,
 				B02CFDCA2C6F40DC00462EF9 /* LoginView.swift in Sources */,
 				B02CFDF02C706A9A00462EF9 /* FloatingButton.swift in Sources */,
 				B02CFDF32C7077FA00462EF9 /* WritePostViewController.swift in Sources */,
@@ -762,6 +786,14 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		B03934AC2C7724BA00EB34CD /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -789,6 +821,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B02CFDFB2C70C74900462EF9 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		B03934AD2C7724BA00EB34CD /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B03934AC2C7724BA00EB34CD /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
