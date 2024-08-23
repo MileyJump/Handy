@@ -33,25 +33,20 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         // 네트워크 요청 실행
         viewModel.fetchPosts()
         bind()
+        bindTableView()
     }
-    //
-    //    func bind() {
-    //        rootView.floatingButton.floatingButton
-    //            .rx
-    //            .tap
-    //            .bind(with: self) { owner, _ in
-    //                owner.navigationController?.pushViewController(WritePostViewController(), animated: true)
-    //            }
-    //            .disposed(by: disposeBag)
-    //    }
-    //}
+
     
     func bind() {
            rootView.floatingButton.floatingButton
                .rx
                .tap
                .bind(with: self) { owner, _ in
-                   owner.navigationController?.pushViewController(WritePostViewController(), animated: true)
+                   let vc = WritePostViewController()
+                   let naviVc = UINavigationController(rootViewController: vc)
+                   naviVc.modalPresentationStyle = .fullScreen
+                   owner.present(naviVc, animated: true)
+                   
                }
                .disposed(by: disposeBag)
    

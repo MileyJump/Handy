@@ -56,16 +56,36 @@ final class HomeTableViewCell: BaseTableViewCell {
     }
     
     private let heartButton = UIButton().then {
+//        $0.configureIconButton(icon: "하트", size: 2)
+//        $0.backgroundColor = .blue
         $0.setImage(UIImage(systemName: CraftMate.Phrase.heartImage), for: .normal)
-//        $0.tintColor = CraftMate.color.whiteColor
+        $0.tintColor = CraftMate.color.whiteColor
         $0.tintColor = CraftMate.color.blackColor
         $0.setImage(UIImage(named: "하트"), for: .normal)
     }
+    
+    private let heartCount = UILabel().then {
+        $0.text = "0"
+        $0.textAlignment = .left
+        $0.font = CraftMate.CustomFont.Light13
+        $0.numberOfLines = 1
+    }
+    
       private let commentsButton = UIButton().then {
+//          $0.configureIconButton(icon: "댓글", size: 20)
+//          $0.backgroundColor = .blue
         $0.setImage(UIImage(named: "댓글"), for: .normal)
 //        $0.tintColor = CraftMate.color.whiteColor
         $0.tintColor = CraftMate.color.blackColor
     }
+    
+    private let commentsLabel = UILabel().then {
+        $0.text = "0"
+        $0.font = CraftMate.CustomFont.Light13
+        $0.textAlignment = .left
+        $0.numberOfLines = 1
+  }
+  
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -94,7 +114,9 @@ final class HomeTableViewCell: BaseTableViewCell {
         contentView.addSubview(thumbnailImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(heartButton)
+        contentView.addSubview(heartCount)
         contentView.addSubview(commentsButton)
+        contentView.addSubview(commentsLabel)
         contentView.addSubview(descriptionLabel)
     }
     
@@ -135,14 +157,25 @@ final class HomeTableViewCell: BaseTableViewCell {
         heartButton.snp.makeConstraints { make in
             make.top.equalTo(thumbnailImageView.snp.bottom).offset(8)
             make.leading.equalTo(thumbnailImageView.snp.leading).offset(8)
-            make.size.equalTo(20)
+            make.width.height.equalTo(20)
         }
         
+        heartCount.snp.makeConstraints { make in
+            make.centerY.equalTo(heartButton)
+            make.leading.equalTo(heartButton.snp.trailing).offset(4)
+            
+            
+        }
         
         commentsButton.snp.makeConstraints { make in
             make.top.equalTo(heartButton.snp.top)
-            make.leading.equalTo(heartButton.snp.trailing).offset(10)
-            make.size.equalTo(23)
+            make.leading.equalTo(heartCount.snp.trailing).offset(14)
+            make.size.equalTo(20)
+        }  
+        
+        commentsLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(heartButton)
+            make.leading.equalTo(commentsButton.snp.trailing).offset(4)
         }
         
         titleLabel.snp.makeConstraints { make in

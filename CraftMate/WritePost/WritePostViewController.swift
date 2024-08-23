@@ -61,4 +61,39 @@ final class WritePostViewController: BaseViewController<WritePostView> {
     func bind() {
         
     }
+    
+    override func setupNavigationBar() {
+        
+        let upload = UIBarButtonItem(title: "게시", style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = upload
+        
+        let xmark = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = xmark
+        
+        
+        upload.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.uploadButtonTapped()
+            }
+            .disposed(by: disposeBag)
+        
+        xmark.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.xMarkButtonTapped()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+     func uploadButtonTapped() {
+         let title = rootView.titleTextField.text
+         let content = rootView.contentTextView.text
+         NetworkManager.createPost(title: title, content: nil, content1: content, content2: nil, content3: nil, content4: nil, content5: nil, product_id: nil, files: nil) { owner, _ in
+             print(owner)
+            
+         }
+    }
+    
+    func xMarkButtonTapped() {
+        dismiss(animated: true)
+    }
 }

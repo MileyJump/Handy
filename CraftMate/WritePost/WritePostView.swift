@@ -26,12 +26,12 @@ final class WritePostView: BaseView {
         $0.tintColor = CraftMate.color.MediumGrayColor
     }
     
-    private let titleTextField = UITextField().then {
+     let titleTextField = UITextField().then {
         $0.placeholder = "제목을 작성해주세요!"
         $0.font = CraftMate.CustomFont.bold15
     }
     
-    private let contentTextView = UITextView().then {
+     let contentTextView = UITextView().then {
         $0.text = "내용을 입력해주세요!"
     }
     

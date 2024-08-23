@@ -14,8 +14,8 @@ enum Router {
     case fetchProfile
     case editProfile
     case refresh
-    case createPost
-    case fetchPost
+    case createPost(query: CreatePostQuery)
+    case fetchPost(query: FetchQuery)
 //    case getPost
 //    case postRetrieval
     case emailDuplicateCheck(query: EmailDuplicateCheckQuery)
@@ -63,9 +63,9 @@ extension Router: TargetType {
         case .refresh:
             return "v1/auth/refresh"
         case .createPost:
-            return "/posts"
+            return "v1/posts"
         case .fetchPost:
-            return "v1/posts/66c46a852701b5f91d1a4eb0" 
+            return "v1/posts/users/66a1b8bc1b050da506332050"
 //        case .fetchPost:
 //            return "v1/posts"
 
@@ -131,6 +131,9 @@ extension Router: TargetType {
             return try? encoder.encode(query)
             
         case .login(let query):
+            let encoder = JSONEncoder()
+            return try? encoder.encode(query)
+        case .createPost(let query):
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
         default:

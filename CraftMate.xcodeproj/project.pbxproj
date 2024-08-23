@@ -17,6 +17,8 @@
 		B0128A3C2C76342C00B72622 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A3B2C76342C00B72622 /* HomeCollectionViewCell.swift */; };
 		B0128A3F2C763B3600B72622 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A3E2C763B3500B72622 /* OrderViewController.swift */; };
 		B0128A412C763B4D00B72622 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A402C763B4D00B72622 /* OrderView.swift */; };
+		B016BFB72C78C28600C01DC1 /* CreatePostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFB62C78C28600C01DC1 /* CreatePostQuery.swift */; };
+		B016BFB92C78C65B00C01DC1 /* FetchPostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFB82C78C65A00C01DC1 /* FetchPostQuery.swift */; };
 		B02CFDC52C6F403200462EF9 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC42C6F403200462EF9 /* BaseTableViewCell.swift */; };
 		B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC62C6F404500462EF9 /* BaseCollectionViewCell.swift */; };
 		B02CFDCA2C6F40DC00462EF9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC92C6F40DC00462EF9 /* LoginView.swift */; };
@@ -51,6 +53,7 @@
 		B037B0A42C70EC6D00A17CD7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0A32C70EC6D00A17CD7 /* SignUpViewController.swift */; };
 		B03934AE2C7724BA00EB34CD /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = B03934AD2C7724BA00EB34CD /* Tabman */; };
 		B03934B02C77293B00EB34CD /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03934AF2C77293B00EB34CD /* HomeContentViewController.swift */; };
+		B03934B52C78B18000EB34CD /* UIButton +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03934B42C78B18000EB34CD /* UIButton +.swift */; };
 		B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */; };
 		B0DF57602C6CE84C00CAB497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */; };
 		B0DF57622C6CE84C00CAB497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF57612C6CE84C00CAB497 /* ViewController.swift */; };
@@ -89,6 +92,8 @@
 		B0128A3B2C76342C00B72622 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		B0128A3E2C763B3500B72622 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		B0128A402C763B4D00B72622 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		B016BFB62C78C28600C01DC1 /* CreatePostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostQuery.swift; sourceTree = "<group>"; };
+		B016BFB82C78C65A00C01DC1 /* FetchPostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostQuery.swift; sourceTree = "<group>"; };
 		B02CFDC42C6F403200462EF9 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC62C6F404500462EF9 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC92C6F40DC00462EF9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -117,6 +122,7 @@
 		B037B0A12C70E84400A17CD7 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		B037B0A32C70EC6D00A17CD7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B03934AF2C77293B00EB34CD /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
+		B03934B42C78B18000EB34CD /* UIButton +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton +.swift"; sourceTree = "<group>"; };
 		B0DF575A2C6CE84C00CAB497 /* CraftMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraftMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -256,6 +262,8 @@
 				B037B0912C70CA4600A17CD7 /* LoginQuery.swift */,
 				B0128A0D2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift */,
 				B0128A0F2C72037400B72622 /* SignUpQuery.swift */,
+				B016BFB62C78C28600C01DC1 /* CreatePostQuery.swift */,
+				B016BFB82C78C65A00C01DC1 /* FetchPostQuery.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -342,6 +350,7 @@
 				B02CFDCB2C6F428300462EF9 /* UIViewController +.swift */,
 				B02CFDE72C6F9A8A00462EF9 /* UINavigationBar +.swift */,
 				B0128A392C76332100B72622 /* UICollectionViewLayout +.swift */,
+				B03934B42C78B18000EB34CD /* UIButton +.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -494,6 +503,7 @@
 				B0128A0C2C71ED6300B72622 /* EmailDuplicateCheckModel.swift in Sources */,
 				B037B09B2C70E04D00A17CD7 /* FetchPostModel.swift in Sources */,
 				B02CFDDC2C6F779A00462EF9 /* HomeView.swift in Sources */,
+				B016BFB72C78C28600C01DC1 /* CreatePostQuery.swift in Sources */,
 				B037B0A22C70E84400A17CD7 /* SignUpView.swift in Sources */,
 				B0128A3F2C763B3600B72622 /* OrderViewController.swift in Sources */,
 				B02CFDCA2C6F40DC00462EF9 /* LoginView.swift in Sources */,
@@ -511,6 +521,7 @@
 				B02CFDE82C6F9A8A00462EF9 /* UINavigationBar +.swift in Sources */,
 				B0DF57782C6CE8C600CAB497 /* BaseURL.swift in Sources */,
 				B02CFDEB2C6FA5FE00462EF9 /* DetailView.swift in Sources */,
+				B03934B52C78B18000EB34CD /* UIButton +.swift in Sources */,
 				B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */,
 				B02CFDF82C70C65600462EF9 /* Router.swift in Sources */,
 				B0128A0E2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift in Sources */,
@@ -520,6 +531,7 @@
 				B02CFDDE2C6F927C00462EF9 /* HomeTableViewCell.swift in Sources */,
 				B0128A1C2C74854200B72622 /* ProfileModel.swift in Sources */,
 				B037B0942C70CFB500A17CD7 /* Header.swift in Sources */,
+				B016BFB92C78C65B00C01DC1 /* FetchPostQuery.swift in Sources */,
 				B02CFDC52C6F403200462EF9 /* BaseTableViewCell.swift in Sources */,
 				B037B09F2C70E5DE00A17CD7 /* SignUpModel.swift in Sources */,
 				B02CFDF52C70781500462EF9 /* WritePostView.swift in Sources */,

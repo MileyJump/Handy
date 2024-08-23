@@ -184,4 +184,43 @@ final class NetworkManager {
         }
     }
     
+    static func createPost(title: String?, content: String?, content1: String?, content2: String?, content3: String?, content4: String?, content5: String?, product_id: String?, files: [String]?, completionHandler: @escaping (Post?, String?) -> Void)  {
+        do {
+            
+            let query = CreatePostQuery(title: title, content: content, content1: content1, content2: content2, content3: content3, content4: content4, content5: content5, product_id: product_id, files: files)
+            let request = try Router.createPost(query: query).asURLRequest()
+            AF.request(request).responseDecodable(of: Post.self) { response in
+                guard let statusCode = response.response?.statusCode else {
+                    print("Failed to get statusCode !!")
+                    return
+                }
+                switch statusCode {
+                case 200:
+                    switch response.result {
+                    case .success(let success):
+                        completionHandler(success, nil)
+                    case .failure(let failure):
+                        print(failure)
+                        print("실패!!")
+                    }
+                case 401:
+                    completionHandler(nil, "로그인이 만료 되었어요!")
+                    print("401번 : 필수값을 채워주세요")
+                case 410:
+                    print("410번: DB서버 장애로 게시글이 저장되지 않았을 때")
+                    completionHandler(nil, " 저장된 게시글이 없어요")
+                case 419:
+                    print("??????")
+                    self.refreshToken()
+                    
+                default:
+                    print("fetchPost5")
+                    print("상태코드 : \(statusCode)")
+                }
+            }
+        } catch {
+            print("error \(error)")
+        }
+    }
+    
 }
