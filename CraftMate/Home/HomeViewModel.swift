@@ -12,16 +12,43 @@ import RxCocoa
 
 final class HomeViewModel {
     
-    let posts = BehaviorRelay<[Post]>(value: [])
+    var postsList: [Post] = []
     let disposeBag = DisposeBag()
     
-    func fetchPosts() {
-        NetworkManager.fetchPost { [weak self] post, errorMessage in
-            if let post = post {
-                self?.posts.accept([post])  // 하나의 Post를 배열로 만들어 전달
-            } else if let errorMessage = errorMessage {
-                print("Error: \(errorMessage)")
-            }
-        }
+    struct Input {
+        let recentData: BehaviorSubject<Post>
     }
+    
+    struct Output {
+        let postsList: Observable<[Post]>
+    }
+    
+//    func transform(input: Input) -> Output {
+//        let postsLists = BehaviorSubject(value: postsList)
+////        
+////        NetworkManager.fetchPost { value, error in
+////            if let posts = value {
+////                self.postsList.append(posts)
+////            }
+//        }
+//        
+//        
+//        input.recentData
+//            .subscribe(with: self) { owner, value in
+//                owner.postsList.append(value)
+//                postsLists.onNext(owner.postsList)
+//            }
+//            .disposed(by: disposeBag)
+//        
+//     return Output(postsList: postsLists)
+//    }
+    
+//    func fetchPosts() {
+//        NetworkManager.fetchPost { post, errorMessage in
+//            if let posts = post {
+//                self.posts.append(posts)
+//                
+//            }
+//        }
+//    }
 }

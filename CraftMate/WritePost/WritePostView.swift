@@ -11,17 +11,17 @@ import Then
 
 final class WritePostView: BaseView {
     
-    private let postImageView = UIImageView().then {
+     let postImageView = UIImageView().then {
         $0.backgroundColor = CraftMate.color.LightGrayColor
     }
     
-    private let postLabel = UILabel().then {
+     let postLabel = UILabel().then {
         $0.text = "대표 사진을 업로드해주세요."
         $0.textAlignment = .center
         $0.font = CraftMate.CustomFont.bold15
     }
     
-    private let cameraImageView = UIImageView().then {
+     let cameraImageView = UIImageView().then {
         $0.image = UIImage(systemName: "camera.on.rectangle")
         $0.tintColor = CraftMate.color.MediumGrayColor
     }

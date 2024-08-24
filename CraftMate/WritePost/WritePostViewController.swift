@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import PhotosUI
 import RxSwift
 import RxCocoa
 
 final class WritePostViewController: BaseViewController<WritePostView> {
     
     let disposeBag = DisposeBag()
+    
+    private var selectedImageViews: [UIImageView] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +55,28 @@ final class WritePostViewController: BaseViewController<WritePostView> {
                 owner.cameraButtonTapped()
             }
             .disposed(by: disposeBag)
+        
+        
+    }
+    
+    override func setupAddTarget() {
+        print(#function)
+        
+        rootView.postImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        
+        rootView.postImageView.addGestureRecognizer(tapGestureRecognizer)
+       
+    }
+    
+    @objc func imageViewTapped() {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 3
+        configuration.filter = .images
+        
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true)
     }
     
     func cameraButtonTapped() {
@@ -88,8 +113,7 @@ final class WritePostViewController: BaseViewController<WritePostView> {
          let title = rootView.titleTextField.text
          let content = rootView.contentTextView.text
          NetworkManager.createPost(title: title, content: nil, content1: content, content2: nil, content3: nil, content4: nil, content5: nil, product_id: nil, files: nil) { owner, _ in
-             print(owner)
-            
+             
          }
     }
     
@@ -97,3 +121,29 @@ final class WritePostViewController: BaseViewController<WritePostView> {
         dismiss(animated: true)
     }
 }
+
+extension WritePostViewController: PHPickerViewControllerDelegate {
+                                        
+    // MARK: - PHPickerViewControllerDelegate
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+        
+        selectedImageViews = [rootView.postImageView]
+        
+        for (index, result) in results.enumerated() {
+            guard index < 3 else { break }
+            
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (object, error) in
+                if let image = object as? UIImage {
+                    DispatchQueue.main.async {
+                        self?.selectedImageViews[index].image = image
+                        self?.rootView.cameraImageView.isHidden = true
+                        self?.rootView.postLabel.isHidden = true
+                    }
+                }
+            }
+        }
+    }
+}
+

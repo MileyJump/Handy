@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 final class NetworkManager {
     
@@ -22,7 +23,7 @@ final class NetworkManager {
             AF.request(request).responseDecodable(of: EmailDuplicateCheckModel.self) { response in
                 switch response.result {
                 case .success(let success):
-                    print(success.message)
+//                    print(success.message)
                     let isSuccess = response.response?.statusCode == 200
                     completionHandler(success.message, isSuccess)
                 case .failure(let failure):
@@ -66,7 +67,7 @@ final class NetworkManager {
                 case 200:
                     switch response.result {
                     case .success(let success):
-//                        print(success)
+                        //                        print(success)
                         UserDefaultsManager.shared.token = success.access
                         UserDefaultsManager.shared.refreshToken = success.refresh
                         completionHandler("", true)
@@ -128,7 +129,7 @@ final class NetworkManager {
                     } else {
                         switch response.result {
                         case .success(let success):
-                            print("OK", success)
+//                            print("OK", success)
                             
                             UserDefaultsManager.shared.token = success.accessToken
                             
@@ -147,10 +148,10 @@ final class NetworkManager {
     
     
     
-    static func fetchPost(completionHandler: @escaping (Post?, String?) -> Void)  {
+    static func fetchPost(completionHandler: @escaping (FetchPostModel?, String?) -> Void)  {
         do {
             let request = try Router.fetchPost.asURLRequest()
-            AF.request(request).responseDecodable(of: Post.self) { response in
+            AF.request(request).responseDecodable(of: FetchPostModel.self) { response in
                 guard let statusCode = response.response?.statusCode else {
                     print("Failed to get statusCode !!")
                     return
@@ -223,4 +224,36 @@ final class NetworkManager {
         }
     }
     
+    func uploadImage(images: [UIImage]) {
+        
+        var temp = [Data]()
+        for image in images {
+            if let image = image.pngData() {
+                temp.append(image)
+            }
+        }
+        do {
+            let request = try Router.imageUpload(query: ImageUploadQuery(files: temp)).asURLRequest()
+            
+            
+            AF.upload(multipartFormData: { multipartFormData in
+                for (index, image) in temp.enumerated() {
+                    
+                    let fileName = "image\(index + 1).png"
+                    multipartFormData.append(image, withName: "files", fileName: fileName, mimeType: "image/png")
+                }
+            }, with: request).responseDecodable(of: ImageUploadModel.self) { response in
+                switch response.result {
+                case .success(let success):
+                    print(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+                
+            }
+        } catch {
+            print("error\(error)")
+        }
+        
+    }
 }

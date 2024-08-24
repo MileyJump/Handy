@@ -21,6 +21,7 @@ class BaseViewController<RootView: UIView>: UIViewController {
         configureLayout()
         configureView()
         setupAddTarget()
+        setupUI()
         setupNavigationBar()
     }
     
@@ -31,6 +32,8 @@ class BaseViewController<RootView: UIView>: UIViewController {
     func configureLayout() { 
       
     }
+    
+    func setupUI() { }
     
     func configureView() {
         view.backgroundColor = .white

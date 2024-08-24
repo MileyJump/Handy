@@ -59,10 +59,9 @@ final class HomeViewController: TabmanViewController {
     }
     
     private func setupViewControllers() {
-        // HomeViewController를 포함한 다른 뷰 컨트롤러들을 생성하고 배열에 추가
-        let homeVC = HomeContentViewController()  // 첫 번째 탭
-        let orderVC = OrderViewController()  // 두 번째 탭
-        // ... 필요에 따라 더 추가
+     
+        let homeVC = HomeContentViewController()
+        let orderVC = OrderViewController()
         
         viewControllers = [homeVC, orderVC] // 각 탭에 연결될 뷰 컨트롤러 추가
     }
@@ -89,9 +88,6 @@ final class HomeViewController: TabmanViewController {
         
         bar.indicator.tintColor = .black
         
-        
-        
-        // 탭 바를 현재 뷰 컨트롤러에 추가
         addBar(bar, dataSource: self, at: .top)
     }
     

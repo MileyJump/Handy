@@ -45,9 +45,8 @@ final class HomeCollectionViewCell: BaseCollectionViewCell {
     override func configureLayout() {
         imageButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
-            make.horizontalEdges.equalToSuperview().offset(4)
+            make.horizontalEdges.equalToSuperview().inset(4)
             make.height.equalTo(35)
-            make.width.equalTo(30)
         }
         
         

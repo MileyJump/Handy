@@ -93,7 +93,7 @@ final class HomeTableViewCell: BaseTableViewCell {
     }
     
     func configure(with post: Post) {
-        titleLabel.text = post.title ?? "No Title"  // Post의 title을 셀에 표시
+        titleLabel.text = post.title
         descriptionLabel.text = post.content1
         nickNameLabel.text = post.creator.nick
         

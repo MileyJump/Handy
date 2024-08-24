@@ -15,9 +15,8 @@ enum Router {
     case editProfile
     case refresh
     case createPost(query: CreatePostQuery)
-    case fetchPost(query: FetchQuery)
-//    case getPost
-//    case postRetrieval
+    case fetchPost
+    case imageUpload(query: ImageUploadQuery)
     case emailDuplicateCheck(query: EmailDuplicateCheckQuery)
     
 }
@@ -41,12 +40,11 @@ extension Router: TargetType {
             return .put
         case .refresh:
             return .get
-        case .createPost:
+        case .createPost, .imageUpload:
             return .post
         case .fetchPost:
             return .get
-//        case .postRetrieval:
-//            return .get
+            
         }
     }
     
@@ -66,9 +64,8 @@ extension Router: TargetType {
             return "v1/posts"
         case .fetchPost:
             return "v1/posts/users/66a1b8bc1b050da506332050"
-//        case .fetchPost:
-//            return "v1/posts"
-
+        case .imageUpload:
+            return "v1/posts/files"
         }
     }
     
@@ -82,7 +79,7 @@ extension Router: TargetType {
         case .fetchProfile:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
-//                Header.contentType.rawValue: Header.json.rawValue,
+                //                Header.contentType.rawValue: Header.json.rawValue,
                 Header.sesacKey.rawValue: Key.key
             ]
         case .editProfile:
@@ -110,6 +107,12 @@ extension Router: TargetType {
                 Header.sesacKey.rawValue: Key.key
             ]
             
+        case .imageUpload:
+            return [
+                Header.authorization.rawValue: UserDefaultsManager.shared.token,
+                Header.contentType.rawValue: Header.multipart.rawValue,
+                Header.sesacKey.rawValue: Key.key
+            ]
         }
     }
     
@@ -129,11 +132,13 @@ extension Router: TargetType {
         case .signUp(let query):
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
-            
         case .login(let query):
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
         case .createPost(let query):
+            let encoder = JSONEncoder()
+            return try? encoder.encode(query)
+        case .imageUpload(let query):
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
         default:
