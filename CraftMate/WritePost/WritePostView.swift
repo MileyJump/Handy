@@ -11,29 +11,65 @@ import Then
 
 final class WritePostView: BaseView {
     
+    let imageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.imageSelectionCollectionViewLayout())
+    
+    let titleLabel = UILabel().then {
+        $0.text = CraftMate.Phrase.titleString
+        $0.font = CraftMate.CustomFont.bold13
+        $0.textAlignment = .left
+    }
+    
+    let titleTextField = UITextField().then {
+        $0.placeholder = CraftMate.Phrase.titlePlaceholder
+        $0.font = CraftMate.CustomFont.Light13
+        $0.textAlignment = .left
+        $0.borderStyle = .roundedRect
+    }
+    
+    let categoryLabel = UILabel().then {
+        $0.text = CraftMate.Phrase.categoryString
+        $0.font = CraftMate.CustomFont.bold13
+        $0.textAlignment = .left
+    }
+    
+    
+    let categoryButton = UIButton().then {
+        $0.backgroundColor = .blue
+        $0.setTitle("버튼!", for: .normal)
+    }
+    
+    let priceLabel = UILabel().then {
+        $0.text = CraftMate.Phrase.priceString
+        $0.font = CraftMate.CustomFont.bold13
+        $0.textAlignment = .left
+    }
+    
+    let priceTextField = UITextField().then {
+        $0.placeholder = CraftMate.Phrase.pricePlaceholder
+        $0.font = CraftMate.CustomFont.Light13
+        $0.textAlignment = .left
+        $0.borderStyle = .roundedRect
+    }
+    
+    let contentsLabel = UILabel().then {
+        $0.text = CraftMate.Phrase.explanationString
+        $0.font = CraftMate.CustomFont.bold13
+        $0.textAlignment = .left
+    }
+    
+    let contentTextView = UITextView().then {
+        $0.text = "설명설명설명설명"
+        $0.textAlignment = .left
+        $0.font = CraftMate.CustomFont.Light13
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = CraftMate.color.LightGrayColor.cgColor
+        $0.layer.cornerRadius = 5
+   }
+    
      let postImageView = UIImageView().then {
         $0.backgroundColor = CraftMate.color.LightGrayColor
     }
-    
-     let postLabel = UILabel().then {
-        $0.text = "대표 사진을 업로드해주세요."
-        $0.textAlignment = .center
-        $0.font = CraftMate.CustomFont.bold15
-    }
-    
-     let cameraImageView = UIImageView().then {
-        $0.image = UIImage(systemName: "camera.on.rectangle")
-        $0.tintColor = CraftMate.color.MediumGrayColor
-    }
-    
-     let titleTextField = UITextField().then {
-        $0.placeholder = "제목을 작성해주세요!"
-        $0.font = CraftMate.CustomFont.bold15
-    }
-    
-     let contentTextView = UITextView().then {
-        $0.text = "내용을 입력해주세요!"
-    }
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,40 +77,71 @@ final class WritePostView: BaseView {
     
     override func configureHierarchy() {
         addSubview(postImageView)
-        addSubview(postLabel)
-        addSubview(cameraImageView)
+        addSubview(imageCollectionView)
+        addSubview(titleLabel)
         addSubview(titleTextField)
+        addSubview(categoryLabel)
+        addSubview(categoryButton)
+        addSubview(priceLabel)
+        addSubview(priceTextField)
+        addSubview(contentsLabel)
         addSubview(contentTextView)
     }
     
     override func configureLayout() {
-        postImageView.snp.makeConstraints { make in
+//        postImageView.snp.makeConstraints { make in
+//            make.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
+//            make.height.equalTo(30)
+//        }
+        
+        imageCollectionView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            make.height.equalTo(postImageView.snp.width)
+            make.height.equalTo(60)
         }
         
-        postLabel.snp.makeConstraints { make in
-            make.top.equalTo(cameraImageView.snp.bottom).offset(20)
-            make.horizontalEdges.equalTo(postImageView).inset(10)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageCollectionView.snp.bottom).offset(20)
+            make.horizontalEdges.equalToSuperview().inset(15)
         }
         
-        cameraImageView.snp.makeConstraints { make in
-            make.centerY.equalTo(postImageView).offset(-20)
-            make.centerX.equalTo(postLabel)
-            make.height.equalTo(70)
-            make.width.equalTo(90)
-        }
         
         titleTextField.snp.makeConstraints { make in
-            make.top.equalTo(postImageView.snp.bottom).offset(5)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(10)
-            make.height.equalTo(35)
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.horizontalEdges.equalToSuperview().inset(10)
+            make.height.equalTo(40)
         }
         
-        contentTextView.snp.makeConstraints { make in
-            make.top.equalTo(titleTextField.snp.bottom).offset(5)
+        categoryLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleTextField.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(titleLabel)
+        }
+        
+        categoryButton.snp.makeConstraints { make in
+            make.top.equalTo(categoryLabel.snp.bottom).offset(10)
+            make.leading.equalTo(categoryLabel.snp.leading)
+            make.size.equalTo(40)
+        }
+        
+        priceLabel.snp.makeConstraints { make in
+            make.top.equalTo(categoryButton.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(titleLabel)
+        }
+        
+        priceTextField.snp.makeConstraints { make in
+            make.top.equalTo(priceLabel.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(titleTextField)
-            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.height.equalTo(titleTextField)
+        }
+        
+        contentsLabel.snp.makeConstraints { make in
+            make.top.equalTo(priceTextField.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(titleLabel)
+        }
+
+        contentTextView.snp.makeConstraints { make in
+            make.top.equalTo(contentsLabel.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(titleTextField)
+            make.height.equalTo(200)
         }
         
     }

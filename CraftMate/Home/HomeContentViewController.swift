@@ -65,6 +65,7 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         
         NetworkManager.fetchPost { post, error in
             if let postList = post {
+                print("포스트 조회 네트워크 통신")
 //                print(postList)
                 let postData = postList.data
                 self.postList.append(contentsOf: postData)

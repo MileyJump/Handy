@@ -185,7 +185,7 @@ final class NetworkManager {
         }
     }
     
-    static func createPost(title: String?, content: String?, content1: String?, content2: String?, content3: String?, content4: String?, content5: String?, product_id: String?, files: [String]?, completionHandler: @escaping (Post?, String?) -> Void)  {
+    static func createPost(title: String?, content: String?, content1: String?, content2: String?, content3: String?, content4: String?, content5: String?, product_id: String?, files: [Data]?, completionHandler: @escaping (Post?, String?) -> Void)  {
         do {
             
             let query = CreatePostQuery(title: title, content: content, content1: content1, content2: content2, content3: content3, content4: content4, content5: content5, product_id: product_id, files: files)

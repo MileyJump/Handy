@@ -47,6 +47,18 @@ extension CraftMate {
         static let heartImage = "heart"
         static let heartFillImage = "heart.fill"
         
+        // 게시글 작성
+        static let titleString = "제목"
+        static let titlePlaceholder = "제목을 입력해주세요."
+        static let hashTagStirng = "해시태그"
+        static let hashTagPlaceholder = "해시태그를 작성해주세요."
+        
+        static let categoryString = "카테고리"
+        
+        static let priceString = "가격"
+        static let pricePlaceholder = "₩ 가격을 입력해주세요."
+        
+        static let explanationString = "설명"
         
         
     }

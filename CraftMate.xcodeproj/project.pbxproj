@@ -22,6 +22,8 @@
 		B016BFBB2C79A14B00C01DC1 /* OrderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFBA2C79A14B00C01DC1 /* OrderCollectionViewCell.swift */; };
 		B016BFBD2C79B80100C01DC1 /* ImageUploadQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFBC2C79B80100C01DC1 /* ImageUploadQuery.swift */; };
 		B016BFBF2C79C57100C01DC1 /* ImageUploadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFBE2C79C57100C01DC1 /* ImageUploadModel.swift */; };
+		B016BFC22C7B15EB00C01DC1 /* BSImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = B016BFC12C7B15EB00C01DC1 /* BSImagePicker */; };
+		B016BFC42C7B2E7300C01DC1 /* WrithePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFC32C7B2E7300C01DC1 /* WrithePostCollectionViewCell.swift */; };
 		B02CFDC52C6F403200462EF9 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC42C6F403200462EF9 /* BaseTableViewCell.swift */; };
 		B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC62C6F404500462EF9 /* BaseCollectionViewCell.swift */; };
 		B02CFDCA2C6F40DC00462EF9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC92C6F40DC00462EF9 /* LoginView.swift */; };
@@ -100,6 +102,7 @@
 		B016BFBA2C79A14B00C01DC1 /* OrderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollectionViewCell.swift; sourceTree = "<group>"; };
 		B016BFBC2C79B80100C01DC1 /* ImageUploadQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadQuery.swift; sourceTree = "<group>"; };
 		B016BFBE2C79C57100C01DC1 /* ImageUploadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadModel.swift; sourceTree = "<group>"; };
+		B016BFC32C7B2E7300C01DC1 /* WrithePostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrithePostCollectionViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC42C6F403200462EF9 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC62C6F404500462EF9 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		B02CFDC92C6F40DC00462EF9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B016BFC22C7B15EB00C01DC1 /* BSImagePicker in Frameworks */,
 				B02CFDFD2C70C74900462EF9 /* Alamofire in Frameworks */,
 				B02CFDD72C6F75C500462EF9 /* RxCocoa in Frameworks */,
 				B02CFDD12C6F461A00462EF9 /* SnapKit in Frameworks */,
@@ -247,6 +251,7 @@
 			children = (
 				B02CFDF22C7077FA00462EF9 /* WritePostViewController.swift */,
 				B02CFDF42C70781500462EF9 /* WritePostView.swift */,
+				B016BFC32C7B2E7300C01DC1 /* WrithePostCollectionViewCell.swift */,
 			);
 			path = WritePost;
 			sourceTree = "<group>";
@@ -427,6 +432,7 @@
 				B02CFDD82C6F75C500462EF9 /* RxSwift */,
 				B02CFDFC2C70C74900462EF9 /* Alamofire */,
 				B03934AD2C7724BA00EB34CD /* Tabman */,
+				B016BFC12C7B15EB00C01DC1 /* BSImagePicker */,
 			);
 			productName = CraftMate;
 			productReference = B0DF575A2C6CE84C00CAB497 /* CraftMate.app */;
@@ -462,6 +468,7 @@
 				B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B02CFDFB2C70C74900462EF9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				B03934AC2C7724BA00EB34CD /* XCRemoteSwiftPackageReference "Tabman" */,
+				B016BFC02C7B15EB00C01DC1 /* XCRemoteSwiftPackageReference "BSImagePicker" */,
 			);
 			productRefGroup = B0DF575B2C6CE84C00CAB497 /* Products */;
 			projectDirPath = "";
@@ -498,6 +505,7 @@
 			files = (
 				B0128A3A2C76332100B72622 /* UICollectionViewLayout +.swift in Sources */,
 				B037B0982C70D7A400A17CD7 /* NetworkManager.swift in Sources */,
+				B016BFC42C7B2E7300C01DC1 /* WrithePostCollectionViewCell.swift in Sources */,
 				B0DF577B2C6E3F9B00CAB497 /* UIColor +.swift in Sources */,
 				B03934B02C77293B00EB34CD /* HomeContentViewController.swift in Sources */,
 				B0128A412C763B4D00B72622 /* OrderView.swift in Sources */,
@@ -778,6 +786,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B016BFC02C7B15EB00C01DC1 /* XCRemoteSwiftPackageReference "BSImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mikaoj/BSImagePicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.3.3;
+			};
+		};
 		B02CFDCF2C6F461A00462EF9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -821,6 +837,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B016BFC12C7B15EB00C01DC1 /* BSImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B016BFC02C7B15EB00C01DC1 /* XCRemoteSwiftPackageReference "BSImagePicker" */;
+			productName = BSImagePicker;
+		};
 		B02CFDD02C6F461A00462EF9 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B02CFDCF2C6F461A00462EF9 /* XCRemoteSwiftPackageReference "SnapKit" */;
