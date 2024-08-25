@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import Then
 
 final class DetailView: BaseView {
+    
+    let imageView = UIImageView().then {
+        $0.image = UIImage(named: "비즈공예 팔찌")
+    }
     
     
     override init(frame: CGRect) {

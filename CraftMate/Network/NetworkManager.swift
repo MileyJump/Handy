@@ -148,9 +148,9 @@ final class NetworkManager {
     
     
     
-    static func fetchPost(completionHandler: @escaping (FetchPostModel?, String?) -> Void)  {
+    static func fetchPost(productId: String, completionHandler: @escaping (FetchPostModel?, String?) -> Void)  {
         do {
-            let request = try Router.fetchPost.asURLRequest()
+            let request = try Router.fetchPost(query: FetchPostQuery(next: nil, limit: nil, product_id: productId)).asURLRequest()
             AF.request(request).responseDecodable(of: FetchPostModel.self) { response in
                 guard let statusCode = response.response?.statusCode else {
                     print("Failed to get statusCode !!")

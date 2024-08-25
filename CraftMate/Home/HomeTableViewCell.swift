@@ -29,7 +29,7 @@ final class HomeTableViewCell: BaseTableViewCell {
         $0.titleLabel?.font = CraftMate.CustomFont.SemiBold14
     }
     
-    private let ellipsisButton = UIButton().then {
+     let ellipsisButton = UIButton().then {
         $0.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         $0.tintColor = CraftMate.color.blackColor
         $0.titleLabel?.font = CraftMate.CustomFont.SemiBold14

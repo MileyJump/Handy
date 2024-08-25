@@ -60,10 +60,12 @@ final class HomeContentViewController: BaseViewController<HomeView> {
    
          
        }
+    
+    
    
     func bindTableView() {
         
-        NetworkManager.fetchPost { post, error in
+        NetworkManager.fetchPost(productId: "비즈공예") { post, error in
             if let postList = post {
                 print("포스트 조회 네트워크 통신")
 //                print(postList)
@@ -116,8 +118,9 @@ extension HomeContentViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selectedPost = viewModel.posts.value[indexPath.row]
-//        // 선택된 포스트에 대한 처리 추가
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = DetailViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

@@ -28,7 +28,7 @@ final class OrderViewController: BaseViewController<OrderView> {
     
     func bindTableView() {
         
-        NetworkManager.fetchPost { post, error in
+        NetworkManager.fetchPost(productId: "공예") { post, error in
             if let postList = post {
                 print(postList)
                 let postData = postList.data

@@ -15,7 +15,7 @@ enum Router {
     case editProfile
     case refresh
     case createPost(query: CreatePostQuery)
-    case fetchPost
+    case fetchPost(query: FetchPostQuery)
     case imageUpload(query: ImageUploadQuery)
     case emailDuplicateCheck(query: EmailDuplicateCheckQuery)
     
@@ -48,6 +48,8 @@ extension Router: TargetType {
         }
     }
     
+   
+    
     var path: String {
         switch self {
         case .emailDuplicateCheck:
@@ -63,7 +65,7 @@ extension Router: TargetType {
         case .createPost:
             return "v1/posts"
         case .fetchPost:
-            return "v1/posts/users/66a1b8bc1b050da506332050"
+            return "v1/posts"
         case .imageUpload:
             return "v1/posts/files"
         }
@@ -121,7 +123,18 @@ extension Router: TargetType {
     }
     
     var queryItems: [URLQueryItem]? {
-        return nil
+        
+        switch self {
+        case .fetchPost(let query):
+            return [
+                //                URLQueryItem(name: "limit", value: String(query.)),
+//                URLQueryItem(name: "nextCursor", value: query.nextCursor),
+                URLQueryItem(name: "product_id", value: query.product_id)
+            ]
+        default:
+            return nil
+        }
+        
     }
     
     var body: Data? {
