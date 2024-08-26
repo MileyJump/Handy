@@ -9,6 +9,7 @@ import UIKit
 enum MainTabBar {
     
     case mainHome
+    case community
     case searchPage
     case savePage
     case setting
@@ -16,7 +17,10 @@ enum MainTabBar {
     var viewController: UIViewController {
         switch self {
         case .mainHome:
-            return HomeViewController()
+//            return HomeViewController()
+            return HomeContentViewController()
+        case .community:
+            return CommunityViewController()
         case .searchPage:
             return SearchPageViewController()
         case .savePage:
@@ -36,6 +40,8 @@ enum MainTabBar {
             return CraftMate.Phrase.saveTabBar
         case .setting:
             return CraftMate.Phrase.myPageTabBar
+        case .community:
+            return CraftMate.Phrase.communityTabBar
         }
     }
     
@@ -49,6 +55,8 @@ enum MainTabBar {
             return UIImage(systemName: CraftMate.Phrase.saveImage)
         case .setting:
             return UIImage(systemName: CraftMate.Phrase.myPageImage)
+        case .community:
+            return UIImage(systemName: CraftMate.Phrase.communityImage)
         }
     }
     
@@ -62,6 +70,8 @@ enum MainTabBar {
             return UIImage(systemName: CraftMate.Phrase.saveSelectImage)
         case .setting:
             return UIImage(systemName: CraftMate.Phrase.myPageSelectImage)
+        case .community:
+            return UIImage(systemName: CraftMate.Phrase.communitySelectImage)
         }
     }
 }

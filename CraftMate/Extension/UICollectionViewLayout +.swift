@@ -13,7 +13,9 @@ extension UICollectionViewLayout {
     static func itemCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let lineSpacing: CGFloat = 20
-        let itemSpacing: CGFloat = 20
+        let itemSpacing: CGFloat = 10
+        let width = UIScreen.main.bounds.width - (lineSpacing * 2) - (itemSpacing * 5)
+        layout.itemSize = CGSize(width: width/5, height: width/4.2)
         layout.minimumLineSpacing = lineSpacing
         layout.minimumInteritemSpacing = itemSpacing
         layout.sectionInset = UIEdgeInsets(top: itemSpacing, left: itemSpacing, bottom: itemSpacing, right: itemSpacing)

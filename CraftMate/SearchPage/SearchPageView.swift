@@ -31,7 +31,7 @@ final class SearchPageView: BaseView {
     
     override func configureView() {
         backgroundColor = .white
-        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
+        tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: CommunityTableViewCell.identifier)
         tableView.rowHeight = 400
     }
 }

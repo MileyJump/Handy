@@ -10,6 +10,7 @@ import SnapKit
 final class HomeView: BaseView {
     
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.itemCollectionViewLayout())
+    let orderCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.orderCollectionViewLayout())
     
     let tableView = UITableView()
     
@@ -26,7 +27,9 @@ final class HomeView: BaseView {
         //        addSubview(segmentControl)
         //        addSubview(selectionIndicator)
         addSubview(collectionView)
-        addSubview(tableView)
+    
+//        addSubview(tableView)
+        addSubview(orderCollectionView)
         addSubview(floatingButton)
         
         
@@ -36,10 +39,15 @@ final class HomeView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            make.height.equalTo(80)
+            make.height.equalTo(100)
         }
         
-        tableView.snp.makeConstraints { make in
+//        tableView.snp.makeConstraints { make in
+//            make.top.equalTo(collectionView.snp.bottom).offset(2)
+//            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
+//        }
+        
+        orderCollectionView.snp.makeConstraints { make in
             make.top.equalTo(collectionView.snp.bottom).offset(2)
             make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
         }
@@ -51,8 +59,8 @@ final class HomeView: BaseView {
         }
     }
     
-    override func configureView() {
-        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
-        tableView.rowHeight = 400
-    }
+//    override func configureView() {
+//        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
+//        tableView.rowHeight = 400
+//    }
 }

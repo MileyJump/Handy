@@ -9,6 +9,7 @@ import UIKit
 
 extension CraftMate {
     enum CustomFont {
+        static let bold12 = UIFont(name: "Pretendard-Bold", size: 12)
         static let bold13 = UIFont(name: "Pretendard-Bold", size: 13)
         static let bold14 = UIFont(name: "Pretendard-Bold", size: 14)
         static let bold15 = UIFont(name: "Pretendard-Bold", size: 15)
@@ -32,6 +33,8 @@ extension CraftMate {
         static let Medium16 = UIFont(name: "Pretendard-Medium", size: 16)
         static let Medium20 = UIFont(name: "Pretendard-Medium", size: 20)
         
+        static let regular11 = UIFont(name: "Pretendard-Regular", size: 11)
+        static let regular12 = UIFont(name: "Pretendard-Regular", size: 12)
         static let regular13 = UIFont(name: "Pretendard-Regular", size: 13)
         static let regular14 = UIFont(name: "Pretendard-Regular", size: 14)
         static let regular15 = UIFont(name: "Pretendard-Regular", size: 15)
@@ -39,6 +42,8 @@ extension CraftMate {
         static let regular20 = UIFont(name: "Pretendard-Regular", size: 20)
         static let regular25 = UIFont(name: "Pretendard-Regular", size: 25)
         
+        static let SemiBold10 = UIFont(name: "Pretendard-SemiBold", size: 10)
+        static let SemiBold12 = UIFont(name: "Pretendard-SemiBold", size: 12)
         static let SemiBold13 = UIFont(name: "Pretendard-SemiBold", size: 13)
         static let SemiBold14 = UIFont(name: "Pretendard-SemiBold", size: 14)
         static let SemiBold15 = UIFont(name: "Pretendard-SemiBold", size: 15)

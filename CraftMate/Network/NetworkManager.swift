@@ -256,4 +256,13 @@ final class NetworkManager {
         }
         
     }
+    
+    static func deletePost(postId: String) {
+        do {
+            let request = try Router.deletePost(query: postId).asURLRequest()
+           print("게시글 삭제 완료")
+        } catch {
+            print("error \(error)")
+        }
+    }
 }

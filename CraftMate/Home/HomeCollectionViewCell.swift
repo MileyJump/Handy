@@ -11,48 +11,55 @@ import SnapKit
 
 final class HomeCollectionViewCell: BaseCollectionViewCell {
     
+    let bgView = UIView().then {
+        $0.backgroundColor = CraftMate.color.LightGrayColor
+        $0.layer.cornerRadius = 8
+    }
+    
     let titleLabel = UILabel().then {
-        $0.font = CraftMate.CustomFont.regular13
+        $0.font = CraftMate.CustomFont.regular12
         $0.textColor = CraftMate.color.blackColor
         $0.textAlignment = .center
         $0.text = "홈 데코"
         
     }
     
-    let imageButton = UIButton().then {
-        $0.setImage(UIImage(named: "집"), for: .normal)
-        $0.backgroundColor = CraftMate.color.LightGrayColor
-        $0.layer.cornerRadius = 8
-        
-    }
+    let iconImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
     func configureCell(title: String, image: String ) {
         titleLabel.text = title
-        imageButton.setImage(UIImage(named: image), for: .normal)
+        iconImageView.image = UIImage(named: image)
     }
     
     override func configureHierarchy() {
+        contentView.addSubview(bgView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(imageButton)
+        bgView.addSubview(iconImageView)
         
     }
     
     override func configureLayout() {
-        imageButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(8)
-            make.horizontalEdges.equalToSuperview().inset(4)
-            make.height.equalTo(35)
+        
+        bgView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(2)
+            make.horizontalEdges.equalToSuperview().inset(5)
+            make.height.equalTo(bgView.snp.width)
+        }
+        
+        iconImageView.snp.makeConstraints { make in
+            make.edges.equalTo(bgView).inset(10)
+//            make.height.equalTo(20)
         }
         
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageButton.snp.bottom).offset(4)
-            make.horizontalEdges.equalTo(imageButton)
+            make.top.equalTo(bgView.snp.bottom).offset(4)
+//            make.horizontalEdges.equalTo(imageButton)
+            make.horizontalEdges.equalToSuperview()
         }
         
         

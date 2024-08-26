@@ -12,7 +12,7 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tabs: [MainTabBar] = [.mainHome, .searchPage, .savePage, .setting]
+        let tabs: [MainTabBar] = [.mainHome, .community, .searchPage, .savePage, .setting]
         
 //        var viewControllers: [UINavigationController] = []
 //        var viewControllers = tabs.map { $0.viewController }

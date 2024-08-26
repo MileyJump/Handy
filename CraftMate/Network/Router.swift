@@ -18,7 +18,7 @@ enum Router {
     case fetchPost(query: FetchPostQuery)
     case imageUpload(query: ImageUploadQuery)
     case emailDuplicateCheck(query: EmailDuplicateCheckQuery)
-    
+    case deletePost(query: String)
 }
 
 extension Router: TargetType {
@@ -44,7 +44,8 @@ extension Router: TargetType {
             return .post
         case .fetchPost:
             return .get
-            
+        case .deletePost:
+            return .delete
         }
     }
     
@@ -68,6 +69,8 @@ extension Router: TargetType {
             return "v1/posts"
         case .imageUpload:
             return "v1/posts/files"
+        case .deletePost(let query):
+            return "v1/posts/\(query)"
         }
     }
     
@@ -78,17 +81,10 @@ extension Router: TargetType {
                 Header.contentType.rawValue: Header.json.rawValue,
                 Header.sesacKey.rawValue: Key.key
             ]
-        case .fetchProfile:
-            return [
-                Header.authorization.rawValue: UserDefaultsManager.shared.token,
-                //                Header.contentType.rawValue: Header.json.rawValue,
-                Header.sesacKey.rawValue: Key.key
-            ]
-        case .editProfile:
+        case .fetchProfile, .fetchPost, .editProfile, .deletePost:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
                 Header.sesacKey.rawValue: Key.key
-                // 멀티파티폼? 이거 해야 됨!!! 근데 까먹음 ㅎㅎ 🍎
             ]
         case .refresh:
             return [
@@ -103,12 +99,6 @@ extension Router: TargetType {
                 Header.contentType.rawValue: Header.json.rawValue,
                 Header.sesacKey.rawValue: Key.key
             ]
-        case .fetchPost:
-            return [
-                Header.authorization.rawValue: UserDefaultsManager.shared.token,
-                Header.sesacKey.rawValue: Key.key
-            ]
-            
         case .imageUpload:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,

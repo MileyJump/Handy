@@ -34,9 +34,12 @@ extension CraftMate {
         static let searchTabBar = "검색"
         static let saveTabBar = "저장"
         static let myPageTabBar = "마이페이지"
+        static let communityTabBar = "커뮤니티"
         
         static let  homeImage = "house"
         static let  homeSelectImage = "house.fill"
+        static let  communityImage = "text.bubble"
+        static let  communitySelectImage = "text.bubble.fill"
         static let  searchImage = "magnifyingglass"
         static let  saveImage = "bookmark"
         static let  saveSelectImage = "bookmark.fill"
@@ -59,6 +62,8 @@ extension CraftMate {
         static let pricePlaceholder = "₩ 가격을 입력해주세요."
         
         static let explanationString = "설명"
+        
+        static let ellipsisIcon = "ellipsis"
         
         
     }

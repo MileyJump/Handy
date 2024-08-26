@@ -61,7 +61,7 @@ final class HomeViewController: TabmanViewController {
     private func setupViewControllers() {
      
         let homeVC = HomeContentViewController()
-        let orderVC = OrderViewController()
+        let orderVC = CommunityViewController()
         
         viewControllers = [homeVC, orderVC] // 각 탭에 연결될 뷰 컨트롤러 추가
     }

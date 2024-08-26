@@ -35,6 +35,7 @@ struct Post: Decodable {
     let files: [String]?
     let likes: [String]?
     let likes2: [String]?
+    let buyers: [String]?
     let hashTags: [String]?
     let comments: [Comment]?
 
@@ -53,6 +54,7 @@ struct Post: Decodable {
         case files
         case likes
         case likes2
+        case buyers
         case hashTags = "hashTags"
         case comments
     }

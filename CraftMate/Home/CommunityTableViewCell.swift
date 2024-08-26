@@ -9,7 +9,7 @@ import UIKit
 import Then
 import SnapKit
 
-final class HomeTableViewCell: BaseTableViewCell {
+final class CommunityTableViewCell: BaseTableViewCell {
     
     private let profileImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
@@ -30,9 +30,9 @@ final class HomeTableViewCell: BaseTableViewCell {
     }
     
      let ellipsisButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "ellipsis"), for: .normal)
-        $0.tintColor = CraftMate.color.blackColor
-        $0.titleLabel?.font = CraftMate.CustomFont.SemiBold14
+         $0.setImage(UIImage(systemName: CraftMate.Phrase.ellipsisIcon), for: .normal)
+         $0.tintColor = CraftMate.color.blackColor
+         $0.titleLabel?.font = CraftMate.CustomFont.SemiBold14
     }
     
     private let thumbnailImageView = UIImageView().then {
