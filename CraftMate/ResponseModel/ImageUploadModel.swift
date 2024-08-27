@@ -8,5 +8,5 @@
 import Foundation
 
 struct ImageUploadModel: Decodable {
-    let files: [Data]
+    let files: [String]
 }

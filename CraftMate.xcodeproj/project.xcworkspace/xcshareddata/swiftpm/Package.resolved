@@ -1,5 +1,5 @@
 {
-  "originHash" : "54d3491f249e9f1824137d4b490aed9d7b577a9203a8c926f1bc87041cbe7dbf",
+  "originHash" : "f1634737133c1f8cf9c09d15b5aaebc034fbc8c78d28524cbd537e7bfb09fb46",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -11,12 +11,12 @@
       }
     },
     {
-      "identity" : "bsimagepicker",
+      "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mikaoj/BSImagePicker.git",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
       "state" : {
-        "revision" : "87c300fac63538dfb26e17d491eaa2293e83b5e8",
-        "version" : "3.3.3"
+        "revision" : "2ef543ee21d63734e1c004ad6c870255e8716c50",
+        "version" : "7.12.0"
       }
     },
     {

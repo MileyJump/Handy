@@ -9,4 +9,5 @@ import Foundation
 
 struct ImageUploadQuery: Encodable {
     let files: [Data]
+//    let files: [String]
 }

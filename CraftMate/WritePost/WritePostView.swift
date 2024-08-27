@@ -33,10 +33,15 @@ final class WritePostView: BaseView {
     }
     
     
-    let categoryButton = UIButton().then {
-        $0.backgroundColor = .blue
-        $0.setTitle("버튼!", for: .normal)
-    }
+//    let categoryButton = UIButton().then {
+//        $0.backgroundColor = .blue
+//        $0.setTitle("버튼!", for: .normal)
+//    }
+    
+    let categoryCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.categoryCollectionViewLayout())
+    
+    let buttonTitles = ["홈데코", "공예", "리폼", "아이들", "주방", "기타"]
+    
     
     let priceLabel = UILabel().then {
         $0.text = CraftMate.Phrase.priceString
@@ -66,8 +71,16 @@ final class WritePostView: BaseView {
         $0.layer.cornerRadius = 5
    }
     
-     let postImageView = UIImageView().then {
-        $0.backgroundColor = CraftMate.color.LightGrayColor
+    let hashTagLabel = UILabel().then {
+        $0.text = CraftMate.Phrase.hashTagStirng
+        $0.font = CraftMate.CustomFont.bold13
+        $0.textAlignment = .left
+    }
+    
+    let hashTagTextField = UITextField().then {
+        $0.placeholder = "#리폼가방 #천연섬유 #수공예 #업사이클링 #친환경"
+        $0.font = CraftMate.CustomFont.Light13
+        $0.borderStyle = .roundedRect
     }
 
     
@@ -76,24 +89,23 @@ final class WritePostView: BaseView {
     }
     
     override func configureHierarchy() {
-        addSubview(postImageView)
         addSubview(imageCollectionView)
         addSubview(titleLabel)
         addSubview(titleTextField)
         addSubview(categoryLabel)
-        addSubview(categoryButton)
+        
         addSubview(priceLabel)
         addSubview(priceTextField)
         addSubview(contentsLabel)
         addSubview(contentTextView)
+        addSubview(categoryCollectionView)
+        
+        addSubview(hashTagLabel)
+        addSubview(hashTagTextField)
     }
     
     override func configureLayout() {
-//        postImageView.snp.makeConstraints { make in
-//            make.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
-//            make.height.equalTo(30)
-//        }
-        
+
         imageCollectionView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(60)
@@ -116,14 +128,15 @@ final class WritePostView: BaseView {
             make.horizontalEdges.equalTo(titleLabel)
         }
         
-        categoryButton.snp.makeConstraints { make in
+        categoryCollectionView.snp.makeConstraints { make in
             make.top.equalTo(categoryLabel.snp.bottom).offset(10)
-            make.leading.equalTo(categoryLabel.snp.leading)
-            make.size.equalTo(40)
+//            make.leading.equalTo(categoryLabel.snp.leading)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(10)
+            make.height.equalTo(40)
         }
         
         priceLabel.snp.makeConstraints { make in
-            make.top.equalTo(categoryButton.snp.bottom).offset(20)
+            make.top.equalTo(categoryCollectionView.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(titleLabel)
         }
         
@@ -142,6 +155,16 @@ final class WritePostView: BaseView {
             make.top.equalTo(contentsLabel.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(titleTextField)
             make.height.equalTo(200)
+        }
+        
+        hashTagLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentTextView.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(titleLabel)
+        }
+        hashTagTextField.snp.makeConstraints { make in
+            make.top.equalTo(hashTagLabel.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(titleTextField)
+            make.height.equalTo(titleTextField)
         }
         
     }

@@ -185,10 +185,10 @@ final class NetworkManager {
         }
     }
     
-    static func createPost(title: String?, content: String?, content1: String?, content2: String?, content3: String?, content4: String?, content5: String?, product_id: String?, files: [Data]?, completionHandler: @escaping (Post?, String?) -> Void)  {
+    static func createPost(title: String?, price: Int?, content: String?, content1: String?, content2: String?, content3: String?, content4: String?, content5: String?, product_id: String?, files: [String]?, completionHandler: @escaping (Post?, String?) -> Void)  {
         do {
             
-            let query = CreatePostQuery(title: title, content: content, content1: content1, content2: content2, content3: content3, content4: content4, content5: content5, product_id: product_id, files: files)
+            let query = CreatePostQuery(title: title, price: price, content: content, content1: content1, content2: content2, content3: content3, content4: content4, content5: content5, product_id: product_id, files: files)
             let request = try Router.createPost(query: query).asURLRequest()
             AF.request(request).responseDecodable(of: Post.self) { response in
                 guard let statusCode = response.response?.statusCode else {
@@ -224,38 +224,92 @@ final class NetworkManager {
         }
     }
     
-    func uploadImage(images: [UIImage]) {
+    func uploadImage(images: [UIImage], completionHandler: @escaping ([String]?) -> Void){
         
         var temp = [Data]()
         for image in images {
-            if let image = image.pngData() {
-                temp.append(image)
+            if let imageData = image.pngData() {
+                print("Image data size: \(imageData.count) bytes")
+                temp.append(imageData)
+            } else {
+                print("Failed to convert UIImage to Data")
             }
-        }
-        do {
-            let request = try Router.imageUpload(query: ImageUploadQuery(files: temp)).asURLRequest()
-            
-            
-            AF.upload(multipartFormData: { multipartFormData in
-                for (index, image) in temp.enumerated() {
-                    
-                    let fileName = "image\(index + 1).png"
-                    multipartFormData.append(image, withName: "files", fileName: fileName, mimeType: "image/png")
-                }
-            }, with: request).responseDecodable(of: ImageUploadModel.self) { response in
-                switch response.result {
-                case .success(let success):
-                    print(success)
-                case .failure(let failure):
-                    print(failure)
-                }
-                
-            }
-        } catch {
-            print("error\(error)")
         }
         
+        do {
+            
+            let request = try Router.imageUpload(query: ImageUploadQuery(files: temp)).asURLRequest()
+            
+            AF.upload(multipartFormData: { multipartFormData in
+                for (index, imageData) in temp.enumerated() {
+                    print(temp)
+                    print("============")
+                    let fileName = "image\(index + 1).png"
+                    multipartFormData.append(imageData, withName: "files", fileName: fileName, mimeType: "image/png")
+                }
+            }, with: request).responseDecodable(of: ImageUploadModel.self) { response in
+                guard let statusCode = response.response?.statusCode else {
+                    print("Failed to get statusCode !!")
+                    return
+                }
+                
+                switch statusCode {
+                case 200:
+                    switch response.result {
+                    case .success(let success):
+                        print("성공!!")
+                        let uploadedImageURLs = success.files
+                        completionHandler(uploadedImageURLs)
+                    case .failure(let failure):
+                        print(failure)
+                        print("실패!!")
+                    }
+                default:
+                    print("상태코드 : \(statusCode)")
+                }
+            }
+        } catch {
+            print("error \(error)")
+        }
     }
+
+    
+    //MARK: - 이미지 업로드🔥
+//       func uploadPostImage(query: ImageUploadQuery, completion: @escaping (Result<[String], Error>) -> Void) {
+//           let router = Router.imageUpload(query: ImageUploadQuery(files: query.files))
+//           let urlRequest = router.asURLRequest
+//           
+//           AF.upload(multipartFormData: { multipartFormData in
+//               multipartFormData.append(query.files, withName: "files", fileName: "postImage.jpeg", mimeType: "image/jpeg")
+//           }, with: urlRequest)
+//           .response { response in
+//               if let data = response.data {
+//                   let jsonString = String(data: data, encoding: .utf8)
+//                   print("서버 응답 데이터: \(jsonString ?? "데이터 없음")")
+//               }
+//               
+//               switch response.result {
+//               case .success(let data):
+//                   do {
+//                       guard let data = data else {
+//                           completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "데이터가 없습니다."])))
+//                           return
+//                       }
+//                       
+//                       let result = try JSONDecoder().decode(PostImageModel.self, from: data)
+//                       print("🩵이미지 업로드 성공: \(result.files ?? [])")  // 성공 메시지 출력
+//                       completion(.success(result.files ?? []))
+//                   } catch {
+//                       print("디코딩 실패: \(error)")
+//                       completion(.failure(error))
+//                   }
+//               case .failure(let error):
+//                   print("이미지 업로드 실패: \(error.localizedDescription)")
+//                   completion(.failure(error))
+//               }
+//           }
+//       }
+  
     
     static func deletePost(postId: String) {
         do {

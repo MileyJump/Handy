@@ -24,6 +24,7 @@ struct Post: Decodable {
     let postId: String
     let productId: String?
     let title: String?
+    let price: Int?
     let content: String?
     let content1: String?
     let content2: String?
@@ -35,7 +36,6 @@ struct Post: Decodable {
     let files: [String]?
     let likes: [String]?
     let likes2: [String]?
-    let buyers: [String]?
     let hashTags: [String]?
     let comments: [Comment]?
 
@@ -43,6 +43,7 @@ struct Post: Decodable {
         case postId = "post_id"
         case productId = "product_id"
         case title
+        case price
         case content
         case content1
         case content2
@@ -54,7 +55,6 @@ struct Post: Decodable {
         case files
         case likes
         case likes2
-        case buyers
         case hashTags = "hashTags"
         case comments
     }

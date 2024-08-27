@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class CommunityViewController: BaseViewController<CommunityView> {
     
     var postList: [Post] = []
     
+    private let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
     }
     
     override func setupUI() {
@@ -39,6 +44,21 @@ final class CommunityViewController: BaseViewController<CommunityView> {
             }
         }
         
+    }
+    
+    func bind() {
+        rootView.floatingButton.floatingButton
+            .rx
+            .tap
+            .bind(with: self) { owner, _ in
+                let vc = CommunityCreatViewController()
+                let naviVc = UINavigationController(rootViewController: vc)
+                naviVc.modalPresentationStyle = .fullScreen
+                owner.present(naviVc, animated: true)
+                
+            }
+            .disposed(by: disposeBag)
+
     }
 }
 

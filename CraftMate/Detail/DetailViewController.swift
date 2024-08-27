@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 final class DetailViewController: BaseViewController<DetailView> {
     
@@ -124,6 +125,7 @@ final class DetailViewController: BaseViewController<DetailView> {
         rootView.categoryLabel.text = post?.productId
         rootView.contentLabel.text = post?.content1
         rootView.hashTagLabel.text = post?.content
+      
         
     }
     

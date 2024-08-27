@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B00A2E452C7C5CAB006A6721 /* CategoryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A2E442C7C5CAB006A6721 /* CategoryButtonView.swift */; };
+		B00A2E472C7C60D4006A6721 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A2E462C7C60D4006A6721 /* CategoryCollectionViewCell.swift */; };
+		B00A2E4A2C7CAB8A006A6721 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B00A2E492C7CAB8A006A6721 /* Kingfisher */; };
 		B0128A0A2C71ED0000B72622 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A092C71ED0000B72622 /* SignUpViewModel.swift */; };
 		B0128A0C2C71ED6300B72622 /* EmailDuplicateCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */; };
 		B0128A0E2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0D2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift */; };
@@ -20,7 +23,6 @@
 		B016BFB92C78C65B00C01DC1 /* FetchPostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFB82C78C65A00C01DC1 /* FetchPostQuery.swift */; };
 		B016BFBD2C79B80100C01DC1 /* ImageUploadQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFBC2C79B80100C01DC1 /* ImageUploadQuery.swift */; };
 		B016BFBF2C79C57100C01DC1 /* ImageUploadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFBE2C79C57100C01DC1 /* ImageUploadModel.swift */; };
-		B016BFC22C7B15EB00C01DC1 /* BSImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = B016BFC12C7B15EB00C01DC1 /* BSImagePicker */; };
 		B016BFC42C7B2E7300C01DC1 /* WrithePostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFC32C7B2E7300C01DC1 /* WrithePostCollectionViewCell.swift */; };
 		B016BFCD2C7C536F00C01DC1 /* OrderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFCC2C7C536F00C01DC1 /* OrderCollectionViewCell.swift */; };
 		B016BFCF2C7C539F00C01DC1 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016BFCE2C7C539F00C01DC1 /* CommunityViewController.swift */; };
@@ -59,6 +61,8 @@
 		B03934AE2C7724BA00EB34CD /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = B03934AD2C7724BA00EB34CD /* Tabman */; };
 		B03934B02C77293B00EB34CD /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03934AF2C77293B00EB34CD /* HomeContentViewController.swift */; };
 		B03934B52C78B18000EB34CD /* UIButton +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03934B42C78B18000EB34CD /* UIButton +.swift */; };
+		B06936C02C7CBD1400E0EF56 /* CommunityCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06936BF2C7CBD1400E0EF56 /* CommunityCreateViewController.swift */; };
+		B06936C22C7CBD1F00E0EF56 /* CommunityCreatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06936C12C7CBD1F00E0EF56 /* CommunityCreatView.swift */; };
 		B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */; };
 		B0DF57602C6CE84C00CAB497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */; };
 		B0DF57622C6CE84C00CAB497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF57612C6CE84C00CAB497 /* ViewController.swift */; };
@@ -87,6 +91,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B00A2E442C7C5CAB006A6721 /* CategoryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButtonView.swift; sourceTree = "<group>"; };
+		B00A2E462C7C60D4006A6721 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B0128A092C71ED0000B72622 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailDuplicateCheckModel.swift; sourceTree = "<group>"; };
 		B0128A0D2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailDuplicateCheckQuery.swift; sourceTree = "<group>"; };
@@ -132,6 +138,8 @@
 		B037B0A32C70EC6D00A17CD7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B03934AF2C77293B00EB34CD /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
 		B03934B42C78B18000EB34CD /* UIButton +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton +.swift"; sourceTree = "<group>"; };
+		B06936BF2C7CBD1400E0EF56 /* CommunityCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCreateViewController.swift; sourceTree = "<group>"; };
+		B06936C12C7CBD1F00E0EF56 /* CommunityCreatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCreatView.swift; sourceTree = "<group>"; };
 		B0DF575A2C6CE84C00CAB497 /* CraftMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraftMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,9 +174,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B016BFC22C7B15EB00C01DC1 /* BSImagePicker in Frameworks */,
 				B02CFDFD2C70C74900462EF9 /* Alamofire in Frameworks */,
 				B02CFDD72C6F75C500462EF9 /* RxCocoa in Frameworks */,
+				B00A2E4A2C7CAB8A006A6721 /* Kingfisher in Frameworks */,
 				B02CFDD12C6F461A00462EF9 /* SnapKit in Frameworks */,
 				B02CFDD92C6F75C500462EF9 /* RxSwift in Frameworks */,
 				B02CFDD42C6F462300462EF9 /* Then in Frameworks */,
@@ -184,6 +192,8 @@
 			children = (
 				B0128A402C763B4D00B72622 /* CommunityView.swift */,
 				B016BFCE2C7C539F00C01DC1 /* CommunityViewController.swift */,
+				B06936C12C7CBD1F00E0EF56 /* CommunityCreatView.swift */,
+				B06936BF2C7CBD1400E0EF56 /* CommunityCreateViewController.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -241,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				B02CFDEF2C706A9A00462EF9 /* FloatingButton.swift */,
+				B00A2E442C7C5CAB006A6721 /* CategoryButtonView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -250,6 +261,7 @@
 			children = (
 				B02CFDF22C7077FA00462EF9 /* WritePostViewController.swift */,
 				B02CFDF42C70781500462EF9 /* WritePostView.swift */,
+				B00A2E462C7C60D4006A6721 /* CategoryCollectionViewCell.swift */,
 				B016BFC32C7B2E7300C01DC1 /* WrithePostCollectionViewCell.swift */,
 			);
 			path = WritePost;
@@ -432,7 +444,7 @@
 				B02CFDD82C6F75C500462EF9 /* RxSwift */,
 				B02CFDFC2C70C74900462EF9 /* Alamofire */,
 				B03934AD2C7724BA00EB34CD /* Tabman */,
-				B016BFC12C7B15EB00C01DC1 /* BSImagePicker */,
+				B00A2E492C7CAB8A006A6721 /* Kingfisher */,
 			);
 			productName = CraftMate;
 			productReference = B0DF575A2C6CE84C00CAB497 /* CraftMate.app */;
@@ -468,7 +480,7 @@
 				B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B02CFDFB2C70C74900462EF9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				B03934AC2C7724BA00EB34CD /* XCRemoteSwiftPackageReference "Tabman" */,
-				B016BFC02C7B15EB00C01DC1 /* XCRemoteSwiftPackageReference "BSImagePicker" */,
+				B00A2E482C7CAB8A006A6721 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = B0DF575B2C6CE84C00CAB497 /* Products */;
 			projectDirPath = "";
@@ -509,11 +521,13 @@
 				B0DF577B2C6E3F9B00CAB497 /* UIColor +.swift in Sources */,
 				B03934B02C77293B00EB34CD /* HomeContentViewController.swift in Sources */,
 				B0128A412C763B4D00B72622 /* CommunityView.swift in Sources */,
+				B06936C02C7CBD1400E0EF56 /* CommunityCreateViewController.swift in Sources */,
 				B0128A102C72037400B72622 /* SignUpQuery.swift in Sources */,
 				B0DF57932C6F3AB900CAB497 /* SaveViewController.swift in Sources */,
 				B0DF57882C6F35B100CAB497 /* CustomFont.swift in Sources */,
 				B037B0A42C70EC6D00A17CD7 /* SignUpViewController.swift in Sources */,
 				B02CFDE32C6F932900462EF9 /* HomeViewModel.swift in Sources */,
+				B00A2E452C7C5CAB006A6721 /* CategoryButtonView.swift in Sources */,
 				B037B09D2C70E58E00A17CD7 /* LoginModel.swift in Sources */,
 				B0DF57952C6F3AC800CAB497 /* SettingViewController.swift in Sources */,
 				B0DF578D2C6F3A1100CAB497 /* MainTabBarController.swift in Sources */,
@@ -521,6 +535,8 @@
 				B016BFCD2C7C536F00C01DC1 /* OrderCollectionViewCell.swift in Sources */,
 				B037B09B2C70E04D00A17CD7 /* FetchPostModel.swift in Sources */,
 				B016BFCF2C7C539F00C01DC1 /* CommunityViewController.swift in Sources */,
+				B00A2E472C7C60D4006A6721 /* CategoryCollectionViewCell.swift in Sources */,
+				B06936C22C7CBD1F00E0EF56 /* CommunityCreatView.swift in Sources */,
 				B02CFDDC2C6F779A00462EF9 /* HomeView.swift in Sources */,
 				B016BFB72C78C28600C01DC1 /* CreatePostQuery.swift in Sources */,
 				B037B0A22C70E84400A17CD7 /* SignUpView.swift in Sources */,
@@ -786,12 +802,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B016BFC02C7B15EB00C01DC1 /* XCRemoteSwiftPackageReference "BSImagePicker" */ = {
+		B00A2E482C7CAB8A006A6721 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mikaoj/BSImagePicker.git";
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.3.3;
+				minimumVersion = 7.12.0;
 			};
 		};
 		B02CFDCF2C6F461A00462EF9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -837,10 +853,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B016BFC12C7B15EB00C01DC1 /* BSImagePicker */ = {
+		B00A2E492C7CAB8A006A6721 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B016BFC02C7B15EB00C01DC1 /* XCRemoteSwiftPackageReference "BSImagePicker" */;
-			productName = BSImagePicker;
+			package = B00A2E482C7CAB8A006A6721 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		B02CFDD02C6F461A00462EF9 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

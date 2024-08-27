@@ -54,7 +54,8 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
     func configureCell(data: Post) {
         titleLabel.text = data.title
         contentLabel.text = data.content1
-        
+        nickNameLabel.text = data.creator.nick
+        priceLabel.text = "\(String(data.price ?? 0))원"
     }
     
     override func layoutSubviews() {
