@@ -18,12 +18,11 @@ final class WritePostViewController: BaseViewController<WritePostView> {
     
     var sortSeleted = "공예"
     
-//    private var selectedImageViews: [UIImageView] = []
+    var selectedImage: [UIView] = []
     private var selectedImages: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setUpToolBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,38 +46,10 @@ final class WritePostViewController: BaseViewController<WritePostView> {
         rootView.categoryCollectionView.delegate = self
         rootView.categoryCollectionView.dataSource = self
     }
-    
-//    func setUpToolBar() {
-//        navigationController?.isToolbarHidden = false
-//        
-//        let appearance = UIToolbarAppearance()
-//        // 불투명한 그림자를 한겹 쌓습니다.
-//        appearance.configureWithOpaqueBackground()
-//        appearance.backgroundColor = .systemOrange
-//        
-//        navigationController?.toolbar.scrollEdgeAppearance = appearance
-//        
-//        let cameraButton = UIBarButtonItem(image: UIImage(systemName: "camera"), style: .plain, target: nil, action: nil)
-//        
-//        
-//        let barItems = [cameraButton]
-//        
-//        self.toolbarItems = barItems
-//        
-//        cameraButton.rx.tap
-//            .bind(with: self) { owner, _ in
-//                owner.cameraButtonTapped()
-//            }
-//            .disposed(by: disposeBag)
-//        
-//        
-//    }
-    
 
-    
     func imageViewTapped() {
         var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = max(0, 5 - selectedImages.count) // 최대 10개 이미지 선택 가능
+        configuration.selectionLimit = max(0, 5 - selectedImages.count) // 최대 5개 이미지 선택 가능
         configuration.filter = .images
         
         let picker = PHPickerViewController(configuration: configuration)
@@ -94,7 +65,6 @@ final class WritePostViewController: BaseViewController<WritePostView> {
         let xmark = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = xmark
         
-        
         upload.rx.tap
             .bind(with: self) { owner, _ in
                 owner.uploadButtonTapped()
@@ -103,47 +73,34 @@ final class WritePostViewController: BaseViewController<WritePostView> {
         
         xmark.rx.tap
             .bind(with: self) { owner, _ in
-                owner.xMarkButtonTapped()
                 owner.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
     }
     
-     func uploadButtonTapped() {
-         let title = rootView.titleTextField.text
-         let content = rootView.contentTextView.text
-         let hashTag = rootView.hashTagTextField.text
-//         let price = Int(rootView.priceTextField.text ?? "0")
+    func uploadButtonTapped() {
         
-         
-         print("\(selectedImages) :::: 사진!!")
-         
-         NetworkManager.shared.uploadImage(images: selectedImages) { [weak self] uploadedImageURLs in
-             guard let self = self, let imageURLs = uploadedImageURLs else {
-                 print("이미지 업로드 실패 또는 URL 없음")
-                 return
-             }
-             
-             
-             
-             // 이미지 URL을 이용해 게시물 생성
-//             NetworkManager.createPost(
-//                title: title, price: 20,
-//                 content: hashTag,
-//                 content1: content,
-//                 content2: nil,
-//                 content3: nil,
-//                 content4: nil,
-//                 content5: nil,
-//                 product_id: self.sortSeleted,
-//                 files: imageURLs) { post, error in
-//                     
-//                 }
-         }
+        NetworkManager.shared.uploadImage(images: selectedImages) { post in
+            if let post = post {
+                self.uploadPost(post: post)
+            }
+        }
     }
     
-    func xMarkButtonTapped() {
-        dismiss(animated: true)
+    func uploadPost(post: [String]) {
+        
+        let title = rootView.titleTextField.text
+        let price = Int(rootView.priceTextField.text ?? "")
+        let content = rootView.contentTextView.text
+        let hashTags = rootView.hashTagTextField.text
+        
+        
+        NetworkManager.shared.createPost(title: title, price: price, content: hashTags, content1: content, content2: "", content3: "", content4: "", content5: "", product_id: sortSeleted, files: post) { result, error in
+            
+            
+        }
+            
+        
     }
 }
 
@@ -171,8 +128,6 @@ extension WritePostViewController: UICollectionViewDelegate, UICollectionViewDat
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell else { return UICollectionViewCell() }
             cell.isUserInteractionEnabled = true
-//            cell.button.isUserInteractionEnabled = true
-//            cell.button.setTitle(categories[indexPath.item], for: .normal)
             cell.categoryLabel.text = categories[indexPath.item]
             return cell
         }
@@ -185,10 +140,8 @@ extension WritePostViewController: UICollectionViewDelegate, UICollectionViewDat
             }
         } else if collectionView == rootView.categoryCollectionView {
             sortSeleted = categories[indexPath.item]
-            
         }
     }
-    
 }
 
 extension WritePostViewController: PHPickerViewControllerDelegate {

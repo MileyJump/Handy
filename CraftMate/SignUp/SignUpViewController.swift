@@ -24,7 +24,7 @@ final class SignUpViewController: BaseViewController<SignUpView> {
                 let email = owner.rootView.emailTextField.text ?? ""
                 print(email)
                 print("---")
-                NetworkManager.emailDuplicateCheck(email: email) { value, isEnabled  in
+                NetworkManager.shared.emailDuplicateCheck(email: email) { value, isEnabled  in
                     owner.rootView.emailDuplicateCheckLabel.text = value
                     owner.rootView.signUpButton.isEnabled = isEnabled
                 }
@@ -40,7 +40,7 @@ final class SignUpViewController: BaseViewController<SignUpView> {
                 let birthday = owner.rootView.birthTextField.text ?? ""
                 print("=====\(email),, \(password),, \(nick)")
                 
-                NetworkManager.createSignUp(email: email, password: password, nick: nick, phoneNum: phoneNum, birthDay: birthday)
+                NetworkManager.shared.createSignUp(email: email, password: password, nick: nick, phoneNum: phoneNum, birthDay: birthday)
             }
             .disposed(by: disposeBag)
     }

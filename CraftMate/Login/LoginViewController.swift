@@ -27,7 +27,7 @@ class LoginViewController: BaseViewController<LoginView> {
                 let email = owner.rootView.emailTextField.text ?? ""
                 let password = owner.rootView.passwordTextField.text ?? ""
                 
-                NetworkManager.createLogin(email: email, password: password) { value, isEnabled  in
+                NetworkManager.shared.createLogin(email: email, password: password) { value, isEnabled  in
                     if isEnabled {
                         owner.changeRootViewController(MainTabBarController())
                     }

@@ -65,6 +65,15 @@ final class DetailView: BaseView {
         
     }
     
+    let tabBarView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
+    let heartButton = UIButton().then {
+        $0.setImage(UIImage(systemName: CraftMate.Phrase.heartImage), for: .normal)
+        $0.tintColor = CraftMate.color.whiteColor
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -79,6 +88,7 @@ final class DetailView: BaseView {
         addSubview(categoryLabel)
         addSubview(contentLabel)
         addSubview(hashTagLabel)
+        addSubview(tabBarView)
     }
     
     override func configureLayout() {

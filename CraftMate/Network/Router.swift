@@ -142,12 +142,42 @@ extension Router: TargetType {
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
         case .imageUpload(let query):
-            let encoder = JSONEncoder()
-            return try? encoder.encode(query)
+           return nil
         default:
             return nil
         }
     }
     
     
+
+
+
+    var routerbaseURL: String {
+        return BaseURL.baseURL + "v1"
+        }
+    
+    var asURLRequest: URLRequest {
+            do {
+                var url = URL(string: routerbaseURL)!.appendingPathComponent(path)
+                
+                if let queryItems = queryItems {
+                    var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                    components?.queryItems = queryItems
+                    url = components?.url ?? url
+                }
+                
+                var request = URLRequest(url: url)
+                request.method = method
+                request.headers = HTTPHeaders(header)
+                
+                if method != .get {
+                    request.httpBody = body
+                }
+                
+                return request
+            } catch {
+                fatalError("URL 요청 생성 중 오류 발생: \(error)")
+            }
+        }
 }
+

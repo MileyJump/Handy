@@ -35,7 +35,7 @@ final class CommunityViewController: BaseViewController<CommunityView> {
     
     func bindTableView() {
         
-        NetworkManager.fetchPost(productId: "비즈공예") { post, error in
+        NetworkManager.shared.fetchPost(productId: "비즈공예") { post, error in
             if let postList = post {
                 print(postList)
                 let postData = postList.data

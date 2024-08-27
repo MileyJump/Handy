@@ -92,7 +92,7 @@ final class HomeContentViewController: BaseViewController<HomeView> {
    
     func bindTableView(id: String) {
         
-        NetworkManager.fetchPost(productId: id) { post, error in
+        NetworkManager.shared.fetchPost(productId: id) { post, error in
             if let postList = post {
                 print("포스트 조회 네트워크 통신")
                 
