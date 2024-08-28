@@ -97,6 +97,7 @@ final class CommunityTableViewCell: BaseTableViewCell {
         descriptionLabel.text = post.content1
         nickNameLabel.text = post.creator.nick
         
+        
         }
     
     override func layoutSubviews() {

@@ -17,6 +17,8 @@ final class HomeContentViewController: BaseViewController<HomeView> {
     
     var postList: [Post] = []
     
+    var dataImage: [Data] = [ ]
+    
     // 나중에 Rx로 수정
     var items = ["홈데코", "공예", "리폼", "아이들", "주방", "기타"]
     var sortImages = ["홈", "공예", "리폼", "아이들", "주방", "박스"]
@@ -33,17 +35,17 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         
         rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         rootView.orderCollectionView.register(OrderCollectionViewCell.self, forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
-       
+        
         
         rootView.tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: CommunityTableViewCell.identifier)
         // 네트워크 요청 실행
-//        viewModel.fetchPosts()
+        //        viewModel.fetchPosts()
         bind()
         bindTableView(id: items[0])
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
-//        bindTableView()
+        //        bindTableView()
     }
     
     override func setupNavigationBar() {
@@ -73,51 +75,33 @@ final class HomeContentViewController: BaseViewController<HomeView> {
     
     
     func bind() {
-           rootView.floatingButton.floatingButton
-               .rx
-               .tap
-               .bind(with: self) { owner, _ in
-                   let vc = WritePostViewController()
-                   let naviVc = UINavigationController(rootViewController: vc)
-                   naviVc.modalPresentationStyle = .fullScreen
-                   owner.present(naviVc, animated: true)
-                   
-               }
-               .disposed(by: disposeBag)
-   
-         
-       }
+        rootView.floatingButton.floatingButton
+            .rx
+            .tap
+            .bind(with: self) { owner, _ in
+                let vc = WritePostViewController()
+                let naviVc = UINavigationController(rootViewController: vc)
+                naviVc.modalPresentationStyle = .fullScreen
+                owner.present(naviVc, animated: true)
+                
+            }
+            .disposed(by: disposeBag)
+    }
     
-    
-   
     func bindTableView(id: String) {
         
         NetworkManager.shared.fetchPost(productId: id) { post, error in
-            if let postList = post {
-                print("포스트 조회 네트워크 통신")
-                
-                let postData = postList.data
-                self.postList.removeAll()
-                self.postList.append(contentsOf: postData)
-                self.rootView.orderCollectionView.reloadData()
-            }
+            guard let post else { return }
+            let postData = post.data
+            
+            self.postList = postData
+            
+            self.rootView.orderCollectionView.reloadData()
         }
-        //           let input = viewModel.
-        
-        //           viewModel.postsList.
-        //               .bind(to: rootView.tableView.rx.items(cellIdentifier: HomeTableViewCell.identifier, cellType: HomeTableViewCell.self)) { row, post, cell in
-        //
-        //                   cell.configure(with: post.data[row])
-        //               }
-        //               .disposed(by: disposeBag)
-        //       }
-        
     }
-    
 }
-   
-   
-   
+
+
 extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == rootView.collectionView {
@@ -142,13 +126,14 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
                 return UICollectionViewCell()
             }
             cell.configureCell(data: postList[indexPath.item])
+            
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == rootView.orderCollectionView {
-            let result = postList[indexPath.row]
+            let result = postList[indexPath.item]
             let vc = DetailViewController()
             vc.post = result
             navigationController?.pushViewController(vc, animated: true)
@@ -158,10 +143,6 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
             bindTableView(id: sort)
         }
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: 100, height: 200) // 원하는 크기 설정
-//    }
     
     
     
@@ -175,7 +156,7 @@ extension HomeContentViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTableViewCell.identifier, for: indexPath) as? CommunityTableViewCell else {
-             return UITableViewCell() }
+            return UITableViewCell() }
         cell.configure(with: postList[indexPath.row])
         return cell
     }

@@ -285,7 +285,7 @@ final class NetworkManager {
 
   
     
-    static func deletePost(postId: String) {
+    func deletePost(postId: String) {
         do {
             let request = try Router.deletePost(query: postId).asURLRequest()
            print("게시글 삭제 완료")
@@ -293,4 +293,26 @@ final class NetworkManager {
             print("error \(error)")
         }
     }
+    
+    func readImage(urlString: String, completion: @escaping (Data?) -> Void) {
+        // URLRequest 생성
+        do {
+            let request = try Router.readImage(query: urlString).asURLRequest()
+            
+            // URLSession을 사용하여 데이터 다운로드
+            AF.request(request).response { response in
+                switch response.result {
+                case .success(let success):
+                    print(success)
+                    completion(success)
+                case .failure(let failure):
+                    completion(nil)
+                }
+            }
+        } catch {
+            print("Failed to create request: \(error.localizedDescription)")
+            
+        }
+    }
+    
 }

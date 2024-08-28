@@ -19,6 +19,7 @@ enum Router {
     case imageUpload(query: ImageUploadQuery)
     case emailDuplicateCheck(query: EmailDuplicateCheckQuery)
     case deletePost(query: String)
+    case readImage(query: String)
 }
 
 extension Router: TargetType {
@@ -28,22 +29,12 @@ extension Router: TargetType {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .emailDuplicateCheck:
+        case .emailDuplicateCheck, .signUp, .login, .createPost, .imageUpload:
             return .post
-        case .signUp:
-            return .post
-        case .login:
-            return .post
-        case .fetchProfile: // 프로필 조회
+        case .fetchProfile, .refresh, .fetchPost, .readImage:
             return .get
         case .editProfile: // 내 프로필 수정
             return .put
-        case .refresh:
-            return .get
-        case .createPost, .imageUpload:
-            return .post
-        case .fetchPost:
-            return .get
         case .deletePost:
             return .delete
         }
@@ -71,6 +62,8 @@ extension Router: TargetType {
             return "v1/posts/files"
         case .deletePost(let query):
             return "v1/posts/\(query)"
+        case .readImage(let query):
+            return "v1/\(query)"
         }
     }
     
@@ -81,7 +74,7 @@ extension Router: TargetType {
                 Header.contentType.rawValue: Header.json.rawValue,
                 Header.sesacKey.rawValue: Key.key
             ]
-        case .fetchProfile, .fetchPost, .editProfile, .deletePost:
+        case .fetchProfile, .fetchPost, .editProfile, .deletePost, .readImage:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
                 Header.sesacKey.rawValue: Key.key

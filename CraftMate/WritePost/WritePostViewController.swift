@@ -28,13 +28,11 @@ final class WritePostViewController: BaseViewController<WritePostView> {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
-        navigationController?.isToolbarHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
-        navigationController?.isToolbarHidden = false
     }
     
     override func setupUI() {
@@ -42,11 +40,11 @@ final class WritePostViewController: BaseViewController<WritePostView> {
         rootView.imageCollectionView.delegate = self
         rootView.imageCollectionView.dataSource = self
         
-        rootView.categoryCollectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
-        rootView.categoryCollectionView.delegate = self
-        rootView.categoryCollectionView.dataSource = self
-    }
+        rootView.contentTextView.delegate = self
+        
 
+    }
+    
     func imageViewTapped() {
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = max(0, 5 - selectedImages.count) // 최대 5개 이미지 선택 가능
@@ -59,11 +57,29 @@ final class WritePostViewController: BaseViewController<WritePostView> {
     
     override func setupNavigationBar() {
         
-        let upload = UIBarButtonItem(title: "게시", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
+        // 하단에 커스텀 라인 추가
+        let bottomBorder = UIView()
+        bottomBorder.backgroundColor = CraftMate.color.LightGrayColor
+        navigationController?.navigationBar.addSubview(bottomBorder)
+        
+        bottomBorder.snp.makeConstraints { make in
+            make.height.equalTo(1) // 라인의 두께
+            make.bottom.equalToSuperview() // 네비게이션 바의 하단에 위치
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        navigationItem.title = "판매하기"
+        
+        let upload = UIBarButtonItem(title: "올리기", style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = upload
         
         let xmark = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: nil, action: nil)
         navigationItem.leftBarButtonItem = xmark
+        
+        upload.tintColor = CraftMate.color.mainColor
+        xmark.tintColor = CraftMate.color.blackColor
         
         upload.rx.tap
             .bind(with: self) { owner, _ in
@@ -96,10 +112,8 @@ final class WritePostViewController: BaseViewController<WritePostView> {
         
         
         NetworkManager.shared.createPost(title: title, price: price, content: hashTags, content1: content, content2: "", content3: "", content4: "", content5: "", product_id: sortSeleted, files: post) { result, error in
-            
-            
+            self.dismiss(animated: true)
         }
-            
         
     }
 }
@@ -138,8 +152,8 @@ extension WritePostViewController: UICollectionViewDelegate, UICollectionViewDat
             if indexPath.item == 0 {
                 imageViewTapped()
             }
-        } else if collectionView == rootView.categoryCollectionView {
-            sortSeleted = categories[indexPath.item]
+//        } else if collectionView == rootView.categoryCollectionView {
+//            sortSeleted = categories[indexPath.item]
         }
     }
 }
@@ -167,6 +181,40 @@ extension WritePostViewController: PHPickerViewControllerDelegate {
         
         group.notify(queue: .main) { [weak self] in
             self?.rootView.imageCollectionView.reloadData()
+        }
+    }
+}
+
+extension WritePostViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: textView.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        // 최소 높이를 200으로 설정
+        let minHeight: CGFloat = 200
+        let newHeight = max(estimatedSize.height, minHeight)
+        
+        // Update constraints with the new height
+        textView.snp.updateConstraints { make in
+            make.height.equalTo(newHeight)
+        }
+
+        // Adjust the scroll view content size
+        rootView.scrollView.layoutIfNeeded()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == CraftMate.color.MediumGrayColor {
+            textView.text = nil
+            textView.textColor = CraftMate.color.blackColor
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "메세지를 입력하세요"
+            textView.textColor = CraftMate.color.MediumGrayColor
         }
     }
 }

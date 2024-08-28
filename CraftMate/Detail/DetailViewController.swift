@@ -23,45 +23,16 @@ final class DetailViewController: BaseViewController<DetailView> {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
-        navigationController?.isToolbarHidden = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
-        navigationController?.isToolbarHidden = false
-    }
-    
-    func setUpToolBar() {
-        navigationController?.isToolbarHidden = false
-        
-        let appearance = UIToolbarAppearance()
-        // 불투명한 그림자를 한겹 쌓습니다.
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemOrange
-        
-        navigationController?.toolbar.scrollEdgeAppearance = appearance
-        
-        let heartButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: nil, action: nil)
-        
-        
-        let barItems = [heartButton]
-        
-        self.toolbarItems = barItems
-        
-        heartButton.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.heartButtonTapped()
-            }
-            .disposed(by: disposeBag)
-        
         
     }
     
-    func heartButtonTapped() {
-       
-    
-    }
+   
     
     override func setupNavigationBar() {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -114,19 +85,32 @@ final class DetailViewController: BaseViewController<DetailView> {
     func deleteButtonTapped() {
         print(#function)
         if let postId = post?.postId {
-            NetworkManager.deletePost(postId: postId)
+            NetworkManager.shared.deletePost(postId: postId)
             print("\(postId)삭제 완료")
         }
     }
     
     override func setupUI() {
+       
+        
         rootView.nickNameLabel.text = post?.creator.nick
         rootView.titleLabel.text = post?.title
         rootView.categoryLabel.text = post?.productId
         rootView.contentLabel.text = post?.content1
         rootView.hashTagLabel.text = post?.content
       
-        
+        if let data = post?.files {
+            data.forEach { link in
+                print("--")
+                NetworkManager.shared.readImage(urlString: link) { [weak self] data in
+                    if let data {
+                        DispatchQueue.main.async {
+                            self?.rootView.imageView.image = UIImage(data: data)
+                        }
+                    }
+                }
+            }
+        }
     }
     
 }

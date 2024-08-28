@@ -56,6 +56,21 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
         contentLabel.text = data.content1
         nickNameLabel.text = data.creator.nick
         priceLabel.text = "\(String(data.price ?? 0))원"
+        
+        if let data = data.files {
+            data.forEach { link in
+                print("--")
+                NetworkManager.shared.readImage(urlString: link) { [weak self] data in
+                    if let data {
+                        DispatchQueue.main.async {
+                            self?.contentImageView.image = UIImage(data: data)
+                        }
+                    }
+                }
+            }
+        }
+        
+//        contentImageView.image = UIImage(data: image)
     }
     
     override func layoutSubviews() {
