@@ -12,7 +12,8 @@ class CategoryButtonView: BaseView {
     
     // 버튼 타이틀 배열을 저장하는 프로퍼티
     private var buttonTitles: [String]
-    var onCategorySelected: ((String) -> Void)?
+    private var selectedButton: UIButton?
+       var onButtonSelected: ((String) -> Void)?
     
     // CustomView의 초기화 메서드에서 버튼 타이틀을 전달받음
     init(buttonTitles: [String]) {
@@ -26,9 +27,7 @@ class CategoryButtonView: BaseView {
     
     
     private func setupButtons() {
-        // 버튼 이름 배열
-//        let buttonTitles = ["Button 1", "Button 2", "Button 3", "Button 4", "Button 5"]
-        
+   
         // 스택 뷰 생성
         let buttonStackView = UIStackView()
         buttonStackView.axis = .horizontal
@@ -46,6 +45,7 @@ class CategoryButtonView: BaseView {
             button.layer.borderWidth = 1
             button.layer.borderColor = CraftMate.color.MediumGrayColor.cgColor
             button.layer.cornerRadius = 18
+            button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
             buttonStackView.addArrangedSubview(button)
         }
         
@@ -58,6 +58,24 @@ class CategoryButtonView: BaseView {
             make.trailing.equalToSuperview().inset(20)  // 오른쪽 여백 20
             make.centerY.equalToSuperview()              // 세로 중앙 정렬
             make.height.equalTo(40)
+        }
+    }
+    
+    @objc private func buttonTapped(_ sender: UIButton) {
+        // 기존에 선택된 버튼이 있다면 배경색 복원
+        selectedButton?.backgroundColor = .clear
+        selectedButton?.setTitleColor(CraftMate.color.blackColor, for: .normal)
+        
+        // 현재 클릭된 버튼의 배경색 변경
+        sender.backgroundColor = CraftMate.color.darkGrayColor
+        sender.setTitleColor(CraftMate.color.whiteColor, for: .normal)
+        
+        // 선택된 버튼 저장
+        selectedButton = sender
+        
+        // 클릭된 버튼의 타이틀 전달
+        if let title = sender.title(for: .normal) {
+            onButtonSelected?(title)
         }
     }
 }

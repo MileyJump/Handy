@@ -50,33 +50,21 @@ extension UICollectionViewLayout {
         
         return layout
     }
-//    
-    
-    
-//    static func categoryCollectionViewLayout() -> UICollectionViewLayout {
-//        let layout = UICollectionViewFlowLayout()
-//        
-//        let lineSpacing: CGFloat = 20
-//        let itemSpacing: CGFloat = 10
-//        
-//        // 화면 너비에서 간격을 제외한 너비를 계산
-//        let width = UIScreen.main.bounds.width - (lineSpacing * 2) - (itemSpacing * 5)
-//        
-//        // 각 항목의 크기 계산
-//        layout.itemSize = CGSize(width: width / 5, height: (width / 5) * 4 / 5.2) // 너비는 화면 너비에서 계산, 높이는 비율로 설정
-//        
-//        // 항목 간의 간격과 행 간의 간격 설정
-//        layout.minimumLineSpacing = lineSpacing
-//        layout.minimumInteritemSpacing = itemSpacing
-//        
-//        // 섹션 인셋 설정
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10) // 섹션의 좌우 여백을 10으로 설정
-//        
-//        // 스크롤 방향을 가로로 설정
-//        layout.scrollDirection = .horizontal
-//        
-//        return layout
-//    }
+
+    static func communitySaveCollectionViewLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        let itemSpacing: CGFloat = 2
+        let totalSpacing = itemSpacing * 2 // (itemSpacing * (number of items in a row - 1))
+        let availableWidth = UIScreen.main.bounds.width - totalSpacing
+        let itemWidth = availableWidth / 3 // 3개 셀로 나눔
+        layout.itemSize = CGSize(width: itemWidth, height: itemWidth) // 1:1 비율
+        
+        layout.minimumLineSpacing = itemSpacing
+        layout.minimumInteritemSpacing = itemSpacing
+        layout.sectionInset = UIEdgeInsets(top: itemSpacing, left: itemSpacing, bottom: itemSpacing, right: itemSpacing)
+        layout.scrollDirection = .horizontal
+        return layout
+    }
     
     
     static func orderCollectionViewLayout() -> UICollectionViewLayout {

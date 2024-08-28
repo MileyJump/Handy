@@ -1,16 +1,14 @@
 //
-//  SearchPageView.swift
+//  OrderSaveView.swift
 //  CraftMate
 //
-//  Created by 최민경 on 8/16/24.
+//  Created by 최민경 on 8/28/24.
 //
 
 import UIKit
-import SnapKit
 
-final class SearchPageView: BaseView {
+final class OrderSaveView: BaseView {
     
-     let searchBar = UISearchBar()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.orderCollectionViewLayout())
     
     override init(frame: CGRect) {
@@ -18,7 +16,7 @@ final class SearchPageView: BaseView {
     }
     
     override func configureHierarchy() {
-        addSubview(searchBar)
+        
         addSubview(collectionView)
     }
     
@@ -32,6 +30,9 @@ final class SearchPageView: BaseView {
     override func configureView() {
         backgroundColor = .white
         
-//        tableView.rowHeight = 400
+        
     }
+    
+    
+    
 }

@@ -20,8 +20,7 @@ final class HomeCollectionViewCell: BaseCollectionViewCell {
         $0.font = CraftMate.CustomFont.regular12
         $0.textColor = CraftMate.color.blackColor
         $0.textAlignment = .center
-        $0.text = "홈 데코"
-        
+        $0.text = "홈 데코"   
     }
     
     let iconImageView = UIImageView()
@@ -52,19 +51,13 @@ final class HomeCollectionViewCell: BaseCollectionViewCell {
         
         iconImageView.snp.makeConstraints { make in
             make.edges.equalTo(bgView).inset(10)
-//            make.height.equalTo(20)
         }
         
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(bgView.snp.bottom).offset(4)
-//            make.horizontalEdges.equalTo(imageButton)
             make.horizontalEdges.equalToSuperview()
         }
-        
-        
-        
-        
     }
     
 }

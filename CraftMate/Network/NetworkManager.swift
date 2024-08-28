@@ -129,8 +129,6 @@ final class NetworkManager {
                     } else {
                         switch response.result {
                         case .success(let success):
-//                            print("OK", success)
-                            
                             UserDefaultsManager.shared.token = success.accessToken
                             
                             self.fetchProfile()

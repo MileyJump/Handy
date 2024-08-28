@@ -13,7 +13,7 @@ import SnapKit
 
 final class OrderCollectionViewCell: BaseCollectionViewCell {
     
-    private let profileImageView = UIImageView().then {
+     let profileImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
         $0.image = UIImage(named: "기본프로필")
     }
@@ -23,6 +23,16 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
         $0.textColor = CraftMate.color.blackColor
         $0.text = "마일리에요"
         $0.textAlignment = .left
+    }
+    
+    let ellipsisButton = UIButton().then {
+        $0.setImage(UIImage(systemName: CraftMate.Phrase.ellipsisIcon), for: .normal)
+        $0.tintColor = CraftMate.color.MediumGrayColor
+    }
+    
+    let heartButton = UIButton().then {
+        $0.setImage(UIImage(systemName: CraftMate.Phrase.heartImage), for: .normal)
+        $0.tintColor = CraftMate.color.whiteColor
     }
     
     let contentImageView = UIImageView().then {
@@ -69,8 +79,6 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
                 }
             }
         }
-        
-//        contentImageView.image = UIImage(data: image)
     }
     
     override func layoutSubviews() {
@@ -82,7 +90,10 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
     override func configureHierarchy() {
         addSubview(profileImageView)
         addSubview(nickNameLabel)
+        addSubview(ellipsisButton)
+        
         addSubview(contentImageView)
+        addSubview(heartButton)
         addSubview(titleLabel)
         addSubview(contentLabel)
         addSubview(priceLabel)
@@ -100,6 +111,20 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
             make.centerY.equalTo(profileImageView)
             make.leading.equalTo(profileImageView.snp.trailing).offset(4)
         }
+        
+        ellipsisButton.snp.makeConstraints { make in
+            make.centerY.equalTo(nickNameLabel)
+            make.trailing.equalToSuperview().inset(5)
+            make.size.equalTo(20)
+        }
+        
+        heartButton.snp.makeConstraints { make in
+            make.trailing.equalTo(contentImageView.snp.trailing)
+            make.bottom.equalTo(contentImageView.snp.bottom)
+            make.size.equalTo(40)
+            
+        }
+    
         
         contentImageView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(5)
@@ -125,15 +150,4 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
 //            make.bottom.equalToSuperview().inset(10)
         }
     }
-    
-//    func configureCell(with post: Post) {
-//        titleLabel.text = post.title
-//        contentLabel.text = post.content1
-//        priceLabel.text = post.buyers?[0] ?? ""
-//
-//    }
-    
-    
-    
-    
 }

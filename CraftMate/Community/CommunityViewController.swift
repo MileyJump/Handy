@@ -33,9 +33,13 @@ final class CommunityViewController: BaseViewController<CommunityView> {
         bindTableView()
     }
     
+    override func setupNavigationBar() {
+        navigationItem.title = "커뮤니티"
+    }
+    
     func bindTableView() {
         
-        NetworkManager.shared.fetchPost(productId: "비즈공예") { post, error in
+        NetworkManager.shared.fetchPost(productId: "커뮤니티") { post, error in
             if let postList = post {
                 print(postList)
                 let postData = postList.data
@@ -60,6 +64,11 @@ final class CommunityViewController: BaseViewController<CommunityView> {
             .disposed(by: disposeBag)
 
     }
+    
+    @objc func commentsViewButtonTapped() {
+        let vc = ReviewViewController()
+        present(vc, animated: true)
+    }
 }
 
 extension CommunityViewController: UITableViewDelegate, UITableViewDataSource {
@@ -70,19 +79,13 @@ extension CommunityViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTableViewCell.identifier, for: indexPath) as? CommunityTableViewCell else {
              return UITableViewCell() }
-        cell.configure(with: postList[indexPath.row])
+        cell.configureCell(with: postList[indexPath.row])
+        cell.commentsViewButton.addTarget(self, action: #selector(commentsViewButtonTapped), for: .touchUpInside)
+        cell.commentsButton.addTarget(self, action: #selector(commentsViewButtonTapped), for: .touchUpInside)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let result = postList[indexPath.row]
-        let vc = DetailViewController()
-        vc.post = result
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400
+        return 450
     }
 }

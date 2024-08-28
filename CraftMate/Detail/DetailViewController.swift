@@ -54,9 +54,9 @@ final class DetailViewController: BaseViewController<DetailView> {
     
     
     func ellipsisTapped() {
-        //1.
+
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        //2.
+
         let edit = UIAlertAction(title: "게시글 수정", style: .default) { _ in
             self.editButtonTapped()
         }
@@ -65,17 +65,12 @@ final class DetailViewController: BaseViewController<DetailView> {
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         
-        //3.
-        // HIG - cancel이 마지막 자리 권장(정해져있음)
-        // 2개일 때는 왼쪽에
+
         alert.addAction(cancel)
         alert.addAction(edit)
         alert.addAction(delete)
-        
-        
-        //4.
+
         present(alert, animated: true)
-    
     }
     
     func editButtonTapped() {
@@ -88,6 +83,16 @@ final class DetailViewController: BaseViewController<DetailView> {
             NetworkManager.shared.deletePost(postId: postId)
             print("\(postId)삭제 완료")
         }
+    }
+    
+    override func setupAddTarget() {
+        rootView.reviewButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = ReviewViewController()
+                vc.post = self.post
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func setupUI() {

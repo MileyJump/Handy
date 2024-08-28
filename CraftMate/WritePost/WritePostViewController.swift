@@ -16,13 +16,42 @@ final class WritePostViewController: BaseViewController<WritePostView> {
     
     let categories = ["홈데코", "공예", "리폼", "아이들", "주방", "기타"]
     
-    var sortSeleted = "공예"
+    var sortSeleted: String? {
+        didSet {
+            updateUploadButtonState()
+        }
+    }
     
     var selectedImage: [UIView] = []
     private var selectedImages: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        rootView.categoryView.onButtonSelected = { [weak self] title in
+            self?.sortSeleted = title
+        }
+        
+        // 타이틀 텍스트 필드와 콘텐츠 텍스트 뷰의 값 변경 감지
+        rootView.titleTextField.rx.text.orEmpty
+            .bind(with: self) { owner, _ in
+                owner.updateUploadButtonState()
+            }
+            .disposed(by: disposeBag)
+        
+        rootView.contentTextView.rx.text.orEmpty
+            .bind(with: self) { owner, _ in
+                owner.updateUploadButtonState()
+            }
+            .disposed(by: disposeBag)
+        
+        rootView.priceTextField.rx.text.orEmpty
+            .bind(with: self) { owner, _ in
+                owner.updateUploadButtonState()
+            }
+            .disposed(by: disposeBag)
+        
+        updateUploadButtonState() // 초기 상태 설정
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -41,8 +70,6 @@ final class WritePostViewController: BaseViewController<WritePostView> {
         rootView.imageCollectionView.dataSource = self
         
         rootView.contentTextView.delegate = self
-        
-
     }
     
     func imageViewTapped() {
@@ -94,6 +121,19 @@ final class WritePostViewController: BaseViewController<WritePostView> {
             .disposed(by: disposeBag)
     }
     
+    func updateUploadButtonState() {
+        // 카테고리, 타이틀 텍스트 필드, 콘텐츠 텍스트 뷰가 모두 채워져 있는지 확인
+        let isCategorySelected = sortSeleted != nil && !sortSeleted!.isEmpty
+        let isTitleFilled = !(rootView.titleTextField.text?.isEmpty ?? true)
+        let isPriceFilled = !(rootView.priceTextField.text?.isEmpty ?? true)
+        
+        let isContentFilled = rootView.contentTextView.textColor == CraftMate.color.blackColor &&
+        !(rootView.contentTextView.text?.isEmpty ?? true)
+        
+        navigationItem.rightBarButtonItem?.isEnabled = isCategorySelected && isTitleFilled && isPriceFilled && isContentFilled
+    }
+    
+    
     func uploadButtonTapped() {
         
         NetworkManager.shared.uploadImage(images: selectedImages) { post in
@@ -126,7 +166,7 @@ extension WritePostViewController: UICollectionViewDelegate, UICollectionViewDat
             return 5
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == rootView.imageCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WrithePostCollectionViewCell.identifier, for: indexPath) as? WrithePostCollectionViewCell else { return UICollectionViewCell() }
@@ -152,8 +192,8 @@ extension WritePostViewController: UICollectionViewDelegate, UICollectionViewDat
             if indexPath.item == 0 {
                 imageViewTapped()
             }
-//        } else if collectionView == rootView.categoryCollectionView {
-//            sortSeleted = categories[indexPath.item]
+            //        } else if collectionView == rootView.categoryCollectionView {
+            //            sortSeleted = categories[indexPath.item]
         }
     }
 }
@@ -199,7 +239,7 @@ extension WritePostViewController: UITextViewDelegate {
         textView.snp.updateConstraints { make in
             make.height.equalTo(newHeight)
         }
-
+        
         // Adjust the scroll view content size
         rootView.scrollView.layoutIfNeeded()
     }
@@ -210,7 +250,7 @@ extension WritePostViewController: UITextViewDelegate {
             textView.textColor = CraftMate.color.blackColor
         }
     }
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "메세지를 입력하세요"

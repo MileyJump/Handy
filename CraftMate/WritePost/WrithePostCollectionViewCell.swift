@@ -59,27 +59,7 @@ final class WrithePostCollectionViewCell: BaseCollectionViewCell {
            imageView.layer.borderColor = UIColor.clear.cgColor
            imageView.layer.borderWidth = 0.0
        }
-    
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        cameraImageView.image = nil
-//        countLabel.text = nil
-//        imageView.layer.borderColor = nil
-//    }
-//    
-//    func configureWithImage(_ image: UIImage) {
-//        imageView.image = image
-//        imageView.layer.cornerRadius = 5
-//        // 필요한 경우 다른 UI 요소 설정
-//    }
-//
-//    func configureAsUploadCell(count: Int) {
-//        cameraImageView.image = UIImage(systemName: "camera.fill")
-//        cameraImageView.tintColor = CraftMate.color.MediumGrayColor
-//        countLabel.text = "\(count)/5"
-//        imageView.layer.borderWidth = 1
-//        imageView.layer.borderColor = CraftMate.color.MediumGrayColor.cgColor
-//    }
+
     
     override func configureHierarchy() {
         addSubview(imageView)

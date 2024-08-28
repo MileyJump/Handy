@@ -22,6 +22,10 @@ final class CommunityView: BaseView {
         addSubview(floatingButton)
     }
     
+    override func configureView() {
+        tableView.separatorStyle = .none
+    }
+    
     override func configureLayout() {
 
         tableView.snp.makeConstraints { make in

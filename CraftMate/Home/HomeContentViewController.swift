@@ -30,14 +30,11 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         rootView.collectionView.delegate = self
         rootView.orderCollectionView.delegate = self
         rootView.orderCollectionView.dataSource = self
-        rootView.tableView.delegate = self
-        rootView.tableView.dataSource = self
         
         rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         rootView.orderCollectionView.register(OrderCollectionViewCell.self, forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
         
         
-        rootView.tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: CommunityTableViewCell.identifier)
         // 네트워크 요청 실행
         //        viewModel.fetchPosts()
         bind()
@@ -63,6 +60,14 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationItem.backButtonTitle = ""
+        
+        search.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = SearchPageViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
@@ -99,6 +104,32 @@ final class HomeContentViewController: BaseViewController<HomeView> {
             self.rootView.orderCollectionView.reloadData()
         }
     }
+    
+    @objc func ellipsisButtonTapped(sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // 신고하기 버튼을 추가합니다.
+        let reportAction = UIAlertAction(title: "신고하기", style: .default) { _ in
+            print("reportAction")
+        }
+        
+        // 닫기 버튼을 추가합니다.
+        let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
+        
+        // 액션 시트에 버튼들을 추가합니다.
+        alert.addAction(reportAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+        
+    }
+    
+    @objc func profileImageViewTapped() {
+        print(#function)
+        let vc = ProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 
@@ -126,7 +157,11 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
                 return UICollectionViewCell()
             }
             cell.configureCell(data: postList[indexPath.item])
-            
+            cell.ellipsisButton.tag = indexPath.item
+            cell.ellipsisButton.addTarget(self, action: #selector(ellipsisButtonTapped), for: .touchUpInside)
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped))
+            cell.profileImageView.addGestureRecognizer(tapGesture)
+        
             return cell
         }
     }
@@ -149,23 +184,4 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
     
 }
 
-extension HomeContentViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTableViewCell.identifier, for: indexPath) as? CommunityTableViewCell else {
-            return UITableViewCell() }
-        cell.configure(with: postList[indexPath.row])
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let result = postList[indexPath.row]
-        let vc = DetailViewController()
-        vc.post = result
-        navigationController?.pushViewController(vc, animated: true)
-    }
-}
+

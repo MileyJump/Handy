@@ -12,7 +12,6 @@ final class HomeView: BaseView {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.itemCollectionViewLayout())
     let orderCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.orderCollectionViewLayout())
     
-    let tableView = UITableView()
     
     let floatingButton = FloatingButton()
     
@@ -24,11 +23,7 @@ final class HomeView: BaseView {
     }
     
     override func configureHierarchy() {
-        //        addSubview(segmentControl)
-        //        addSubview(selectionIndicator)
         addSubview(collectionView)
-    
-//        addSubview(tableView)
         addSubview(orderCollectionView)
         addSubview(floatingButton)
         
