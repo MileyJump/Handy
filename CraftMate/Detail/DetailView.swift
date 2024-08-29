@@ -27,13 +27,13 @@ final class DetailView: BaseView {
         $0.textAlignment = .left
     }
     
-    private let followButton = UIButton().then {
+     let followButton = UIButton().then {
         $0.setTitle("팔로우", for: .normal)
 //        $0.setTitleColor(CraftMate.color.whiteColor, for: .normal)
         $0.setTitleColor(CraftMate.color.mainColor, for: .normal)
 //        $0.backgroundColor = CraftMate.color.mainColor
         $0.titleLabel?.font = CraftMate.CustomFont.SemiBold13
-//        $0.layer.cornerRadius = 5
+        $0.layer.cornerRadius = 5
     }
     
     private let lineView = UIView().then {
@@ -51,6 +51,10 @@ final class DetailView: BaseView {
         $0.textAlignment = .left
          $0.textColor = CraftMate.color.MediumGrayColor
         $0.font = CraftMate.CustomFont.Light13
+    }
+    
+    let categoryLine = UIView().then {
+        $0.backgroundColor = CraftMate.color.MediumGrayColor
     }
     
     let priceLabel = UILabel().then {
@@ -107,32 +111,16 @@ final class DetailView: BaseView {
     }
     
     let reviewButton = UIButton(type: .system).then { button in
-        // 버튼의 타이틀 설정
-        let title = NSMutableAttributedString(string: "리뷰\n", attributes: [
-            .font: CraftMate.CustomFont.regular13 ?? UIFont.systemFont(ofSize: 13),
-            .foregroundColor: CraftMate.color.blackColor
-        ])
-        let subtitle = NSAttributedString(string: "12", attributes: [
-            .font: CraftMate.CustomFont.Light13 ??  UIFont.boldSystemFont(ofSize: 14),
-            .foregroundColor: CraftMate.color.MediumGrayColor
-        ])
-        
-        title.append(subtitle)
-        
-        button.setAttributedTitle(title, for: .normal)
-        button.titleLabel?.numberOfLines = 2
-        button.titleLabel?.textAlignment = .center
-        
-        // 버튼의 외형 설정
-        button.backgroundColor = .clear
-    }
+            // 버튼의 기본 설정
+            button.titleLabel?.numberOfLines = 2
+            button.titleLabel?.textAlignment = .center
+            button.backgroundColor = .clear
+        }
     
     let tabLineView = UIView().then {
         $0.backgroundColor = CraftMate.color.LightGrayColor
     }
-    
-    
-    
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -145,6 +133,7 @@ final class DetailView: BaseView {
         addSubview(titleLabel)
         addSubview(lineView)
         addSubview(categoryLabel)
+        addSubview(categoryLine)
         addSubview(priceLabel)
         addSubview(contentLineView)
         addSubview(contentLabel)
@@ -154,9 +143,23 @@ final class DetailView: BaseView {
         addSubview(payButton)
         addSubview(reviewButton)
         addSubview(tabLineView)
-        
-        
     }
+    
+    func updateReviewButton(with reviewCount: Int) {
+        let reviewTitle = NSMutableAttributedString(string: "리뷰\n", attributes: [
+            .font: CraftMate.CustomFont.regular13 ?? UIFont.systemFont(ofSize: 13),
+            .foregroundColor: CraftMate.color.blackColor
+        ])
+        let reviewSubtitle = NSAttributedString(string: "\(reviewCount)", attributes: [
+            .font: CraftMate.CustomFont.Light13 ?? UIFont.boldSystemFont(ofSize: 14),
+            .foregroundColor: CraftMate.color.MediumGrayColor
+        ])
+        reviewTitle.append(reviewSubtitle)
+        reviewButton.setAttributedTitle(reviewTitle, for: .normal)
+    }
+    
+
+    
     
     override func configureLayout() {
         imageView.snp.makeConstraints { make in
@@ -197,7 +200,13 @@ final class DetailView: BaseView {
         
         categoryLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(6)
-            make.horizontalEdges.equalTo(titleLabel)
+            make.leading.equalTo(titleLabel)
+        }
+        
+        categoryLine.snp.makeConstraints { make in
+            make.top.equalTo(categoryLabel.snp.bottom).inset(2)
+            make.horizontalEdges.equalTo(categoryLabel)
+            make.height.equalTo(1)
         }
         
         priceLabel.snp.makeConstraints { make in

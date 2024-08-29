@@ -15,7 +15,7 @@ final class NetworkManager {
     
     private init() { }
     
-     func emailDuplicateCheck(email: String, completionHandler: @escaping (String, Bool) -> Void ) {
+    func emailDuplicateCheck(email: String, completionHandler: @escaping (String, Bool) -> Void ) {
         do {
             let query = EmailDuplicateCheckQuery(email: email)
             let request = try Router.emailDuplicateCheck(query: query).asURLRequest()
@@ -23,7 +23,7 @@ final class NetworkManager {
             AF.request(request).responseDecodable(of: EmailDuplicateCheckModel.self) { response in
                 switch response.result {
                 case .success(let success):
-//                    print(success.message)
+                    //                    print(success.message)
                     let isSuccess = response.response?.statusCode == 200
                     completionHandler(success.message, isSuccess)
                 case .failure(let failure):
@@ -35,7 +35,7 @@ final class NetworkManager {
         }
     }
     
-     func createSignUp(email: String, password: String, nick: String, phoneNum: String?, birthDay: String?) {
+    func createSignUp(email: String, password: String, nick: String, phoneNum: String?, birthDay: String?) {
         do {
             let query = SignUpQuery(email: email, password: password, nick: nick, phoneNum: phoneNum, birthDay: birthDay)
             let request = try Router.signUp(query: query).asURLRequest()
@@ -53,7 +53,7 @@ final class NetworkManager {
         }
     }
     
-     func createLogin(email: String, password: String, completionHandler: @escaping (String, Bool) -> Void ) {
+    func createLogin(email: String, password: String, completionHandler: @escaping (String, Bool) -> Void ) {
         do {
             let query = LoginQuery(email: email, password: password)
             let request = try Router.login(query: query).asURLRequest()
@@ -89,7 +89,7 @@ final class NetworkManager {
         }
     }
     
-     func fetchProfile() {
+    func fetchProfile() {
         
         do {
             let request = try Router.fetchProfile.asURLRequest()
@@ -116,7 +116,7 @@ final class NetworkManager {
         
     }
     
-     func refreshToken() {
+    func refreshToken() {
         
         do {
             let request = try Router.refresh.asURLRequest()
@@ -146,7 +146,7 @@ final class NetworkManager {
     
     
     
-     func fetchPost(productId: String, completionHandler: @escaping (FetchPostModel?, String?) -> Void)  {
+    func fetchPost(productId: String, completionHandler: @escaping (FetchPostModel?, String?) -> Void)  {
         do {
             let request = try Router.fetchPost(query: FetchPostQuery(next: nil, limit: nil, product_id: productId)).asURLRequest()
             AF.request(request).responseDecodable(of: FetchPostModel.self) { response in
@@ -183,7 +183,7 @@ final class NetworkManager {
         }
     }
     
-     func createPost(title: String?, price: Int?, content: String?, content1: String?, content2: String?, content3: String?, content4: String?, content5: String?, product_id: String?, files: [String]?, completionHandler: @escaping (Post?, String?) -> Void)  {
+    func createPost(title: String?, price: Int?, content: String?, content1: String?, content2: String?, content3: String?, content4: String?, content5: String?, product_id: String?, files: [String]?, completionHandler: @escaping (Post?, String?) -> Void)  {
         do {
             
             let query = CreatePostQuery(title: title, price: price, content: content, content1: content1, content2: content2, content3: content3, content4: content4, content5: content5, product_id: product_id, files: files)
@@ -223,7 +223,7 @@ final class NetworkManager {
     }
     
     func uploadImage(images: [UIImage], completionHandler: @escaping ([String]?) -> Void){
-
+        
         var temp = [Data]()
         for image in images {
             if let imageData = image.jpegData(compressionQuality: 0.5) {
@@ -246,11 +246,11 @@ final class NetworkManager {
             
             AF.upload(
                 multipartFormData: { multipartFormData in
-                for (index, imageData) in temp.enumerated() {
-                    let fileName = "image\(index + 1).jpeg"
-                    multipartFormData.append(imageData, withName: "files", fileName: fileName, mimeType: "image/jpeg")
-                }
-            }, 
+                    for (index, imageData) in temp.enumerated() {
+                        let fileName = "image\(index + 1).jpeg"
+                        multipartFormData.append(imageData, withName: "files", fileName: fileName, mimeType: "image/jpeg")
+                    }
+                },
                 to: url,
                 headers: header)
             .responseDecodable(of: ImageUploadModel.self) { response in
@@ -280,13 +280,23 @@ final class NetworkManager {
             print("error \(error)")
         }
     }
-
-  
+    
+    
     
     func deletePost(postId: String) {
         do {
             let request = try Router.deletePost(query: postId).asURLRequest()
-           print("게시글 삭제 완료")
+            
+            AF.request(request).response { response in
+                switch response.result {
+                case .success(let success):
+                    print(success)
+                    print("게시글 삭제 완료")
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+            
         } catch {
             print("error \(error)")
         }
@@ -306,9 +316,109 @@ final class NetworkManager {
                 case .failure(let failure):
                     completion(nil)
                 }
+                
             }
         } catch {
             print("Failed to create request: \(error.localizedDescription)")
+            
+        }
+    }
+    
+    func likePost(status: Bool, postID: String) {
+        do {
+            
+            let query = LikePostQuery(like_status: status)
+            let request = try Router.likePost(query: query, postid: postID).asURLRequest()
+            AF.request(request).responseDecodable(of: LikePostQuery.self) { response in
+//            AF.request(request).response { response in
+                guard let statusCode = response.response?.statusCode else {
+                    print("Failed to get statusCode !!")
+                    return
+                }
+                switch statusCode {
+                case 200:
+                    switch response.result {
+                    case .success(let success):
+                        print(success)
+                    case .failure(let failure):
+                        print(failure)
+                    }
+                default:
+                    print("상태코드 : \(statusCode)")
+                }
+                
+                
+            }
+        } catch {
+            print("likePost Error \(error)")
+        }
+    }
+    
+    func writeComments(comments: String, postid: String) {
+        do {
+            let query = WriteCommentQuery(content: comments)
+            let request = try Router.writeComment(query: query, postid: postid).asURLRequest()
+            AF.request(request).responseDecodable(of: Comment.self) { response in
+                switch response.result {
+                case .success(let success):
+                    print(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        } catch {
+            
+        }
+    }
+    
+    func fetchPostDetails(postId: String, completionHandler: @escaping (Post) -> Void ) {
+        do {
+            let request = try Router.fetchPostDetails(query: postId).asURLRequest()
+            AF.request(request).responseDecodable(of: Post.self) { response in
+                switch response.result {
+                case .success(let success):
+                    print("fetchPostDetails 성공!!!")
+                    completionHandler(success)
+                case .failure(let failure):
+                    print(failure)
+                    
+                }
+            }
+        } catch {
+            print("fetchPostDetails Error: \(error)")
+        }
+    }
+    
+    func hashTagSearch(query: HashTagQuery, completionHandler: @escaping (FetchPostModel) -> Void) {
+        do {
+            let query = HashTagQuery(next: query.next, limit: query.limit, product_id: query.product_id, hashTag: query.hashTag)
+            let request = try Router.hashTags(query: query).asURLRequest()
+            AF.request(request).responseDecodable(of: FetchPostModel.self) { response in
+                switch response.result {
+                case .success(let success):
+//                    print(success)
+                    completionHandler(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        } catch {
+            print("hashTagSearch Error: \(error)")
+        }
+    }
+    
+    func commentsDelete(postID: String, commentID: String) {
+        do {
+            let request = try Router.commentsDelete(postID: postID, commentID: commentID).asURLRequest()
+            AF.request(request).response { response in
+                switch response.result {
+                case .success(let success):
+                    print("댓글 삭제 성공!!")
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        } catch {
             
         }
     }

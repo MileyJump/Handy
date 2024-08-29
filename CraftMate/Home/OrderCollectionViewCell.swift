@@ -65,7 +65,9 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
         titleLabel.text = data.title
         contentLabel.text = data.content1
         nickNameLabel.text = data.creator.nick
-        priceLabel.text = "\(String(data.price ?? 0))원"
+        let price = Formatter.decimalNumberFormatter(number: data.price ?? 0)
+        priceLabel.text = "\(price)원"
+        
         
         if let data = data.files {
             data.forEach { link in

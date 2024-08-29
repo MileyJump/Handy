@@ -97,7 +97,6 @@ final class CommunityTableViewCell: BaseTableViewCell {
     
      let commentsViewButton = UIButton().then {
         $0.setTitleColor(CraftMate.color.MediumGrayColor, for: .normal)
-        $0.setTitle("댓글 6개 모두 보기", for: .normal)
         $0.titleLabel?.font = CraftMate.CustomFont.SemiBold13
         $0.contentHorizontalAlignment = .leading
     }
@@ -124,7 +123,10 @@ final class CommunityTableViewCell: BaseTableViewCell {
                     }
                 }
             }
-            
+        }
+        
+        if let comments = post.comments {
+            commentsViewButton.setTitle("댓글 \(comments.count)개 모두 보기", for: .normal)
         }
     }
         

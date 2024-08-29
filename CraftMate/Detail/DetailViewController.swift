@@ -35,11 +35,8 @@ final class DetailViewController: BaseViewController<DetailView> {
    
     
     override func setupNavigationBar() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.backgroundColor = .clear
+        
         let ellipsis = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.ellipsisIcon), style: .plain, target: nil, action: nil)
       
         navigationItem.rightBarButtonItem = ellipsis
@@ -50,6 +47,7 @@ final class DetailViewController: BaseViewController<DetailView> {
             }
             .disposed(by: disposeBag)
         
+        navigationItem.backButtonTitle = ""
     }
     
     
@@ -93,20 +91,55 @@ final class DetailViewController: BaseViewController<DetailView> {
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
+        
+//        rootView.heartButton.rx.tap
+//            .bind(with: self) { owner, _ in
+//                
+//            }
+//            .disposed(by: disposeBag)
+        
+        rootView.followButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.followButtonTapped()
+            }
+            .disposed(by: disposeBag)
     }
+    
+    func followButtonTapped() {
+        let currentTitle = rootView.followButton.title(for: .normal)
+        
+        if currentTitle == "팔로우" {
+            rootView.followButton.setTitle("팔로잉", for: .normal)
+            rootView.followButton.backgroundColor = CraftMate.color.LightGrayColor
+            rootView.followButton.setTitleColor(CraftMate.color.blackColor, for: .normal)
+            
+        } else if currentTitle == "팔로잉" {
+            rootView.followButton.setTitle("팔로우", for: .normal)
+            rootView.followButton.backgroundColor = .clear
+            rootView.followButton.setTitleColor(CraftMate.color.mainColor, for: .normal)
+            
+        }
+    }
+    
     
     override func setupUI() {
        
+        guard let post = self.post else { return }
         
-        rootView.nickNameLabel.text = post?.creator.nick
-        rootView.titleLabel.text = post?.title
-        rootView.categoryLabel.text = post?.productId
-        rootView.contentLabel.text = post?.content1
-        rootView.hashTagLabel.text = post?.content
+        let reviewCount = post.comments?.count ?? 0
+        rootView.updateReviewButton(with: reviewCount)
+        
+        
+        rootView.nickNameLabel.text = post.creator.nick
+        rootView.titleLabel.text = post.title
+        rootView.categoryLabel.text = post.productId
+        rootView.contentLabel.text = post.content1
+        rootView.hashTagLabel.text = post.content
+        let price = Formatter.decimalNumberFormatter(number: post.price ?? 0)
+        rootView.priceLabel.text = "\(price)원"
       
-        if let data = post?.files {
+        if let data = post.files {
             data.forEach { link in
-                print("--")
                 NetworkManager.shared.readImage(urlString: link) { [weak self] data in
                     if let data {
                         DispatchQueue.main.async {

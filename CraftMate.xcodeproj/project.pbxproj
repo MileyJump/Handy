@@ -72,6 +72,14 @@
 		B0CBD0BD2C7F019D005DF34A /* CommunitySaveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0BC2C7F019D005DF34A /* CommunitySaveCollectionViewCell.swift */; };
 		B0CBD0C02C7F062D005DF34A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0BF2C7F062D005DF34A /* ProfileView.swift */; };
 		B0CBD0C22C7F0632005DF34A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0C12C7F0632005DF34A /* ProfileViewController.swift */; };
+		B0CBD0C42C7F6559005DF34A /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0C32C7F6559005DF34A /* ReviewTableViewCell.swift */; };
+		B0CBD0C62C7F7EE5005DF34A /* LikePostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0C52C7F7EE5005DF34A /* LikePostQuery.swift */; };
+		B0CBD0C82C7F7EFA005DF34A /* LikePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0C72C7F7EFA005DF34A /* LikePostModel.swift */; };
+		B0CBD0CB2C7F8AFA005DF34A /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0CA2C7F8AFA005DF34A /* SettingView.swift */; };
+		B0CBD0CD2C7F9129005DF34A /* WriteCommentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0CC2C7F9129005DF34A /* WriteCommentQuery.swift */; };
+		B0CBD0DC2C806D13005DF34A /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0DB2C806D13005DF34A /* Formatter.swift */; };
+		B0CBD0DE2C8076F1005DF34A /* UIImage +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0DD2C8076F1005DF34A /* UIImage +.swift */; };
+		B0CBD0E02C808658005DF34A /* HashTagQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0DF2C808657005DF34A /* HashTagQuery.swift */; };
 		B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */; };
 		B0DF57602C6CE84C00CAB497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */; };
 		B0DF57622C6CE84C00CAB497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF57612C6CE84C00CAB497 /* ViewController.swift */; };
@@ -157,6 +165,14 @@
 		B0CBD0BC2C7F019D005DF34A /* CommunitySaveCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySaveCollectionViewCell.swift; sourceTree = "<group>"; };
 		B0CBD0BF2C7F062D005DF34A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B0CBD0C12C7F0632005DF34A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B0CBD0C32C7F6559005DF34A /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		B0CBD0C52C7F7EE5005DF34A /* LikePostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePostQuery.swift; sourceTree = "<group>"; };
+		B0CBD0C72C7F7EFA005DF34A /* LikePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePostModel.swift; sourceTree = "<group>"; };
+		B0CBD0CA2C7F8AFA005DF34A /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		B0CBD0CC2C7F9129005DF34A /* WriteCommentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentQuery.swift; sourceTree = "<group>"; };
+		B0CBD0DB2C806D13005DF34A /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		B0CBD0DD2C8076F1005DF34A /* UIImage +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage +.swift"; sourceTree = "<group>"; };
+		B0CBD0DF2C808657005DF34A /* HashTagQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagQuery.swift; sourceTree = "<group>"; };
 		B0DF575A2C6CE84C00CAB497 /* CraftMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraftMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -260,6 +276,7 @@
 				B02CFDEC2C6FA61800462EF9 /* DetailViewController.swift */,
 				B0CBD0AF2C7EF12A005DF34A /* ReviewView.swift */,
 				B0CBD0B12C7EF13F005DF34A /* ReviewViewController.swift */,
+				B0CBD0C32C7F6559005DF34A /* ReviewTableViewCell.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -305,6 +322,9 @@
 				B016BFB62C78C28600C01DC1 /* CreatePostQuery.swift */,
 				B016BFB82C78C65A00C01DC1 /* FetchPostQuery.swift */,
 				B016BFBC2C79B80100C01DC1 /* ImageUploadQuery.swift */,
+				B0CBD0C52C7F7EE5005DF34A /* LikePostQuery.swift */,
+				B0CBD0CC2C7F9129005DF34A /* WriteCommentQuery.swift */,
+				B0CBD0DF2C808657005DF34A /* HashTagQuery.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -319,6 +339,7 @@
 				B037B09E2C70E5DE00A17CD7 /* SignUpModel.swift */,
 				B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */,
 				B016BFBE2C79C57100C01DC1 /* ImageUploadModel.swift */,
+				B0CBD0C72C7F7EFA005DF34A /* LikePostModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -355,6 +376,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		B0CBD0C92C7F8AE4005DF34A /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				B0DF57942C6F3AC800CAB497 /* SettingViewController.swift */,
+				B0CBD0CA2C7F8AFA005DF34A /* SettingView.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		B0DF57512C6CE84C00CAB497 = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +405,7 @@
 		B0DF575C2C6CE84C00CAB497 /* CraftMate */ = {
 			isa = PBXGroup;
 			children = (
+				B0CBD0C92C7F8AE4005DF34A /* MyPage */,
 				B0CBD0BE2C7F061E005DF34A /* Profile */,
 				B0CBD0B32C7EF2D0005DF34A /* Save */,
 				B016BFC92C7C516A00C01DC1 /* Community */,
@@ -404,7 +435,6 @@
 				B0DF57752C6CE8BF00CAB497 /* SesacKey.swift */,
 				B0DF57772C6CE8C600CAB497 /* BaseURL.swift */,
 				B0DF578C2C6F3A1100CAB497 /* MainTabBarController.swift */,
-				B0DF57942C6F3AC800CAB497 /* SettingViewController.swift */,
 			);
 			path = CraftMate;
 			sourceTree = "<group>";
@@ -417,6 +447,8 @@
 				B02CFDE72C6F9A8A00462EF9 /* UINavigationBar +.swift */,
 				B0128A392C76332100B72622 /* UICollectionViewLayout +.swift */,
 				B03934B42C78B18000EB34CD /* UIButton +.swift */,
+				B0CBD0DB2C806D13005DF34A /* Formatter.swift */,
+				B0CBD0DD2C8076F1005DF34A /* UIImage +.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -565,9 +597,11 @@
 				B0128A102C72037400B72622 /* SignUpQuery.swift in Sources */,
 				B0DF57932C6F3AB900CAB497 /* SaveViewController.swift in Sources */,
 				B0DF57882C6F35B100CAB497 /* CustomFont.swift in Sources */,
+				B0CBD0CB2C7F8AFA005DF34A /* SettingView.swift in Sources */,
 				B0CBD0BB2C7EF56F005DF34A /* CommunitySaveViewController.swift in Sources */,
 				B037B0A42C70EC6D00A17CD7 /* SignUpViewController.swift in Sources */,
 				B02CFDE32C6F932900462EF9 /* HomeViewModel.swift in Sources */,
+				B0CBD0CD2C7F9129005DF34A /* WriteCommentQuery.swift in Sources */,
 				B00A2E452C7C5CAB006A6721 /* CategoryButtonView.swift in Sources */,
 				B037B09D2C70E58E00A17CD7 /* LoginModel.swift in Sources */,
 				B0DF57952C6F3AC800CAB497 /* SettingViewController.swift in Sources */,
@@ -595,19 +629,23 @@
 				B0DF57762C6CE8BF00CAB497 /* SesacKey.swift in Sources */,
 				B02CFDE82C6F9A8A00462EF9 /* UINavigationBar +.swift in Sources */,
 				B0CBD0B52C7EF471005DF34A /* OrderSaveViewController.swift in Sources */,
+				B0CBD0C62C7F7EE5005DF34A /* LikePostQuery.swift in Sources */,
 				B016BFBD2C79B80100C01DC1 /* ImageUploadQuery.swift in Sources */,
 				B0DF57782C6CE8C600CAB497 /* BaseURL.swift in Sources */,
 				B02CFDEB2C6FA5FE00462EF9 /* DetailView.swift in Sources */,
 				B03934B52C78B18000EB34CD /* UIButton +.swift in Sources */,
+				B0CBD0C82C7F7EFA005DF34A /* LikePostModel.swift in Sources */,
 				B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */,
 				B02CFDF82C70C65600462EF9 /* Router.swift in Sources */,
 				B0128A0E2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift in Sources */,
 				B0CBD0B72C7EF477005DF34A /* OrderSaveView.swift in Sources */,
 				B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */,
 				B037B0922C70CA4600A17CD7 /* LoginQuery.swift in Sources */,
+				B0CBD0DE2C8076F1005DF34A /* UIImage +.swift in Sources */,
 				B02CFDCE2C6F42BD00462EF9 /* LoginViewController.swift in Sources */,
 				B02CFDDE2C6F927C00462EF9 /* CommunityTableViewCell.swift in Sources */,
 				B0128A1C2C74854200B72622 /* ProfileModel.swift in Sources */,
+				B0CBD0C42C7F6559005DF34A /* ReviewTableViewCell.swift in Sources */,
 				B037B0942C70CFB500A17CD7 /* Header.swift in Sources */,
 				B016BFB92C78C65B00C01DC1 /* FetchPostQuery.swift in Sources */,
 				B0CBD0B02C7EF12A005DF34A /* ReviewView.swift in Sources */,
@@ -617,12 +655,14 @@
 				B037B0962C70D00F00A17CD7 /* UserDefaultsManager.swift in Sources */,
 				B0CBD0C02C7F062D005DF34A /* ProfileView.swift in Sources */,
 				B016BFBF2C79C57100C01DC1 /* ImageUploadModel.swift in Sources */,
+				B0CBD0DC2C806D13005DF34A /* Formatter.swift in Sources */,
 				B02CFDE62C6F96E700462EF9 /* SearchPageView.swift in Sources */,
 				B0128A3C2C76342C00B72622 /* HomeCollectionViewCell.swift in Sources */,
 				B0CBD0B22C7EF13F005DF34A /* ReviewViewController.swift in Sources */,
 				B0CBD0B92C7EF51D005DF34A /* CommunitySaveView.swift in Sources */,
 				B0DF579B2C6F3F0B00CAB497 /* BaseView.swift in Sources */,
 				B0DF579D2C6F3F4900CAB497 /* BaseViewController.swift in Sources */,
+				B0CBD0E02C808658005DF34A /* HashTagQuery.swift in Sources */,
 				B0CBD0BD2C7F019D005DF34A /* CommunitySaveCollectionViewCell.swift in Sources */,
 				B0DF57602C6CE84C00CAB497 /* SceneDelegate.swift in Sources */,
 				B0128A1A2C74835B00B72622 /* RefreshModel.swift in Sources */,

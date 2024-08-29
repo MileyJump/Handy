@@ -26,6 +26,8 @@ final class CommunityViewController: BaseViewController<CommunityView> {
         rootView.tableView.dataSource = self
         
         rootView.tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: CommunityTableViewCell.identifier)
+        
+        rootView.tableView.allowsSelection = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,8 +69,38 @@ final class CommunityViewController: BaseViewController<CommunityView> {
     
     @objc func commentsViewButtonTapped() {
         let vc = ReviewViewController()
+        
         present(vc, animated: true)
     }
+    
+    @objc func ellipsisButtonTapped(_ sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        let edit = UIAlertAction(title: "게시글 수정", style: .default) { _ in
+            self.editButtonTapped()
+            
+        }
+        let delete = UIAlertAction(title: "삭제", style: .destructive) { _ in
+            self.deleteButtonTapped(sender.tag)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+
+        alert.addAction(cancel)
+        alert.addAction(edit)
+        alert.addAction(delete)
+
+        present(alert, animated: true)
+    }
+    
+    func editButtonTapped() {
+        
+    }
+    
+    func deleteButtonTapped(_ tag: Int) {
+        NetworkManager.shared.deletePost(postId: postList[tag].postId)
+    }
+    
 }
 
 extension CommunityViewController: UITableViewDelegate, UITableViewDataSource {
@@ -82,6 +114,8 @@ extension CommunityViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(with: postList[indexPath.row])
         cell.commentsViewButton.addTarget(self, action: #selector(commentsViewButtonTapped), for: .touchUpInside)
         cell.commentsButton.addTarget(self, action: #selector(commentsViewButtonTapped), for: .touchUpInside)
+        cell.ellipsisButton.tag = indexPath.row
+        cell.ellipsisButton.addTarget(self, action: #selector(ellipsisButtonTapped), for: .touchUpInside)
         return cell
     }
     
