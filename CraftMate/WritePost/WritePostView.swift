@@ -182,4 +182,8 @@ final class WritePostView: BaseView {
         
     }
     
+    override func configureView() {
+        imageCollectionView.backgroundColor = CraftMate.color.whiteColor
+    }
+    
 }

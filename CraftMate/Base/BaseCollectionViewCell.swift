@@ -26,7 +26,9 @@ class BaseCollectionViewCell: UICollectionViewCell {
     
     func configureLayout() { }
     
-    func configureView() { }
+    func configureView() { 
+        self.backgroundColor = CraftMate.color.whiteColor
+    }
     
     
 }

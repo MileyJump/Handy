@@ -29,13 +29,27 @@ final class DetailViewController: BaseViewController<DetailView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
-        
     }
     
    
     
     override func setupNavigationBar() {
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor.clear
+        appearance.shadowColor = .clear
+        appearance.backgroundEffect = nil
+        appearance.backgroundImage = UIImage()
+
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        
         navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.navigationBar.tintColor = CraftMate.color.mainColor
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
         
         let ellipsis = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.ellipsisIcon), style: .plain, target: nil, action: nil)
       

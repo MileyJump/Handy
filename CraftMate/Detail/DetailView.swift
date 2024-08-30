@@ -164,7 +164,7 @@ final class DetailView: BaseView {
     override func configureLayout() {
         imageView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            make.top.equalToSuperview()
+            make.top.equalTo(self.snp.top)
             make.width.equalTo(imageView.snp.height)
         }
         

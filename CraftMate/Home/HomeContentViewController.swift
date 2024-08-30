@@ -27,6 +27,8 @@ final class HomeContentViewController: BaseViewController<HomeView> {
     var items = ["홈데코", "공예", "리폼", "아이들", "주방", "기타"]
     var sortImages = ["홈", "공예", "리폼", "아이들", "주방", "박스"]
     
+    var sort = "공예"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,51 +44,51 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         // 네트워크 요청 실행
         //        viewModel.fetchPosts()
         bind()
-        bindTableView(id: items[0])
+        fetchPost(id: items[0])
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        bindTableView(id: items[0])
-//    }
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        super.viewWillAppear(animated)
+    //        bindTableView(id: items[0])
+    //    }
     
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            navigationController?.setNavigationBarHidden(false, animated: animated)
-            bindTableView(id: items[0])
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+        fetchPost(id: items[0])
+        setupNavigationBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        let translation = scrollView.panGestureRecognizer.translation(in: scrollView)
+        if translation.y < 0 {
+            hideNavigationBar()
+        } else {
+            showNavigationBar()
         }
-
-        override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    private func hideNavigationBar() {
+        if !isNavigationBarHidden {
+            isNavigationBarHidden = true
+            navigationController?.setNavigationBarHidden(true, animated: true)
         }
-
-       
-        func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-            let translation = scrollView.panGestureRecognizer.translation(in: scrollView)
-            if translation.y < 0 {
-                hideNavigationBar()
-            } else {
-                showNavigationBar()
-            }
+    }
+    
+    private func showNavigationBar() {
+        if isNavigationBarHidden {
+            isNavigationBarHidden = false
+            navigationController?.setNavigationBarHidden(false, animated: true)
         }
-
-        private func hideNavigationBar() {
-            if !isNavigationBarHidden {
-                isNavigationBarHidden = true
-                navigationController?.setNavigationBarHidden(true, animated: true)
-            }
-        }
-
-        private func showNavigationBar() {
-            if isNavigationBarHidden {
-                isNavigationBarHidden = false
-                navigationController?.setNavigationBarHidden(false, animated: true)
-            }
-        }
+    }
     
     override func setupNavigationBar() {
-        
         
         let search = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.searchImage), style: .plain, target: nil, action: nil)
         //let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
@@ -99,7 +101,7 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         }
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-
+        
         
         search.rx.tap
             .bind(with: self) { owner, _ in
@@ -109,13 +111,13 @@ final class HomeContentViewController: BaseViewController<HomeView> {
             .disposed(by: disposeBag)
     }
     
-//    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-//        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-//            self.navigationController?.setNavigationBarHidden(true, animated: true)
-//        } else {
-//            self.navigationController?.setNavigationBarHidden(false, animated: true)
-//        }
-//    }
+    //    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+    //        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+    //            self.navigationController?.setNavigationBarHidden(true, animated: true)
+    //        } else {
+    //            self.navigationController?.setNavigationBarHidden(false, animated: true)
+    //        }
+    //    }
     
     
     func bind() {
@@ -132,7 +134,7 @@ final class HomeContentViewController: BaseViewController<HomeView> {
             .disposed(by: disposeBag)
     }
     
-    func bindTableView(id: String) {
+    func fetchPost(id: String) {
         
         NetworkManager.shared.fetchPost(productId: id) { post, error in
             guard let post else { return }
@@ -178,7 +180,9 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         print("\(postid): postid)")
         print(isHearted)
         NetworkManager.shared.likePost(status: isHearted, postID: postid)
- 
+        
+        fetchPost(id: self.sort)
+        
         rootView.orderCollectionView.reloadItems(at: [IndexPath(item: sender.tag, section: 0)])
         print("하트버튼 탭드")
     }
@@ -208,18 +212,20 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OrderCollectionViewCell.identifier, for: indexPath) as? OrderCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(data: postList[indexPath.item])
+            
+            let post = postList[indexPath.item]
+            cell.configureCell(data: post)
             cell.ellipsisButton.tag = indexPath.item
             cell.ellipsisButton.addTarget(self, action: #selector(ellipsisButtonTapped), for: .touchUpInside)
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped))
             cell.profileImageView.addGestureRecognizer(tapGesture)
             cell.heartButton.tag = indexPath.item
             cell.heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
-            if isHearted {
-                cell.heartButton.setImage(UIImage(systemName: CraftMate.Phrase.heartFillImage), for: .normal)
-            } else {
-                cell.heartButton.setImage(UIImage(systemName: CraftMate.Phrase.heartImage), for: .normal)
-            }
+            
+            
+//            let heartImageName = post.isHearted ? CraftMate.Phrase.heartFillImage : CraftMate.Phrase.heartImage
+//            cell.heartButton.setImage(UIImage(systemName: heartImageName), for: .normal)
+//            
             return cell
         }
     }
@@ -231,9 +237,8 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
             vc.post = result
             navigationController?.pushViewController(vc, animated: true)
         } else {
-            let sort = items[indexPath.item]
-            print(sort)
-            bindTableView(id: sort)
+            self.sort = items[indexPath.item]
+            fetchPost(id: sort)
         }
     }
     

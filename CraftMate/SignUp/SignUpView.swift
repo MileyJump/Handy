@@ -34,6 +34,8 @@ final class SignUpView: BaseView {
         $0.placeholder = CraftMate.Phrase.PleaseEmail
         $0.font = CraftMate.CustomFont.regular14
         $0.borderStyle = .roundedRect
+         $0.textColor = CraftMate.color.blackColor
+         $0.backgroundColor = CraftMate.color.whiteColor
     }
     
     let emailDuplicateCheckButton = UIButton().then {
@@ -53,6 +55,8 @@ final class SignUpView: BaseView {
         $0.placeholder = CraftMate.Phrase.PleasePassword
         $0.font = CraftMate.CustomFont.regular14
         $0.borderStyle = .roundedRect
+         $0.textColor = CraftMate.color.blackColor
+         $0.backgroundColor = CraftMate.color.whiteColor
         
     }
     
@@ -65,6 +69,8 @@ final class SignUpView: BaseView {
         $0.placeholder = CraftMate.Phrase.PleaseNickName
         $0.font = CraftMate.CustomFont.regular14
         $0.borderStyle = .roundedRect
+         $0.textColor = CraftMate.color.blackColor
+         $0.backgroundColor = CraftMate.color.whiteColor
     }
     
      private let phoneNumberLabel = UILabel().then {
@@ -76,6 +82,8 @@ final class SignUpView: BaseView {
         $0.placeholder = CraftMate.Phrase.pleasephoneNum
         $0.font = CraftMate.CustomFont.regular14
         $0.borderStyle = .roundedRect
+         $0.textColor = CraftMate.color.blackColor
+         $0.backgroundColor = CraftMate.color.whiteColor
     }
     
     private let birthLabel = UILabel().then {
@@ -87,6 +95,8 @@ final class SignUpView: BaseView {
         $0.placeholder = CraftMate.Phrase.pleaseBirth
         $0.font = CraftMate.CustomFont.regular14
         $0.borderStyle = .roundedRect
+         $0.textColor = CraftMate.color.blackColor
+         $0.backgroundColor = CraftMate.color.whiteColor
     }
     
     let signUpButton = UIButton().then {

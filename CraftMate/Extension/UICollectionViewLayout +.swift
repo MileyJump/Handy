@@ -54,18 +54,21 @@ extension UICollectionViewLayout {
     static func communitySaveCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         let itemSpacing: CGFloat = 2
-        let totalSpacing = itemSpacing * 2 // (itemSpacing * (number of items in a row - 1))
-        let availableWidth = UIScreen.main.bounds.width - totalSpacing
-        let itemWidth = availableWidth / 3 // 3개 셀로 나눔
+        let numberOfItemsPerRow: CGFloat = 3 // 가로에 3개의 셀이 나오도록 설정
+        let totalSpacing = itemSpacing * (numberOfItemsPerRow + 1) // 3개의 셀 사이 간격과 좌우 여백을 고려
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let itemWidth = (screenWidth - totalSpacing) / numberOfItemsPerRow
+        
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth) // 1:1 비율
         
         layout.minimumLineSpacing = itemSpacing
         layout.minimumInteritemSpacing = itemSpacing
         layout.sectionInset = UIEdgeInsets(top: itemSpacing, left: itemSpacing, bottom: itemSpacing, right: itemSpacing)
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
+        
         return layout
     }
-    
     
     static func orderCollectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()

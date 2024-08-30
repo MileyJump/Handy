@@ -423,4 +423,21 @@ final class NetworkManager {
         }
     }
     
+    func fetchLikePost(completionHandler: @escaping (FetchPostModel) -> Void ) {
+        do {
+            
+            let request = try Router.fetchLikePost(query: FetchLikeQuery(next: "", limit: "")).asURLRequest()
+            AF.request(request).responseDecodable(of: FetchPostModel.self) { response in
+                switch response.result {
+                case .success(let success):
+                    print(success)
+                    completionHandler(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        } catch {
+            print("hashTagSearch Error: \(error)")
+        }
+    }
 }

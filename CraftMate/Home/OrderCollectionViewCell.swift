@@ -13,13 +13,14 @@ import SnapKit
 
 final class OrderCollectionViewCell: BaseCollectionViewCell {
     
-     let profileImageView = UIImageView().then {
+    let profileImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
         $0.image = UIImage(named: "기본프로필")
+        $0.isUserInteractionEnabled = false
     }
     
-     let nickNameLabel = UILabel().then {
-         $0.font = CraftMate.CustomFont.SemiBold12
+    let nickNameLabel = UILabel().then {
+        $0.font = CraftMate.CustomFont.SemiBold12
         $0.textColor = CraftMate.color.blackColor
         $0.text = "마일리에요"
         $0.textAlignment = .left
@@ -43,11 +44,13 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
     let titleLabel = UILabel().then {
         $0.font = CraftMate.CustomFont.Medium14
         $0.numberOfLines = 1
+        $0.textColor = CraftMate.color.blackColor
     }
     
     let contentLabel = UILabel().then {
         $0.font = CraftMate.CustomFont.Light13
         $0.numberOfLines = 1
+        $0.textColor = CraftMate.color.blackColor
     }
     
     let priceLabel = UILabel().then {
@@ -56,7 +59,7 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
         $0.numberOfLines = 1
         $0.font = CraftMate.CustomFont.bold14
     }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -126,30 +129,30 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
             make.size.equalTo(40)
             
         }
-    
+        
         
         contentImageView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(5)
             make.horizontalEdges.equalToSuperview().inset(5)
             make.height.equalTo(contentImageView.snp.width).multipliedBy(1.2)
         }
-  
+        
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentImageView.snp.bottom).offset(5)
+            make.top.equalTo(contentImageView.snp.bottom).offset(10)
             make.horizontalEdges.equalToSuperview().inset(5)
-//            make.height.equalTo(20)
+            //            make.height.equalTo(20)
         }
         
         contentLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.horizontalEdges.equalTo(titleLabel)
-//            make.height.equalTo(20)
+            //            make.height.equalTo(20)
         }
         
         priceLabel.snp.makeConstraints { make in
             make.top.equalTo(contentLabel.snp.bottom).offset(8)
             make.horizontalEdges.equalTo(titleLabel)
-//            make.bottom.equalToSuperview().inset(10)
+            //            make.bottom.equalToSuperview().inset(10)
         }
     }
 }

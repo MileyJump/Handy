@@ -9,15 +9,27 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+//enum CommunityMode {
+//    case allPosts
+//    case likedPosts
+//}
+
+
 final class CommunityViewController: BaseViewController<CommunityView> {
     
+//    var mode: CommunityMode = .allPosts
+    
     var postList: [Post] = []
+    var saveList: [Post] = []
+    
+    var selectedIndex: Int = 0
     
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+
     }
     
     override func setupUI() {
@@ -32,24 +44,42 @@ final class CommunityViewController: BaseViewController<CommunityView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        bindTableView()
+//        fetchPosts()
+        fetchAllPosts()
     }
     
     override func setupNavigationBar() {
         navigationItem.title = "커뮤니티"
+        view.backgroundColor = .white
+        navigationController?.navigationBar.barTintColor = UIColor.white // 원하는 배경 색상으로 설정
+        
+        // 네비게이션 바 타이틀 색상 및 폰트 설정
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: CraftMate.color.blackColor, // 원하는 타이틀 색상으로 설정
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold) // 원하는 폰트 설정
+        ]
     }
     
-    func bindTableView() {
+//    private func fetchPosts() {
+//        switch mode {
+//        case .allPosts:
+//            fetchAllPosts()
+//        case .likedPosts:
+//            // 여기서 좋아요한 게시물들을 가져옵니다.
+//            postList = saveList
+//            scrollToSeletedPost()
+//        }
+//    }
+    
+    func fetchAllPosts() {
         
         NetworkManager.shared.fetchPost(productId: "커뮤니티") { post, error in
             if let postList = post {
-                print(postList)
                 let postData = postList.data
                 self.postList.append(contentsOf: postData)
                 self.rootView.tableView.reloadData()
             }
         }
-        
     }
     
     func bind() {
@@ -99,6 +129,17 @@ final class CommunityViewController: BaseViewController<CommunityView> {
     
     func deleteButtonTapped(_ tag: Int) {
         NetworkManager.shared.deletePost(postId: postList[tag].postId)
+    }
+    
+//    func scrollToSeletedPost() {
+//        print(#function)
+//        let indexPath = IndexPath(row: selectedIndex, section: 0)
+//        
+//        rootView.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
+//    }
+    
+    override func configureView() {
+    
     }
     
 }

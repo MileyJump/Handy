@@ -25,6 +25,7 @@ enum Router {
     case fetchPostDetails(query: String)
     case hashTags(query: HashTagQuery)
     case commentsDelete(postID: String, commentID: String)
+    case fetchLikePost(query: FetchLikeQuery)
 }
 
 extension Router: TargetType {
@@ -36,7 +37,7 @@ extension Router: TargetType {
         switch self {
         case .emailDuplicateCheck, .signUp, .login, .createPost, .imageUpload, .likePost, .writeComment:
             return .post
-        case .fetchProfile, .refresh, .fetchPost, .readImage, .fetchPostDetails, .hashTags:
+        case .fetchProfile, .refresh, .fetchPost, .readImage, .fetchPostDetails, .hashTags, .fetchLikePost:
             return .get
         case .editProfile: // 내 프로필 수정
             return .put
@@ -79,6 +80,8 @@ extension Router: TargetType {
             return "v1/posts/hashtags"
         case .commentsDelete(let postID, let commentID):
             return "v1/posts/\(postID)/comments/\(commentID)"
+        case .fetchLikePost:
+            return "v1/posts/likes/me"
         }
     }
     
@@ -89,7 +92,7 @@ extension Router: TargetType {
                 Header.contentType.rawValue: Header.json.rawValue,
                 Header.sesacKey.rawValue: Key.key
             ]
-        case .fetchProfile, .fetchPost, .editProfile, .deletePost, .readImage, .fetchPostDetails, .hashTags, .commentsDelete:
+        case .fetchProfile, .fetchPost, .editProfile, .deletePost, .readImage, .fetchPostDetails, .hashTags, .commentsDelete, .fetchLikePost:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
                 Header.sesacKey.rawValue: Key.key
@@ -136,6 +139,7 @@ extension Router: TargetType {
                 URLQueryItem(name: "product_id", value: query.product_id),
                 URLQueryItem(name: "hashTag", value: query.hashTag)
             ]
+        
         default:
             return nil
         }

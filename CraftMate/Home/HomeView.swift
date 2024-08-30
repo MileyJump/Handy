@@ -54,8 +54,8 @@ final class HomeView: BaseView {
         }
     }
     
-//    override func configureView() {
-//        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
-//        tableView.rowHeight = 400
-//    }
+    override func configureView() {
+        collectionView.backgroundColor = CraftMate.color.whiteColor
+        orderCollectionView.backgroundColor = CraftMate.color.whiteColor
+    }
 }

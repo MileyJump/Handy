@@ -24,6 +24,7 @@ final class CommunityView: BaseView {
     
     override func configureView() {
         tableView.separatorStyle = .none
+        tableView.backgroundColor = CraftMate.color.whiteColor
     }
     
     override func configureLayout() {

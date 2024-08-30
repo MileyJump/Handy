@@ -31,7 +31,7 @@ final class SearchPageView: BaseView {
     
     override func configureView() {
         backgroundColor = .white
-        
+        collectionView.backgroundColor = CraftMate.color.whiteColor
 //        tableView.rowHeight = 400
     }
 }

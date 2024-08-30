@@ -127,17 +127,14 @@ final class CommunityTableViewCell: BaseTableViewCell {
         
         if let comments = post.comments {
             commentsViewButton.setTitle("댓글 \(comments.count)개 모두 보기", for: .normal)
+            commentsButton.setTitle("\(comments.count)", for: .normal)
+        }
+        
+        if let like = post.likes {
+            heartButton.setTitle("\(like.count)", for: .normal)
         }
     }
-        
     
-//    func configureCell(data: Post) {
-//        titleLabel.text = data.title
-//        contentLabel.text = data.content1
-//        nickNameLabel.text = data.creator.nick
-//        priceLabel.text = "\(String(data.price ?? 0))원"
-//        
-//        }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -218,6 +215,10 @@ final class CommunityTableViewCell: BaseTableViewCell {
             make.height.equalTo(35)
         }
      
+    }
+    
+    override func configureView() {
+        backgroundColor = CraftMate.color.whiteColor
     }
     
 }

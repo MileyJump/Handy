@@ -22,6 +22,8 @@ final class LoginView: BaseView {
      let emailTextField = UITextField().then {
         $0.placeholder = CraftMate.Phrase.email
         $0.font = CraftMate.CustomFont.regular15
+         $0.textColor = CraftMate.color.blackColor
+         $0.backgroundColor = CraftMate.color.whiteColor
          $0.text = "happy@happy.com"
     }
     
@@ -32,6 +34,8 @@ final class LoginView: BaseView {
      let passwordTextField = UITextField().then {
         $0.placeholder = CraftMate.Phrase.password
          $0.text = "1234"
+         $0.textColor = CraftMate.color.blackColor
+         $0.backgroundColor = CraftMate.color.whiteColor
         $0.font = CraftMate.CustomFont.regular15
     }
     

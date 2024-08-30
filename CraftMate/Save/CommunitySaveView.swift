@@ -22,7 +22,12 @@ final class CommunitySaveView: BaseView {
     
     override func configureLayout() {
         collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(safeAreaLayoutGuide)
+            make.bottom.horizontalEdges.equalTo(safeAreaLayoutGuide)
+            make.top.equalTo(safeAreaLayoutGuide).offset(10)
         }
+    }
+    override func configureView() {
+        backgroundColor = .white
+        collectionView.backgroundColor = CraftMate.color.whiteColor
     }
 }

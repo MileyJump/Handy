@@ -28,7 +28,8 @@ final class OrderSaveView: BaseView {
     
     
     override func configureView() {
-        backgroundColor = .white
+        backgroundColor = CraftMate.color.whiteColor
+        collectionView.backgroundColor = CraftMate.color.whiteColor
         
         
     }

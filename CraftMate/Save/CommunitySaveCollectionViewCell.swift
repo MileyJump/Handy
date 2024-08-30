@@ -19,7 +19,23 @@ final class CommunitySaveCollectionViewCell: BaseCollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .blue
+        
+    }
+    
+    func configureCell(_ data: Post) {
+        
+        if let data = data.files {
+            data.forEach { link in
+                NetworkManager.shared.readImage(urlString: link) { [weak self] data in
+                    if let data {
+                        DispatchQueue.main.async {
+                            self?.imageView.image = UIImage(data: data)
+                        }
+                    }
+                }
+            }
+        }
+    
     }
     
     override func configureHierarchy() {

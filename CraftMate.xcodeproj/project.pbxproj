@@ -80,6 +80,7 @@
 		B0CBD0DC2C806D13005DF34A /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0DB2C806D13005DF34A /* Formatter.swift */; };
 		B0CBD0DE2C8076F1005DF34A /* UIImage +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0DD2C8076F1005DF34A /* UIImage +.swift */; };
 		B0CBD0E02C808658005DF34A /* HashTagQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0DF2C808657005DF34A /* HashTagQuery.swift */; };
+		B0CBD0E22C8192AA005DF34A /* FetchLikeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0E12C8192AA005DF34A /* FetchLikeQuery.swift */; };
 		B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */; };
 		B0DF57602C6CE84C00CAB497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */; };
 		B0DF57622C6CE84C00CAB497 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF57612C6CE84C00CAB497 /* ViewController.swift */; };
@@ -173,6 +174,7 @@
 		B0CBD0DB2C806D13005DF34A /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		B0CBD0DD2C8076F1005DF34A /* UIImage +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage +.swift"; sourceTree = "<group>"; };
 		B0CBD0DF2C808657005DF34A /* HashTagQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagQuery.swift; sourceTree = "<group>"; };
+		B0CBD0E12C8192AA005DF34A /* FetchLikeQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLikeQuery.swift; sourceTree = "<group>"; };
 		B0DF575A2C6CE84C00CAB497 /* CraftMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CraftMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DF575D2C6CE84C00CAB497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0DF575F2C6CE84C00CAB497 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				B0CBD0C52C7F7EE5005DF34A /* LikePostQuery.swift */,
 				B0CBD0CC2C7F9129005DF34A /* WriteCommentQuery.swift */,
 				B0CBD0DF2C808657005DF34A /* HashTagQuery.swift */,
+				B0CBD0E12C8192AA005DF34A /* FetchLikeQuery.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				B037B09F2C70E5DE00A17CD7 /* SignUpModel.swift in Sources */,
 				B02CFDF52C70781500462EF9 /* WritePostView.swift in Sources */,
 				B037B0962C70D00F00A17CD7 /* UserDefaultsManager.swift in Sources */,
+				B0CBD0E22C8192AA005DF34A /* FetchLikeQuery.swift in Sources */,
 				B0CBD0C02C7F062D005DF34A /* ProfileView.swift in Sources */,
 				B016BFBF2C79C57100C01DC1 /* ImageUploadModel.swift in Sources */,
 				B0CBD0DC2C806D13005DF34A /* Formatter.swift in Sources */,
@@ -819,6 +823,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q35ZG4845H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CraftMate/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -846,6 +851,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q35ZG4845H;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CraftMate/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
