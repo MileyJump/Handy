@@ -17,6 +17,8 @@ final class DetailViewController: BaseViewController<DetailView> {
     
     var post: Post?
     
+    var webKit: WKWebView?
+    
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
