@@ -99,7 +99,7 @@ final class CommunityViewController: BaseViewController<CommunityView> {
     
     @objc func commentsViewButtonTapped() {
         let vc = ReviewViewController()
-        
+//        vc.post = postList
         present(vc, animated: true)
     }
     
@@ -121,6 +121,8 @@ final class CommunityViewController: BaseViewController<CommunityView> {
         alert.addAction(delete)
 
         present(alert, animated: true)
+        
+        
     }
     
     func editButtonTapped() {

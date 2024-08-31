@@ -32,7 +32,6 @@
 		B02CFDCC2C6F428300462EF9 /* UIViewController +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDCB2C6F428300462EF9 /* UIViewController +.swift */; };
 		B02CFDCE2C6F42BD00462EF9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDCD2C6F42BD00462EF9 /* LoginViewController.swift */; };
 		B02CFDD12C6F461A00462EF9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD02C6F461A00462EF9 /* SnapKit */; };
-		B02CFDD42C6F462300462EF9 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD32C6F462300462EF9 /* Then */; };
 		B02CFDD72C6F75C500462EF9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD62C6F75C500462EF9 /* RxCocoa */; };
 		B02CFDD92C6F75C500462EF9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD82C6F75C500462EF9 /* RxSwift */; };
 		B02CFDDC2C6F779A00462EF9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDDB2C6F779A00462EF9 /* HomeView.swift */; };
@@ -105,6 +104,9 @@
 		B0DF57982C6F3B0800CAB497 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF57972C6F3B0800CAB497 /* TabBar.swift */; };
 		B0DF579B2C6F3F0B00CAB497 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF579A2C6F3F0B00CAB497 /* BaseView.swift */; };
 		B0DF579D2C6F3F4900CAB497 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF579C2C6F3F4900CAB497 /* BaseViewController.swift */; };
+		B0EB62652C833ADA005686E0 /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = B0EB62642C833ADA005686E0 /* iamport-ios */; };
+		B0EB62682C833B2F005686E0 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B0EB62672C833B2F005686E0 /* Then */; };
+		B0EB626A2C8342B4005686E0 /* TestViewControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB62692C8342B4005686E0 /* TestViewControll.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,6 +203,7 @@
 		B0DF57972C6F3B0800CAB497 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		B0DF579A2C6F3F0B00CAB497 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		B0DF579C2C6F3F4900CAB497 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B0EB62692C8342B4005686E0 /* TestViewControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewControll.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,9 +214,10 @@
 				B02CFDFD2C70C74900462EF9 /* Alamofire in Frameworks */,
 				B02CFDD72C6F75C500462EF9 /* RxCocoa in Frameworks */,
 				B00A2E4A2C7CAB8A006A6721 /* Kingfisher in Frameworks */,
+				B0EB62682C833B2F005686E0 /* Then in Frameworks */,
 				B02CFDD12C6F461A00462EF9 /* SnapKit in Frameworks */,
 				B02CFDD92C6F75C500462EF9 /* RxSwift in Frameworks */,
-				B02CFDD42C6F462300462EF9 /* Then in Frameworks */,
+				B0EB62652C833ADA005686E0 /* iamport-ios in Frameworks */,
 				B03934AE2C7724BA00EB34CD /* Tabman in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +280,7 @@
 			children = (
 				B02CFDEA2C6FA5FE00462EF9 /* DetailView.swift */,
 				B02CFDEC2C6FA61800462EF9 /* DetailViewController.swift */,
+				B0EB62692C8342B4005686E0 /* TestViewControll.swift */,
 				B0CBD0AF2C7EF12A005DF34A /* ReviewView.swift */,
 				B0CBD0B12C7EF13F005DF34A /* ReviewViewController.swift */,
 				B0CBD0C32C7F6559005DF34A /* ReviewTableViewCell.swift */,
@@ -514,12 +519,13 @@
 			name = CraftMate;
 			packageProductDependencies = (
 				B02CFDD02C6F461A00462EF9 /* SnapKit */,
-				B02CFDD32C6F462300462EF9 /* Then */,
 				B02CFDD62C6F75C500462EF9 /* RxCocoa */,
 				B02CFDD82C6F75C500462EF9 /* RxSwift */,
 				B02CFDFC2C70C74900462EF9 /* Alamofire */,
 				B03934AD2C7724BA00EB34CD /* Tabman */,
 				B00A2E492C7CAB8A006A6721 /* Kingfisher */,
+				B0EB62642C833ADA005686E0 /* iamport-ios */,
+				B0EB62672C833B2F005686E0 /* Then */,
 			);
 			productName = CraftMate;
 			productReference = B0DF575A2C6CE84C00CAB497 /* CraftMate.app */;
@@ -551,11 +557,12 @@
 			mainGroup = B0DF57512C6CE84C00CAB497;
 			packageReferences = (
 				B02CFDCF2C6F461A00462EF9 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				B02CFDD22C6F462300462EF9 /* XCRemoteSwiftPackageReference "Then" */,
 				B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				B02CFDFB2C70C74900462EF9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				B03934AC2C7724BA00EB34CD /* XCRemoteSwiftPackageReference "Tabman" */,
 				B00A2E482C7CAB8A006A6721 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				B0EB62632C833ADA005686E0 /* XCRemoteSwiftPackageReference "iamport-ios" */,
+				B0EB62662C833B2F005686E0 /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = B0DF575B2C6CE84C00CAB497 /* Products */;
 			projectDirPath = "";
@@ -640,6 +647,7 @@
 				B0CBD0C82C7F7EFA005DF34A /* LikePostModel.swift in Sources */,
 				B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */,
 				B02CFDF82C70C65600462EF9 /* Router.swift in Sources */,
+				B0EB626A2C8342B4005686E0 /* TestViewControll.swift in Sources */,
 				B0128A0E2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift in Sources */,
 				B0CBD0B72C7EF477005DF34A /* OrderSaveView.swift in Sources */,
 				B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */,
@@ -912,14 +920,6 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		B02CFDD22C6F462300462EF9 /* XCRemoteSwiftPackageReference "Then" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devxoul/Then.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 		B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -944,6 +944,22 @@
 				minimumVersion = 3.2.0;
 			};
 		};
+		B0EB62632C833ADA005686E0 /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iamport/iamport-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.2;
+			};
+		};
+		B0EB62662C833B2F005686E0 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -956,11 +972,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B02CFDCF2C6F461A00462EF9 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		B02CFDD32C6F462300462EF9 /* Then */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B02CFDD22C6F462300462EF9 /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
 		};
 		B02CFDD62C6F75C500462EF9 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -981,6 +992,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B03934AC2C7724BA00EB34CD /* XCRemoteSwiftPackageReference "Tabman" */;
 			productName = Tabman;
+		};
+		B0EB62642C833ADA005686E0 /* iamport-ios */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0EB62632C833ADA005686E0 /* XCRemoteSwiftPackageReference "iamport-ios" */;
+			productName = "iamport-ios";
+		};
+		B0EB62672C833B2F005686E0 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0EB62662C833B2F005686E0 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

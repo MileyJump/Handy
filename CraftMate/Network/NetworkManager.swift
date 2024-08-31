@@ -324,7 +324,7 @@ final class NetworkManager {
         }
     }
     
-    func likePost(status: Bool, postID: String) {
+    func likePost(status: Bool, postID: String, completionHandler: @escaping (Bool) -> Void) {
         do {
             
             let query = LikePostQuery(like_status: status)
@@ -340,6 +340,7 @@ final class NetworkManager {
                     switch response.result {
                     case .success(let success):
                         print(success)
+                        completionHandler(success.like_status)
                     case .failure(let failure):
                         print(failure)
                     }

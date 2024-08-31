@@ -20,11 +20,14 @@ final class CommunityCreatView: BaseView {
         $0.placeholder = "제목을 입력해주세요!"
         $0.textAlignment = .left
         $0.font = CraftMate.CustomFont.SemiBold15
+//        $0.backgroundColor = .blue
     }
     
     let contentsTextView = UITextView().then {
         $0.text = "새로운 소식이 있나요?"
         $0.textAlignment = .left
+        $0.textColor = CraftMate.color.MediumGrayColor
+//        $0.backgroundColor = .blue
         $0.font = CraftMate.CustomFont.regular13
     }
     
@@ -39,20 +42,23 @@ final class CommunityCreatView: BaseView {
     }
     
     override func configureLayout() {
-        imageView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).inset(10)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(40)
-            make.height.equalTo(imageView.snp.width)
-        }
         
         titleTextField.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(10)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
+            make.top.equalTo(safeAreaLayoutGuide).offset(5)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(25)
             make.height.equalTo(40)
         }
         
-        contentsTextView.snp.makeConstraints { make in
+        
+        imageView.snp.makeConstraints { make in
             make.top.equalTo(titleTextField.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(imageView.snp.width)
+        }
+        
+        
+        contentsTextView.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(titleTextField)
             make.height.equalTo(200)
         }

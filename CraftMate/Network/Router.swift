@@ -26,6 +26,7 @@ enum Router {
     case hashTags(query: HashTagQuery)
     case commentsDelete(postID: String, commentID: String)
     case fetchLikePost(query: FetchLikeQuery)
+    case paymentsValidation
 }
 
 extension Router: TargetType {
@@ -35,7 +36,7 @@ extension Router: TargetType {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .emailDuplicateCheck, .signUp, .login, .createPost, .imageUpload, .likePost, .writeComment:
+        case .emailDuplicateCheck, .signUp, .login, .createPost, .imageUpload, .likePost, .writeComment, .paymentsValidation:
             return .post
         case .fetchProfile, .refresh, .fetchPost, .readImage, .fetchPostDetails, .hashTags, .fetchLikePost:
             return .get
@@ -82,6 +83,8 @@ extension Router: TargetType {
             return "v1/posts/\(postID)/comments/\(commentID)"
         case .fetchLikePost:
             return "v1/posts/likes/me"
+        case .paymentsValidation:
+            return "v1/payments/validation"
         }
     }
     
@@ -104,7 +107,7 @@ extension Router: TargetType {
                 Header.contentType.rawValue: Header.json.rawValue,
                 Header.sesacKey.rawValue: Key.key
             ]
-        case .createPost, .writeComment, .likePost:
+        case .createPost, .writeComment, .likePost, .paymentsValidation:
             return [
                 Header.authorization.rawValue: UserDefaultsManager.shared.token,
                 Header.contentType.rawValue: Header.json.rawValue,

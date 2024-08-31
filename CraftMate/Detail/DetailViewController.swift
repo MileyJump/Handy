@@ -9,6 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import iamport_ios
+import WebKit
+
 
 final class DetailViewController: BaseViewController<DetailView> {
     
@@ -65,6 +68,8 @@ final class DetailViewController: BaseViewController<DetailView> {
     }
     
     
+    
+    
     func ellipsisTapped() {
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -117,6 +122,32 @@ final class DetailViewController: BaseViewController<DetailView> {
                 owner.followButtonTapped()
             }
             .disposed(by: disposeBag)
+        
+        rootView.payButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.payButtonTapped()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func payButtonTapped() {
+        guard let post else { return }
+        let payment = IamportPayment(
+            pg: PG.html5_inicis.makePgRawName(pgId: "INIpayTest"),
+            merchant_uid: "ios_\(Key.key)_\(Int(Date().timeIntervalSince1970))",
+            amount: "\(String(describing: post.price))").then {
+                $0.pay_method = PayMethod.card.rawValue
+                $0.name = "\(String(describing: post.title))"
+                $0.buyer_name = "\(post)"
+                $0.app_scheme = "최민경"
+            }
+        
+        Iamport.shared.paymentWebView(
+            webViewMode: wkWebView,
+            userCode: userCode,
+            payment: payment) { [weak self] iamportResponse in
+                print(String(describing: iamportResponse))
+            }
     }
     
     func followButtonTapped() {
@@ -135,9 +166,11 @@ final class DetailViewController: BaseViewController<DetailView> {
         }
     }
     
+   
+    
     
     override func setupUI() {
-       
+
         guard let post = self.post else { return }
         
         let reviewCount = post.comments?.count ?? 0

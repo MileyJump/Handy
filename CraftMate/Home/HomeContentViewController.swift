@@ -9,6 +9,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+extension Post {
+    func isLiked(byUser userId: String) -> Bool {
+        return likes?.contains(userId) ?? false
+    }
+}
+
+
 final class HomeContentViewController: BaseViewController<HomeView> {
     
     private var isNavigationBarHidden = false
@@ -171,20 +178,44 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         let vc = ProfileViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
+//    
+//    @objc func heartButtonTapped(_ sender: UIButton) {
+//        
+//        isHearted.toggle() // 하트 상태 토글
+//        let postid =  postList[sender.tag].postId
+//        print(sender.tag)
+//        print("\(postid): postid)")
+//        print(isHearted)
+//        NetworkManager.shared.likePost(status: isHearted, postID: postid)
+//        
+//        fetchPost(id: self.sort)
+//        
+//        rootView.orderCollectionView.reloadItems(at: [IndexPath(item: sender.tag, section: 0)])
+//        print("하트버튼 탭드")
+//    }
     
     @objc func heartButtonTapped(_ sender: UIButton) {
-        
-        isHearted.toggle() // 하트 상태 토글
-        let postid =  postList[sender.tag].postId
-        print(sender.tag)
-        print("\(postid): postid)")
-        print(isHearted)
-        NetworkManager.shared.likePost(status: isHearted, postID: postid)
-        
-        fetchPost(id: self.sort)
-        
-        rootView.orderCollectionView.reloadItems(at: [IndexPath(item: sender.tag, section: 0)])
-        print("하트버튼 탭드")
+//        let post = postList[sender.tag]
+//        let currentUserId = post.creator.userId
+//        let isHearted = post.isLiked(byUser: currentUserId)
+//
+//        NetworkManager.shared.likePost(status: !isHearted, postID: post.postId) { [weak self] success in
+//            guard let self = self else { return }
+//            if success {
+//                if let index = self.postList.firstIndex(where: { $0.postId == post.postId }) {
+//                    if isHearted {
+//                        // 좋아요 취소된 상태로 업데이트
+//                        self.postList[index].likes?.removeAll(where: { $0 == currentUserId })
+//                    } else {
+//                        // 좋아요 추가된 상태로 업데이트
+//                        self.postList[index].likes?.append(currentUserId)
+//                    }
+//                    self.rootView.orderCollectionView.reloadItems(at: [IndexPath(item: sender.tag, section: 0)])
+//                }
+//            }
+////            print(success)
+////            print("======\(success)")
+//        }
     }
     
 }
@@ -212,20 +243,17 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OrderCollectionViewCell.identifier, for: indexPath) as? OrderCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
+
             let post = postList[indexPath.item]
             cell.configureCell(data: post)
-            cell.ellipsisButton.tag = indexPath.item
-            cell.ellipsisButton.addTarget(self, action: #selector(ellipsisButtonTapped), for: .touchUpInside)
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped))
-            cell.profileImageView.addGestureRecognizer(tapGesture)
+
+//            let isHearted = post.isLiked(byUser: currentUser.id)
+            let heartImageName = isHearted ? CraftMate.Phrase.heartFillImage : CraftMate.Phrase.heartImage
+            cell.heartButton.setImage(UIImage(systemName: heartImageName), for: .normal)
+
             cell.heartButton.tag = indexPath.item
             cell.heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
-            
-            
-//            let heartImageName = post.isHearted ? CraftMate.Phrase.heartFillImage : CraftMate.Phrase.heartImage
-//            cell.heartButton.setImage(UIImage(systemName: heartImageName), for: .normal)
-//            
+
             return cell
         }
     }
