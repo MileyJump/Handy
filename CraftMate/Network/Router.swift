@@ -26,7 +26,7 @@ enum Router {
     case hashTags(query: HashTagQuery)
     case commentsDelete(postID: String, commentID: String)
     case fetchLikePost(query: FetchLikeQuery)
-    case paymentsValidation
+    case paymentsValidation(query: PaymentsValidationQuery)
 }
 
 extension Router: TargetType {
@@ -169,6 +169,9 @@ extension Router: TargetType {
         case .writeComment(let query, _):
             let encoder = JSONEncoder()
             return try? encoder.encode(query)
+        case .paymentsValidation(let qeury):
+            let encoder = JSONEncoder()
+            return try? encoder.encode(qeury)
         default:
             return nil
         }

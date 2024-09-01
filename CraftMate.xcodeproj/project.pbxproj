@@ -107,6 +107,9 @@
 		B0EB62652C833ADA005686E0 /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = B0EB62642C833ADA005686E0 /* iamport-ios */; };
 		B0EB62682C833B2F005686E0 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B0EB62672C833B2F005686E0 /* Then */; };
 		B0EB626A2C8342B4005686E0 /* TestViewControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB62692C8342B4005686E0 /* TestViewControll.swift */; };
+		B0EB626C2C8435FC005686E0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB626B2C8435FC005686E0 /* WebViewController.swift */; };
+		B0EB626E2C843F98005686E0 /* PaymentsValidationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB626D2C843F98005686E0 /* PaymentsValidationQuery.swift */; };
+		B0EB62702C844088005686E0 /* PaymentsValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB626F2C844088005686E0 /* PaymentsValidationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,6 +207,9 @@
 		B0DF579A2C6F3F0B00CAB497 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		B0DF579C2C6F3F4900CAB497 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B0EB62692C8342B4005686E0 /* TestViewControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewControll.swift; sourceTree = "<group>"; };
+		B0EB626B2C8435FC005686E0 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		B0EB626D2C843F98005686E0 /* PaymentsValidationQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsValidationQuery.swift; sourceTree = "<group>"; };
+		B0EB626F2C844088005686E0 /* PaymentsValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsValidationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +260,7 @@
 				B02CFDE22C6F932900462EF9 /* HomeViewModel.swift */,
 				B0128A3B2C76342C00B72622 /* HomeCollectionViewCell.swift */,
 				B03934AF2C77293B00EB34CD /* HomeContentViewController.swift */,
+				B0EB626B2C8435FC005686E0 /* WebViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -333,6 +340,7 @@
 				B0CBD0CC2C7F9129005DF34A /* WriteCommentQuery.swift */,
 				B0CBD0DF2C808657005DF34A /* HashTagQuery.swift */,
 				B0CBD0E12C8192AA005DF34A /* FetchLikeQuery.swift */,
+				B0EB626D2C843F98005686E0 /* PaymentsValidationQuery.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -348,6 +356,7 @@
 				B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */,
 				B016BFBE2C79C57100C01DC1 /* ImageUploadModel.swift */,
 				B0CBD0C72C7F7EFA005DF34A /* LikePostModel.swift */,
+				B0EB626F2C844088005686E0 /* PaymentsValidationModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -653,17 +662,20 @@
 				B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */,
 				B037B0922C70CA4600A17CD7 /* LoginQuery.swift in Sources */,
 				B0CBD0DE2C8076F1005DF34A /* UIImage +.swift in Sources */,
+				B0EB626E2C843F98005686E0 /* PaymentsValidationQuery.swift in Sources */,
 				B02CFDCE2C6F42BD00462EF9 /* LoginViewController.swift in Sources */,
 				B02CFDDE2C6F927C00462EF9 /* CommunityTableViewCell.swift in Sources */,
 				B0128A1C2C74854200B72622 /* ProfileModel.swift in Sources */,
 				B0CBD0C42C7F6559005DF34A /* ReviewTableViewCell.swift in Sources */,
 				B037B0942C70CFB500A17CD7 /* Header.swift in Sources */,
 				B016BFB92C78C65B00C01DC1 /* FetchPostQuery.swift in Sources */,
+				B0EB62702C844088005686E0 /* PaymentsValidationModel.swift in Sources */,
 				B0CBD0B02C7EF12A005DF34A /* ReviewView.swift in Sources */,
 				B02CFDC52C6F403200462EF9 /* BaseTableViewCell.swift in Sources */,
 				B037B09F2C70E5DE00A17CD7 /* SignUpModel.swift in Sources */,
 				B02CFDF52C70781500462EF9 /* WritePostView.swift in Sources */,
 				B037B0962C70D00F00A17CD7 /* UserDefaultsManager.swift in Sources */,
+				B0EB626C2C8435FC005686E0 /* WebViewController.swift in Sources */,
 				B0CBD0E22C8192AA005DF34A /* FetchLikeQuery.swift in Sources */,
 				B0CBD0C02C7F062D005DF34A /* ProfileView.swift in Sources */,
 				B016BFBF2C79C57100C01DC1 /* ImageUploadModel.swift in Sources */,

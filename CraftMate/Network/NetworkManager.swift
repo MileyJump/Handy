@@ -441,4 +441,20 @@ final class NetworkManager {
             print("hashTagSearch Error: \(error)")
         }
     }
+    
+    func paymentsValidation(impUId: String, postId: String) {
+        do {
+            let request = try Router.paymentsValidation(query: PaymentsValidationQuery(imp_uid: impUId, post_id: postId)).asURLRequest()
+            AF.request(request).responseDecodable(of: PaymentsValidationModel.self) { response in
+                switch response.result {
+                case .success(let success):
+                    print(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        } catch {
+            print("결제 영수증 검증 \(error)")
+        }
+    }
 }
