@@ -11,9 +11,18 @@ import Then
 
 final class CommunityCreatView: BaseView {
     
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+    
     let imageView = UIImageView().then {
         $0.backgroundColor = CraftMate.color.LightGrayColor
         $0.layer.cornerRadius = 5
+    }
+    
+    let photoImageView = UIImageView().then {
+        $0.image = UIImage(systemName: "photo")
+        $0.backgroundColor = .clear
+        $0.tintColor = CraftMate.color.MediumGrayColor
     }
     
     let titleTextField = UITextField().then {
@@ -36,23 +45,40 @@ final class CommunityCreatView: BaseView {
     }
     
     override func configureHierarchy() {
-        addSubview(imageView)
-        addSubview(titleTextField)
-        addSubview(contentsTextView)
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(imageView)
+        contentView.addSubview(photoImageView)
+        contentView.addSubview(titleTextField)
+        contentView.addSubview(contentsTextView)
     }
     
     override func configureLayout() {
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+            make.height.equalTo(scrollView)
+        }
         
         titleTextField.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).offset(5)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(25)
+            make.top.equalToSuperview().offset(5)
+            make.horizontalEdges.equalToSuperview().inset(25)
             make.height.equalTo(40)
         }
         
+        photoImageView.snp.makeConstraints { make in
+            make.center.equalTo(imageView)
+            make.height.equalTo(100)
+            make.width.equalTo(120)
+        }
         
         imageView.snp.makeConstraints { make in
             make.top.equalTo(titleTextField.snp.bottom).offset(10)
-            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
+            make.horizontalEdges.equalToSuperview().inset(20)
             make.height.equalTo(imageView.snp.width)
         }
         
@@ -61,6 +87,8 @@ final class CommunityCreatView: BaseView {
             make.top.equalTo(imageView.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(titleTextField)
             make.height.equalTo(200)
+//            make.bottom.equalToSuperview().inset(20)
+            
         }
     }
     

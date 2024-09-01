@@ -36,7 +36,7 @@ final class CommunityCreatViewController: BaseViewController<CommunityCreatView>
         
         upload.rx.tap
             .bind(with: self) { owner, _ in
-//                owner.uploadButtonTapped()
+                owner.uploadButtonTapped()
             }
             .disposed(by: disposeBag)
         
@@ -45,6 +45,26 @@ final class CommunityCreatViewController: BaseViewController<CommunityCreatView>
                 owner.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
+    }
+    
+    func uploadButtonTapped() {
+        
+        NetworkManager.shared.uploadImage(images: selectedImages) { post in
+            if let post = post {
+                self.uploadPost(post: post)
+            }
+        }
+    }
+    
+    func uploadPost(post: [String]) {
+        
+        let title = rootView.titleTextField.text
+        let content = rootView.contentsTextView.text
+        
+        NetworkManager.shared.createPost(title: title, price: 0, content: "", content1: content, content2: "", content3: "", content4: "", content5: "", product_id: "커뮤니티", files: post) { result, error in
+            self.dismiss(animated: true)
+        }
+        
     }
     
     override func setupAddTarget() {
@@ -70,19 +90,19 @@ final class CommunityCreatViewController: BaseViewController<CommunityCreatView>
 
 extension CommunityCreatViewController: UITextViewDelegate {
     
-//    func textViewDidChange(_ textView: UITextView) {
-//        let size = CGSize(width: textView.frame.width, height: .infinity)
-//        let estimatedSize = textView.sizeThatFits(size)
-//        
-//        // 최소 높이를 200으로 설정
-//        let minHeight: CGFloat = 200
-//        let newHeight = max(estimatedSize.height, minHeight)
-//        
-//        // Update constraints with the new height
-//        textView.snp.updateConstraints { make in
-//            make.height.equalTo(newHeight)
-//        }
-//    }
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: textView.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        // 최소 높이를 200으로 설정
+        let minHeight: CGFloat = 200
+        let newHeight = max(estimatedSize.height, minHeight)
+        
+        // Update constraints with the new height
+        textView.snp.updateConstraints { make in
+            make.height.equalTo(newHeight)
+        }
+    }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == CraftMate.color.MediumGrayColor {

@@ -59,6 +59,7 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
         $0.numberOfLines = 1
         $0.font = CraftMate.CustomFont.bold14
     }
+  
     
     override init(frame: CGRect) {
         super.init(frame: frame)

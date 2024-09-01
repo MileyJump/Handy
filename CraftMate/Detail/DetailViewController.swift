@@ -193,9 +193,15 @@ final class DetailViewController: BaseViewController<DetailView> {
         rootView.titleLabel.text = post.title
         rootView.categoryLabel.text = post.productId
         rootView.contentLabel.text = post.content1
-        rootView.hashTagLabel.text = post.content
+        
         let price = Formatter.decimalNumberFormatter(number: post.price ?? 0)
         rootView.priceLabel.text = "\(price)원"
+        
+        if let hashTags = post.hashTags {
+            //        let hashTag = post.hashTags?.joined(separator: " ")
+            let hashTag = hashTags.map { "#\($0)" }.joined(separator: " ")
+            rootView.hashTagLabel.text = "#\(String(describing: hashTag))"
+        }
 
         if let data = post.files {
             data.forEach { link in

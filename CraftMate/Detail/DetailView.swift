@@ -11,27 +11,30 @@ import SnapKit
 
 final class DetailView: BaseView {
     
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+    
     let imageView = UIImageView().then {
         $0.image = UIImage(named: "비즈공예 팔찌")
     }
-  
+    
     private let profileImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
         $0.image = UIImage(named: "기본프로필")
     }
     
-     let nickNameLabel = UILabel().then {
+    let nickNameLabel = UILabel().then {
         $0.font = CraftMate.CustomFont.SemiBold13
         $0.textColor = CraftMate.color.blackColor
         $0.text = "마일리에요"
         $0.textAlignment = .left
     }
     
-     let followButton = UIButton().then {
+    let followButton = UIButton().then {
         $0.setTitle("팔로우", for: .normal)
-//        $0.setTitleColor(CraftMate.color.whiteColor, for: .normal)
+        //        $0.setTitleColor(CraftMate.color.whiteColor, for: .normal)
         $0.setTitleColor(CraftMate.color.mainColor, for: .normal)
-//        $0.backgroundColor = CraftMate.color.mainColor
+        //        $0.backgroundColor = CraftMate.color.mainColor
         $0.titleLabel?.font = CraftMate.CustomFont.SemiBold13
         $0.layer.cornerRadius = 5
     }
@@ -40,16 +43,16 @@ final class DetailView: BaseView {
         $0.backgroundColor = CraftMate.color.LightGrayColor
     }
     
-     let titleLabel = UILabel().then {
+    let titleLabel = UILabel().then {
         $0.text = "비즈공예 팔찌 팔아용"
         $0.textAlignment = .left
         $0.font = CraftMate.CustomFont.regular15
     }
     
-     let categoryLabel = UILabel().then {
+    let categoryLabel = UILabel().then {
         $0.text = "공예"
         $0.textAlignment = .left
-         $0.textColor = CraftMate.color.MediumGrayColor
+        $0.textColor = CraftMate.color.MediumGrayColor
         $0.font = CraftMate.CustomFont.Light13
     }
     
@@ -58,31 +61,33 @@ final class DetailView: BaseView {
     }
     
     let priceLabel = UILabel().then {
-       $0.text = "26,900원"
-       $0.textAlignment = .left
-       $0.font = CraftMate.CustomFont.bold17
-   }
+        $0.text = "26,900원"
+        $0.textAlignment = .left
+        $0.font = CraftMate.CustomFont.bold17
+    }
     
     let contentLineView = UIView().then {
         $0.backgroundColor = CraftMate.color.LightGrayColor
     }
     
-     let contentLabel = UILabel().then {
+    let contentLabel = UILabel().then {
         $0.numberOfLines = 0
         $0.font = CraftMate.CustomFont.regular14
         $0.textAlignment = .left
         $0.text = "아아암ㄹㄴ앎ㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㄷㅇㄹ"
     }
     
-     let hashTagLabel = UILabel().then {
+    let hashTagLabel = UILabel().then {
         $0.textAlignment = .left
         $0.font = CraftMate.CustomFont.Light13
+        $0.numberOfLines = 0
+        $0.textColor = CraftMate.color.MediumGrayColor
         $0.text = "#팔찌 #비즈공예"
         
     }
     
     let tabBarView = UIView().then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = .white
     }
     let heartImage = UIImage(systemName: CraftMate.Phrase.heartImage)?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 12))
     
@@ -111,38 +116,40 @@ final class DetailView: BaseView {
     }
     
     let reviewButton = UIButton(type: .system).then { button in
-            // 버튼의 기본 설정
-            button.titleLabel?.numberOfLines = 2
-            button.titleLabel?.textAlignment = .center
-            button.backgroundColor = .clear
-        }
+        // 버튼의 기본 설정
+        button.titleLabel?.numberOfLines = 2
+        button.titleLabel?.textAlignment = .center
+        button.backgroundColor = .clear
+    }
     
     let tabLineView = UIView().then {
         $0.backgroundColor = CraftMate.color.LightGrayColor
     }
-   
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
     override func configureHierarchy() {
-        addSubview(imageView)
-        addSubview(profileImageView)
-        addSubview(nickNameLabel)
-        addSubview(followButton)
-        addSubview(titleLabel)
-        addSubview(lineView)
-        addSubview(categoryLabel)
-        addSubview(categoryLine)
-        addSubview(priceLabel)
-        addSubview(contentLineView)
-        addSubview(contentLabel)
-        addSubview(hashTagLabel)
-        addSubview(tabBarView)
-        addSubview(heartButton)
-        addSubview(payButton)
-        addSubview(reviewButton)
-        addSubview(tabLineView)
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(imageView)
+        contentView.addSubview(profileImageView)
+        contentView.addSubview(nickNameLabel)
+        contentView.addSubview(followButton)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(lineView)
+        contentView.addSubview(categoryLabel)
+        contentView.addSubview(categoryLine)
+        contentView.addSubview(priceLabel)
+        contentView.addSubview(contentLineView)
+        contentView.addSubview(contentLabel)
+        contentView.addSubview(hashTagLabel)
+        contentView.addSubview(tabBarView)
+        contentView.addSubview(heartButton)
+        contentView.addSubview(payButton)
+        contentView.addSubview(reviewButton)
+        contentView.addSubview(tabLineView)
     }
     
     func updateReviewButton(with reviewCount: Int) {
@@ -158,13 +165,26 @@ final class DetailView: BaseView {
         reviewButton.setAttributedTitle(reviewTitle, for: .normal)
     }
     
-
+    
     
     
     override func configureLayout() {
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+            make.height.equalTo(scrollView)
+//            make.edges.equalTo(scrollView.contentLayoutGuide) // 뷰의 실제 내용이 표시되는 영역, 스크롤이 가능한 영역
+//            make.width.equalTo(scrollView.frameLayoutGuide)
+        }
+        
         imageView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
-            make.top.equalTo(self.snp.top)
+//            make.top.equalToSuperview()
+            make.top.equalTo(scrollView.snp.top)
             make.width.equalTo(imageView.snp.height)
         }
         
@@ -239,7 +259,7 @@ final class DetailView: BaseView {
         payButton.snp.makeConstraints { make in
             make.trailing.equalTo(tabBarView.snp.trailing).inset(10)
             make.verticalEdges.equalTo(tabBarView).inset(5)
-//            make.width.equalTo(150)
+            //            make.width.equalTo(150)
             make.leading.equalTo(reviewButton.snp.trailing).offset(10)
         }
         
@@ -253,6 +273,11 @@ final class DetailView: BaseView {
             make.verticalEdges.equalTo(tabBarView).inset(5)
             make.leading.equalTo(tabLineView.snp.trailing).offset(10)
             make.width.equalTo(50)
+        }
+        
+        hashTagLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentLabel.snp.bottom).offset(40)
+            make.horizontalEdges.equalTo(contentLabel)
         }
         
         
