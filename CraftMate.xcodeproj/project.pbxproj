@@ -110,6 +110,7 @@
 		B0EB626C2C8435FC005686E0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB626B2C8435FC005686E0 /* WebViewController.swift */; };
 		B0EB626E2C843F98005686E0 /* PaymentsValidationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB626D2C843F98005686E0 /* PaymentsValidationQuery.swift */; };
 		B0EB62702C844088005686E0 /* PaymentsValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB626F2C844088005686E0 /* PaymentsValidationModel.swift */; };
+		B0EB62722C845142005686E0 /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB62712C845142005686E0 /* CommunityViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +211,7 @@
 		B0EB626B2C8435FC005686E0 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		B0EB626D2C843F98005686E0 /* PaymentsValidationQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsValidationQuery.swift; sourceTree = "<group>"; };
 		B0EB626F2C844088005686E0 /* PaymentsValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsValidationModel.swift; sourceTree = "<group>"; };
+		B0EB62712C845142005686E0 /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 				B06936C12C7CBD1F00E0EF56 /* CommunityCreatView.swift */,
 				B06936BF2C7CBD1400E0EF56 /* CommunityCreateViewController.swift */,
 				B02CFDDD2C6F927C00462EF9 /* CommunityTableViewCell.swift */,
+				B0EB62712C845142005686E0 /* CommunityViewModel.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				B06936C02C7CBD1400E0EF56 /* CommunityCreateViewController.swift in Sources */,
 				B0128A102C72037400B72622 /* SignUpQuery.swift in Sources */,
 				B0DF57932C6F3AB900CAB497 /* SaveViewController.swift in Sources */,
+				B0EB62722C845142005686E0 /* CommunityViewModel.swift in Sources */,
 				B0DF57882C6F35B100CAB497 /* CustomFont.swift in Sources */,
 				B0CBD0CB2C7F8AFA005DF34A /* SettingView.swift in Sources */,
 				B0CBD0BB2C7EF56F005DF34A /* CommunitySaveViewController.swift in Sources */,

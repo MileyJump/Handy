@@ -34,7 +34,7 @@ final class HomeContentViewController: BaseViewController<HomeView> {
     var items = ["홈데코", "공예", "리폼", "아이들", "주방", "기타"]
     var sortImages = ["홈", "공예", "리폼", "아이들", "주방", "박스"]
     
-    var sort = "공예"
+    var sort = "홈데코"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,7 +142,7 @@ final class HomeContentViewController: BaseViewController<HomeView> {
     }
     
     func fetchPost(id: String) {
-        
+        print("fetchPost=======================")
         NetworkManager.shared.fetchPost(productId: id) { post, error in
             guard let post else { return }
             let postData = post.data
@@ -195,6 +195,16 @@ final class HomeContentViewController: BaseViewController<HomeView> {
 //    }
     
     @objc func heartButtonTapped(_ sender: UIButton) {
+        let post = postList[sender.tag]
+        guard let likes = post.likes else { return }
+        let status = !likes.contains(post.creator.userId)
+        print(status)
+        NetworkManager.shared.likePost(status: status, postID: post.postId) { [weak self] success in
+            self?.fetchPost(id: self?.sort ?? "홈데코")
+            
+        }
+
+        
 //        let post = postList[sender.tag]
 //        let currentUserId = post.creator.userId
 //        let isHearted = post.isLiked(byUser: currentUserId)
@@ -217,7 +227,6 @@ final class HomeContentViewController: BaseViewController<HomeView> {
 ////            print("======\(success)")
 //        }
     }
-    
 }
 
 
@@ -246,14 +255,15 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
 
             let post = postList[indexPath.item]
             cell.configureCell(data: post)
+            
+            let status = post.likes?.contains(post.creator.userId) ?? false
 
 //            let isHearted = post.isLiked(byUser: currentUser.id)
-            let heartImageName = isHearted ? CraftMate.Phrase.heartFillImage : CraftMate.Phrase.heartImage
+            let heartImageName = status ? CraftMate.Phrase.heartFillImage : CraftMate.Phrase.heartImage
             cell.heartButton.setImage(UIImage(systemName: heartImageName), for: .normal)
 
             cell.heartButton.tag = indexPath.item
             cell.heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
-
             return cell
         }
     }
