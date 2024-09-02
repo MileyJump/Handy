@@ -9,14 +9,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-extension Post {
-    func isLiked(byUser userId: String) -> Bool {
-        return likes?.contains(userId) ?? false
-    }
+protocol SortedSeletedProtocol  {
+    func sortsletedString(_ sort: String)
 }
 
-
-final class HomeContentViewController: BaseViewController<HomeView> {
+final class HomeContentViewController: BaseViewController<HomeView>, SortedSeletedProtocol {
+    
+    private var nextCursor: String? // 다음 페이지를 위한 커서
+    private var isFetching: Bool = false // 중복 요청 방지
     
     private var isNavigationBarHidden = false
     
@@ -43,6 +43,7 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         rootView.collectionView.delegate = self
         rootView.orderCollectionView.delegate = self
         rootView.orderCollectionView.dataSource = self
+        rootView.orderCollectionView.prefetchDataSource = self
         
         rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         rootView.orderCollectionView.register(OrderCollectionViewCell.self, forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
@@ -51,7 +52,8 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         // 네트워크 요청 실행
         //        viewModel.fetchPosts()
         bind()
-        fetchPost(id: items[0])
+        fetchPost(id: sort, cursor: nil)
+        //        fetchPost(id: sort)
     }
     
     //    override func viewWillAppear(_ animated: Bool) {
@@ -62,7 +64,7 @@ final class HomeContentViewController: BaseViewController<HomeView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
-        fetchPost(id: items[0])
+//        fetchPost(id: sort, cursor: nil)
         setupNavigationBar()
     }
     
@@ -72,6 +74,10 @@ final class HomeContentViewController: BaseViewController<HomeView> {
     }
     
     
+    func sortsletedString(_ sort: String) {
+        self.sort = sort
+    }
+    
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         let translation = scrollView.panGestureRecognizer.translation(in: scrollView)
         if translation.y < 0 {
@@ -80,6 +86,16 @@ final class HomeContentViewController: BaseViewController<HomeView> {
             showNavigationBar()
         }
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+           let offsetY = scrollView.contentOffset.y
+           let contentHeight = scrollView.contentSize.height
+           let height = scrollView.frame.size.height
+           
+           if offsetY > contentHeight - height * 2 {
+               fetchPost(id: sort, cursor: nextCursor)
+           }
+       }
     
     private func hideNavigationBar() {
         if !isNavigationBarHidden {
@@ -141,19 +157,48 @@ final class HomeContentViewController: BaseViewController<HomeView> {
             .disposed(by: disposeBag)
     }
     
-    func fetchPost(id: String) {
-        print("fetchPost=======================")
-        NetworkManager.shared.fetchPost(productId: id) { post, error in
-            guard let post else { return }
-            let postData = post.data
+//    func fetchPost(id: String, cursor: String?) {
+//        guard !isFetching else { return } // 중복 요청 방지
+//        isFetching = true
+//        
+//        let query = FetchPostQuery(next: cursor, limit: "20", product_id: id)
+//        NetworkManager.shared.fetchPost(query: query) { [weak self] result, error in
+//            guard let self = self else { return }
+//            self.isFetching = false
+//            
+//            if let result = result {
+//                self.postList.append(contentsOf: result.data)
+//                self.nextCursor = result.nextCursor // 다음 페이지를 위한 커서 업데이트
+//                self.rootView.orderCollectionView.reloadData()
+//            } else {
+//                print("Error: \(String(describing: error))")
+//            }
+//        }
+//    }
+    
+    func fetchPost(id: String, cursor: String?) {
+        guard !isFetching else { return } // 중복 요청 방지
+        isFetching = true
+        
+        let query = FetchPostQuery(next: cursor, limit: "20", product_id: id)
+        NetworkManager.shared.fetchPost(query: query) { [weak self] result, error in
+            guard let self = self else { return }
+            self.isFetching = false
             
-            self.postList = postData
-            print(postData)
-            
-            self.rootView.orderCollectionView.reloadData()
+            if let result = result {
+                // 중복된 postId가 있는지 확인
+                let newPosts = result.data.filter { newPost in
+                    !self.postList.contains(where: { $0.postId == newPost.postId })
+                }
+                self.postList.append(contentsOf: newPosts)
+                self.nextCursor = result.nextCursor // 다음 페이지를 위한 커서 업데이트
+                self.rootView.orderCollectionView.reloadData()
+            } else {
+                print("Error: \(String(describing: error))")
+            }
         }
     }
-    
+
     @objc func ellipsisButtonTapped(sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -200,7 +245,7 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         let status = !likes.contains(post.creator.userId)
         print(status)
         NetworkManager.shared.likePost(status: status, postID: post.postId) { [weak self] success in
-            self?.fetchPost(id: self?.sort ?? "홈데코")
+            self?.fetchPost(id: self?.sort ?? "홈데코", cursor: self?.nextCursor)
             
         }
 
@@ -276,11 +321,24 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
             navigationController?.pushViewController(vc, animated: true)
         } else {
             self.sort = items[indexPath.item]
-            fetchPost(id: sort)
+            fetchPost(id: sort, cursor: nextCursor)
         }
     }
     
     
+    
+    
+}
+
+extension HomeContentViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        guard let maxIndex = indexPaths.map({ $0.row }).max() else { return }
+           
+           // 현재 postList의 마지막 항목에 근접한 경우 추가 데이터를 로드
+           if maxIndex >= postList.count - 1 {
+               fetchPost(id: sort, cursor: nextCursor)
+           }
+    }
     
     
 }

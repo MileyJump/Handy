@@ -21,10 +21,7 @@ final class OrderSaveViewController: BaseViewController<OrderSaveView> {
         super.viewWillAppear(animated)
         fetchLike()
     }
-    override func setupNavigationBar() {
-        
-        
-    }
+  
     
     override func configureView() {
         rootView.collectionView.delegate = self
@@ -57,6 +54,7 @@ final class OrderSaveViewController: BaseViewController<OrderSaveView> {
 extension OrderSaveViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let likePsot else { return 0 }
+        print(likePsot.data.count)
         return likePsot.data.count
     }
     

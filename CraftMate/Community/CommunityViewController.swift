@@ -18,6 +18,8 @@ import RxCocoa
 final class CommunityViewController: BaseViewController<CommunityView> {
     
 //    var mode: CommunityMode = .allPosts
+    private var nextCursor: String? // 다음 페이지를 위한 커서
+    private var isFetching: Bool = false // 중복 요청 방지
     
     var postList: [Post] = []
     var saveList: [Post] = []
@@ -36,6 +38,7 @@ final class CommunityViewController: BaseViewController<CommunityView> {
 
         rootView.tableView.delegate = self
         rootView.tableView.dataSource = self
+//        rootView.tableView.prefetchDataSource = self
         
         rootView.tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: CommunityTableViewCell.identifier)
         
@@ -45,7 +48,7 @@ final class CommunityViewController: BaseViewController<CommunityView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        fetchPosts()
-        fetchAllPosts()
+        fetchAllPosts(cursor: nil)
     }
     
     override func setupNavigationBar() {
@@ -60,24 +63,33 @@ final class CommunityViewController: BaseViewController<CommunityView> {
         ]
     }
     
-//    private func fetchPosts() {
-//        switch mode {
-//        case .allPosts:
-//            fetchAllPosts()
-//        case .likedPosts:
-//            // 여기서 좋아요한 게시물들을 가져옵니다.
-//            postList = saveList
-//            scrollToSeletedPost()
+    
+//    func fetchAllPosts() {
+//        
+//        NetworkManager.shared.fetchPost(productId: "커뮤니티") { post, error in
+//            if let postList = post {
+//                let postData = postList.data
+//                self.postList.append(contentsOf: postData)
+//                self.rootView.tableView.reloadData()
+//            }
 //        }
 //    }
     
-    func fetchAllPosts() {
+    func fetchAllPosts(cursor: String?) {
+        guard !isFetching else { return } // 중복 요청 방지
+        isFetching = true
         
-        NetworkManager.shared.fetchPost(productId: "커뮤니티") { post, error in
-            if let postList = post {
-                let postData = postList.data
-                self.postList.append(contentsOf: postData)
+        let query = FetchPostQuery(next: cursor, limit: "20", product_id: "커뮤니티")
+        NetworkManager.shared.fetchPost(query: query) { [weak self] result, error in
+            guard let self = self else { return }
+            self.isFetching = false
+            
+            if let result = result {
+                self.postList.append(contentsOf: result.data)
+                self.nextCursor = result.nextCursor // 다음 페이지를 위한 커서 업데이트
                 self.rootView.tableView.reloadData()
+            } else {
+                print("Error: \(String(describing: error))")
             }
         }
     }
@@ -166,3 +178,14 @@ extension CommunityViewController: UITableViewDelegate, UITableViewDataSource {
         return 450
     }
 }
+extension CommunityViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        guard let maxIndex = indexPaths.map({ $0.row }).max() else { return }
+           
+           // 현재 postList의 마지막 항목에 근접한 경우 추가 데이터를 로드
+           if maxIndex >= postList.count - 1 {
+               fetchAllPosts(cursor: nextCursor)
+           }
+    }
+}
+

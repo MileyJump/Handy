@@ -146,42 +146,43 @@ final class NetworkManager {
     
     
     
-    func fetchPost(productId: String, completionHandler: @escaping (FetchPostModel?, String?) -> Void)  {
-        do {
-            let request = try Router.fetchPost(query: FetchPostQuery(next: nil, limit: nil, product_id: productId)).asURLRequest()
-            AF.request(request).responseDecodable(of: FetchPostModel.self) { response in
-                guard let statusCode = response.response?.statusCode else {
-                    print("Failed to get statusCode !!")
-                    return
-                }
-                switch statusCode {
-                case 200:
-                    switch response.result {
-                    case .success(let success):
-                        completionHandler(success, nil)
-                    case .failure(let failure):
-                        print(failure)
-                        print("실패!!")
-                    }
-                case 400:
-                    completionHandler(nil, "필수값을 채워주세요")
-                    print("400번 : 필수값을 채워주세요")
-                case 401:
-                    print("401번: 계정을 확인해주세요!")
-                    completionHandler(nil, "계정을 확인해주세요")
-                case 419:
-                    print("??????")
-                    self.refreshToken()
-                    
-                default:
-                    print("fetchPost5")
-                    print("상태코드 : \(statusCode)")
-                }
-            }
-        } catch {
-            print("error \(error)")
-        }
-    }
+    func fetchPost(query: FetchPostQuery, completionHandler: @escaping (FetchPostModel?, String?) -> Void) {
+           do {
+               let request = try Router.fetchPost(query: query).asURLRequest()
+               AF.request(request).responseDecodable(of: FetchPostModel.self) { response in
+                   guard let statusCode = response.response?.statusCode else {
+                       print("Failed to get statusCode !!")
+                       return
+                   }
+                   switch statusCode {
+                   case 200:
+                       switch response.result {
+                       case .success(let success):
+                           completionHandler(success, nil)
+                       case .failure(let failure):
+                           print(failure.localizedDescription)
+                           completionHandler(nil, "Failed to decode response")
+                       }
+                   case 400:
+                       completionHandler(nil, "필수값을 채워주세요")
+                       print("400번 : 필수값을 채워주세요")
+                   case 401:
+                       completionHandler(nil, "계정을 확인해주세요")
+                       print("401번: 계정을 확인해주세요!")
+                   case 419:
+                       print("??????")
+                       self.refreshToken()
+                       
+                   default:
+                       completionHandler(nil, "Error with status code: \(statusCode)")
+                   }
+               }
+           } catch {
+               print("Request creation error: \(error.localizedDescription)")
+               completionHandler(nil, "Request creation failed")
+           }
+       }
+   
     
     func createPost(title: String?, price: Int?, content: String?, content1: String?, content2: String?, content3: String?, content4: String?, content5: String?, product_id: String?, files: [String]?, completionHandler: @escaping (Post?, String?) -> Void)  {
         do {

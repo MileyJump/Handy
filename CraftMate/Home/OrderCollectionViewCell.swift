@@ -32,7 +32,7 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
     }
     
     let heartButton = UIButton().then {
-        $0.setImage(UIImage(systemName: CraftMate.Phrase.heartImage), for: .normal)
+        $0.setImage(UIImage(systemName: CraftMate.Phrase.heartFillImage), for: .normal)
         $0.tintColor = CraftMate.color.whiteColor
     }
     

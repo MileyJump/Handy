@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B00A2E452C7C5CAB006A6721 /* CategoryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A2E442C7C5CAB006A6721 /* CategoryButtonView.swift */; };
 		B00A2E472C7C60D4006A6721 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A2E462C7C60D4006A6721 /* CategoryCollectionViewCell.swift */; };
-		B00A2E4A2C7CAB8A006A6721 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B00A2E492C7CAB8A006A6721 /* Kingfisher */; };
 		B0128A0A2C71ED0000B72622 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A092C71ED0000B72622 /* SignUpViewModel.swift */; };
 		B0128A0C2C71ED6300B72622 /* EmailDuplicateCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */; };
 		B0128A0E2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0D2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift */; };
@@ -31,9 +30,6 @@
 		B02CFDCA2C6F40DC00462EF9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDC92C6F40DC00462EF9 /* LoginView.swift */; };
 		B02CFDCC2C6F428300462EF9 /* UIViewController +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDCB2C6F428300462EF9 /* UIViewController +.swift */; };
 		B02CFDCE2C6F42BD00462EF9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDCD2C6F42BD00462EF9 /* LoginViewController.swift */; };
-		B02CFDD12C6F461A00462EF9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD02C6F461A00462EF9 /* SnapKit */; };
-		B02CFDD72C6F75C500462EF9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD62C6F75C500462EF9 /* RxCocoa */; };
-		B02CFDD92C6F75C500462EF9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDD82C6F75C500462EF9 /* RxSwift */; };
 		B02CFDDC2C6F779A00462EF9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDDB2C6F779A00462EF9 /* HomeView.swift */; };
 		B02CFDDE2C6F927C00462EF9 /* CommunityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDDD2C6F927C00462EF9 /* CommunityTableViewCell.swift */; };
 		B02CFDE12C6F92EE00462EF9 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDE02C6F92EE00462EF9 /* Reusable.swift */; };
@@ -47,7 +43,6 @@
 		B02CFDF52C70781500462EF9 /* WritePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDF42C70781500462EF9 /* WritePostView.swift */; };
 		B02CFDF82C70C65600462EF9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDF72C70C65600462EF9 /* Router.swift */; };
 		B02CFDFA2C70C73100462EF9 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02CFDF92C70C73100462EF9 /* TargetType.swift */; };
-		B02CFDFD2C70C74900462EF9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B02CFDFC2C70C74900462EF9 /* Alamofire */; };
 		B037B0922C70CA4600A17CD7 /* LoginQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0912C70CA4600A17CD7 /* LoginQuery.swift */; };
 		B037B0942C70CFB500A17CD7 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0932C70CFB500A17CD7 /* Header.swift */; };
 		B037B0962C70D00F00A17CD7 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0952C70D00F00A17CD7 /* UserDefaultsManager.swift */; };
@@ -57,11 +52,17 @@
 		B037B09F2C70E5DE00A17CD7 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B09E2C70E5DE00A17CD7 /* SignUpModel.swift */; };
 		B037B0A22C70E84400A17CD7 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0A12C70E84400A17CD7 /* SignUpView.swift */; };
 		B037B0A42C70EC6D00A17CD7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037B0A32C70EC6D00A17CD7 /* SignUpViewController.swift */; };
-		B03934AE2C7724BA00EB34CD /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = B03934AD2C7724BA00EB34CD /* Tabman */; };
 		B03934B02C77293B00EB34CD /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03934AF2C77293B00EB34CD /* HomeContentViewController.swift */; };
 		B03934B52C78B18000EB34CD /* UIButton +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03934B42C78B18000EB34CD /* UIButton +.swift */; };
 		B06936C02C7CBD1400E0EF56 /* CommunityCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06936BF2C7CBD1400E0EF56 /* CommunityCreateViewController.swift */; };
 		B06936C22C7CBD1F00E0EF56 /* CommunityCreatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06936C12C7CBD1F00E0EF56 /* CommunityCreatView.swift */; };
+		B08B382E2C8482CE005E6530 /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = B08B382D2C8482CE005E6530 /* iamport-ios */; };
+		B09E50342C847FCF0016661C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B09E50332C847FCF0016661C /* Kingfisher */; };
+		B09E50372C847FDE0016661C /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = B09E50362C847FDE0016661C /* Tabman */; };
+		B09E503A2C847FF20016661C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B09E50392C847FF20016661C /* SnapKit */; };
+		B09E503D2C8480060016661C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B09E503C2C8480060016661C /* Alamofire */; };
+		B09E50412C8482080016661C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B09E50402C8482080016661C /* RxCocoa */; };
+		B09E50432C8482080016661C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B09E50422C8482080016661C /* RxSwift */; };
 		B0CBD0B02C7EF12A005DF34A /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0AF2C7EF12A005DF34A /* ReviewView.swift */; };
 		B0CBD0B22C7EF13F005DF34A /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0B12C7EF13F005DF34A /* ReviewViewController.swift */; };
 		B0CBD0B52C7EF471005DF34A /* OrderSaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0B42C7EF471005DF34A /* OrderSaveViewController.swift */; };
@@ -104,8 +105,6 @@
 		B0DF57982C6F3B0800CAB497 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF57972C6F3B0800CAB497 /* TabBar.swift */; };
 		B0DF579B2C6F3F0B00CAB497 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF579A2C6F3F0B00CAB497 /* BaseView.swift */; };
 		B0DF579D2C6F3F4900CAB497 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF579C2C6F3F4900CAB497 /* BaseViewController.swift */; };
-		B0EB62652C833ADA005686E0 /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = B0EB62642C833ADA005686E0 /* iamport-ios */; };
-		B0EB62682C833B2F005686E0 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = B0EB62672C833B2F005686E0 /* Then */; };
 		B0EB626A2C8342B4005686E0 /* TestViewControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB62692C8342B4005686E0 /* TestViewControll.swift */; };
 		B0EB626C2C8435FC005686E0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB626B2C8435FC005686E0 /* WebViewController.swift */; };
 		B0EB626E2C843F98005686E0 /* PaymentsValidationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB626D2C843F98005686E0 /* PaymentsValidationQuery.swift */; };
@@ -219,14 +218,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B02CFDFD2C70C74900462EF9 /* Alamofire in Frameworks */,
-				B02CFDD72C6F75C500462EF9 /* RxCocoa in Frameworks */,
-				B00A2E4A2C7CAB8A006A6721 /* Kingfisher in Frameworks */,
-				B0EB62682C833B2F005686E0 /* Then in Frameworks */,
-				B02CFDD12C6F461A00462EF9 /* SnapKit in Frameworks */,
-				B02CFDD92C6F75C500462EF9 /* RxSwift in Frameworks */,
-				B0EB62652C833ADA005686E0 /* iamport-ios in Frameworks */,
-				B03934AE2C7724BA00EB34CD /* Tabman in Frameworks */,
+				B09E50412C8482080016661C /* RxCocoa in Frameworks */,
+				B09E50372C847FDE0016661C /* Tabman in Frameworks */,
+				B09E503D2C8480060016661C /* Alamofire in Frameworks */,
+				B09E50342C847FCF0016661C /* Kingfisher in Frameworks */,
+				B09E503A2C847FF20016661C /* SnapKit in Frameworks */,
+				B08B382E2C8482CE005E6530 /* iamport-ios in Frameworks */,
+				B09E50432C8482080016661C /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,14 +528,13 @@
 			);
 			name = CraftMate;
 			packageProductDependencies = (
-				B02CFDD02C6F461A00462EF9 /* SnapKit */,
-				B02CFDD62C6F75C500462EF9 /* RxCocoa */,
-				B02CFDD82C6F75C500462EF9 /* RxSwift */,
-				B02CFDFC2C70C74900462EF9 /* Alamofire */,
-				B03934AD2C7724BA00EB34CD /* Tabman */,
-				B00A2E492C7CAB8A006A6721 /* Kingfisher */,
-				B0EB62642C833ADA005686E0 /* iamport-ios */,
-				B0EB62672C833B2F005686E0 /* Then */,
+				B09E50332C847FCF0016661C /* Kingfisher */,
+				B09E50362C847FDE0016661C /* Tabman */,
+				B09E50392C847FF20016661C /* SnapKit */,
+				B09E503C2C8480060016661C /* Alamofire */,
+				B09E50402C8482080016661C /* RxCocoa */,
+				B09E50422C8482080016661C /* RxSwift */,
+				B08B382D2C8482CE005E6530 /* iamport-ios */,
 			);
 			productName = CraftMate;
 			productReference = B0DF575A2C6CE84C00CAB497 /* CraftMate.app */;
@@ -568,13 +565,12 @@
 			);
 			mainGroup = B0DF57512C6CE84C00CAB497;
 			packageReferences = (
-				B02CFDCF2C6F461A00462EF9 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				B02CFDFB2C70C74900462EF9 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				B03934AC2C7724BA00EB34CD /* XCRemoteSwiftPackageReference "Tabman" */,
-				B00A2E482C7CAB8A006A6721 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				B0EB62632C833ADA005686E0 /* XCRemoteSwiftPackageReference "iamport-ios" */,
-				B0EB62662C833B2F005686E0 /* XCRemoteSwiftPackageReference "Then" */,
+				B09E50322C847FCE0016661C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				B09E50352C847FDE0016661C /* XCRemoteSwiftPackageReference "Tabman" */,
+				B09E50382C847FF20016661C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				B09E503B2C8480050016661C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B09E503F2C8482080016661C /* XCRemoteSwiftPackageReference "RxSwift" */,
+				B08B382C2C848296005E6530 /* XCRemoteSwiftPackageReference "iamport-ios" */,
 			);
 			productRefGroup = B0DF575B2C6CE84C00CAB497 /* Products */;
 			projectDirPath = "";
@@ -920,47 +916,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B00A2E482C7CAB8A006A6721 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.12.0;
-			};
-		};
-		B02CFDCF2C6F461A00462EF9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.7.1;
-			};
-		};
-		B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.7.1;
-			};
-		};
-		B02CFDFB2C70C74900462EF9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.1;
-			};
-		};
-		B03934AC2C7724BA00EB34CD /* XCRemoteSwiftPackageReference "Tabman" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/uias/Tabman.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.0;
-			};
-		};
-		B0EB62632C833ADA005686E0 /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
+		B08B382C2C848296005E6530 /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/iamport/iamport-ios.git";
 			requirement = {
@@ -968,56 +924,83 @@
 				minimumVersion = 1.4.2;
 			};
 		};
-		B0EB62662C833B2F005686E0 /* XCRemoteSwiftPackageReference "Then" */ = {
+		B09E50322C847FCE0016661C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devxoul/Then.git";
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				minimumVersion = 7.12.0;
+			};
+		};
+		B09E50352C847FDE0016661C /* XCRemoteSwiftPackageReference "Tabman" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/uias/Tabman.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
+		B09E50382C847FF20016661C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		B09E503B2C8480050016661C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		B09E503F2C8482080016661C /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B00A2E492C7CAB8A006A6721 /* Kingfisher */ = {
+		B08B382D2C8482CE005E6530 /* iamport-ios */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B00A2E482C7CAB8A006A6721 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		B02CFDD02C6F461A00462EF9 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B02CFDCF2C6F461A00462EF9 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		B02CFDD62C6F75C500462EF9 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		B02CFDD82C6F75C500462EF9 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B02CFDD52C6F75C400462EF9 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
-		B02CFDFC2C70C74900462EF9 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B02CFDFB2C70C74900462EF9 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		B03934AD2C7724BA00EB34CD /* Tabman */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B03934AC2C7724BA00EB34CD /* XCRemoteSwiftPackageReference "Tabman" */;
-			productName = Tabman;
-		};
-		B0EB62642C833ADA005686E0 /* iamport-ios */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B0EB62632C833ADA005686E0 /* XCRemoteSwiftPackageReference "iamport-ios" */;
+			package = B08B382C2C848296005E6530 /* XCRemoteSwiftPackageReference "iamport-ios" */;
 			productName = "iamport-ios";
 		};
-		B0EB62672C833B2F005686E0 /* Then */ = {
+		B09E50332C847FCF0016661C /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B0EB62662C833B2F005686E0 /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
+			package = B09E50322C847FCE0016661C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		B09E50362C847FDE0016661C /* Tabman */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B09E50352C847FDE0016661C /* XCRemoteSwiftPackageReference "Tabman" */;
+			productName = Tabman;
+		};
+		B09E50392C847FF20016661C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B09E50382C847FF20016661C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		B09E503C2C8480060016661C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B09E503B2C8480050016661C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		B09E50402C8482080016661C /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B09E503F2C8482080016661C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		B09E50422C8482080016661C /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B09E503F2C8482080016661C /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

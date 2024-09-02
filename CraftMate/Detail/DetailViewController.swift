@@ -12,25 +12,13 @@ import Kingfisher
 import iamport_ios
 import WebKit
 
-//
-//  DetailViewController.swift
-//  CraftMate
-//
-//  Created by 최민경 on 8/17/24.
-//
-
-import UIKit
-import RxSwift
-import RxCocoa
-import Kingfisher
-import iamport_ios
-import WebKit
-
 final class DetailViewController: BaseViewController<DetailView> {
 
     var post: Post?
 
     let userCode = "imp57573124"
+    
+    var delegate: SortedSeletedProtocol?
 
     private let disposeBag = DisposeBag()
 
@@ -41,6 +29,9 @@ final class DetailViewController: BaseViewController<DetailView> {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
+        if let productId = post?.productId {
+            delegate?.sortsletedString(productId)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -108,6 +99,7 @@ final class DetailViewController: BaseViewController<DetailView> {
             NetworkManager.shared.deletePost(postId: postId)
             print("\(postId)삭제 완료")
         }
+        navigationController?.popViewController(animated: true)
     }
 
     override func setupAddTarget() {
