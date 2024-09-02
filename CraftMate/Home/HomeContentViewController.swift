@@ -26,10 +26,6 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
     
     var postList: [Post] = []
     
-    var dataImage: [Data] = [ ]
-    
-    private var isHearted: Bool = false // 하트 상태를 추적하는 변수
-    
     // 나중에 Rx로 수정
     var items = ["홈데코", "공예", "리폼", "아이들", "주방", "기타"]
     var sortImages = ["홈", "공예", "리폼", "아이들", "주방", "박스"]
@@ -38,39 +34,33 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        rootView.collectionView.dataSource = self
-        rootView.collectionView.delegate = self
-        rootView.orderCollectionView.delegate = self
-        rootView.orderCollectionView.dataSource = self
-        rootView.orderCollectionView.prefetchDataSource = self
-        
-        rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
-        rootView.orderCollectionView.register(OrderCollectionViewCell.self, forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
-        
-        
-        // 네트워크 요청 실행
-        //        viewModel.fetchPosts()
         bind()
         fetchPost(id: sort, cursor: nil)
-        //        fetchPost(id: sort)
+        
     }
-    
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        bindTableView(id: items[0])
-    //    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
-//        fetchPost(id: sort, cursor: nil)
         setupNavigationBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    
+    override func configureView() {
+        rootView.collectionView.dataSource = self
+        rootView.collectionView.delegate = self
+        
+        rootView.orderCollectionView.delegate = self
+        rootView.orderCollectionView.dataSource = self
+        rootView.orderCollectionView.prefetchDataSource = self
+        
+        rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
+        rootView.orderCollectionView.register(OrderCollectionViewCell.self, forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
     }
     
     
@@ -88,14 +78,14 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-           let offsetY = scrollView.contentOffset.y
-           let contentHeight = scrollView.contentSize.height
-           let height = scrollView.frame.size.height
-           
-           if offsetY > contentHeight - height * 2 {
-               fetchPost(id: sort, cursor: nextCursor)
-           }
-       }
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height * 2 {
+            fetchPost(id: sort, cursor: nextCursor)
+        }
+    }
     
     private func hideNavigationBar() {
         if !isNavigationBarHidden {
@@ -134,14 +124,6 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
             .disposed(by: disposeBag)
     }
     
-    //    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-    //        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-    //            self.navigationController?.setNavigationBarHidden(true, animated: true)
-    //        } else {
-    //            self.navigationController?.setNavigationBarHidden(false, animated: true)
-    //        }
-    //    }
-    
     
     func bind() {
         rootView.floatingButton.floatingButton
@@ -157,31 +139,25 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
             .disposed(by: disposeBag)
     }
     
-//    func fetchPost(id: String, cursor: String?) {
-//        guard !isFetching else { return } // 중복 요청 방지
-//        isFetching = true
-//        
-//        let query = FetchPostQuery(next: cursor, limit: "20", product_id: id)
-//        NetworkManager.shared.fetchPost(query: query) { [weak self] result, error in
-//            guard let self = self else { return }
-//            self.isFetching = false
-//            
-//            if let result = result {
-//                self.postList.append(contentsOf: result.data)
-//                self.nextCursor = result.nextCursor // 다음 페이지를 위한 커서 업데이트
-//                self.rootView.orderCollectionView.reloadData()
-//            } else {
-//                print("Error: \(String(describing: error))")
-//            }
-//        }
-//    }
-    
     func fetchPost(id: String, cursor: String?) {
-        guard !isFetching else { return } // 중복 요청 방지
+        guard !isFetching else {
+            // 중복 요청 방지
+            return
+        }
+        
+        // 처음에 cursor가 nil인 경우는 호출을 허용
+        if cursor != nil {
+            // 동일한 nextCursor로 인해 과호출이 발생하지 않도록 방지
+            guard cursor != self.nextCursor else {
+                print("동일한 커서로 호출 되지 않습니다!")
+                return
+            }
+        }
+        
         isFetching = true
         
         let query = FetchPostQuery(next: cursor, limit: "20", product_id: id)
-        NetworkManager.shared.fetchPost(query: query) { [weak self] result, error in
+        NetworkManager.shared.fetchPost(query: query) { [weak self] result, newCursor in
             guard let self = self else { return }
             self.isFetching = false
             
@@ -190,15 +166,29 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
                 let newPosts = result.data.filter { newPost in
                     !self.postList.contains(where: { $0.postId == newPost.postId })
                 }
+                
+                // 새로운 게시물을 기존 리스트에 추가
                 self.postList.append(contentsOf: newPosts)
-                self.nextCursor = result.nextCursor // 다음 페이지를 위한 커서 업데이트
+                
+                // 만약 newCursor가 nil이거나 이전과 동일하다면 추가 요청을 중지
+                if newCursor == nil || newCursor == self.nextCursor {
+                    print("Reached end of data or cursor has not changed.")
+                    return
+                }
+                
+                // nextCursor 업데이트
+                self.nextCursor = newCursor
+                print("------------------------\(String(describing: newCursor))------------------------")
+                print(self.postList)
+                
+                // UI 업데이트
                 self.rootView.orderCollectionView.reloadData()
             } else {
-                print("Error: \(String(describing: error))")
+                print("오류")
             }
         }
     }
-
+    
     @objc func ellipsisButtonTapped(sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -215,7 +205,6 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
         alert.addAction(cancelAction)
         
         present(alert, animated: true)
-        
     }
     
     @objc func profileImageViewTapped() {
@@ -223,21 +212,6 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
         let vc = ProfileViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
-//    
-//    @objc func heartButtonTapped(_ sender: UIButton) {
-//        
-//        isHearted.toggle() // 하트 상태 토글
-//        let postid =  postList[sender.tag].postId
-//        print(sender.tag)
-//        print("\(postid): postid)")
-//        print(isHearted)
-//        NetworkManager.shared.likePost(status: isHearted, postID: postid)
-//        
-//        fetchPost(id: self.sort)
-//        
-//        rootView.orderCollectionView.reloadItems(at: [IndexPath(item: sender.tag, section: 0)])
-//        print("하트버튼 탭드")
-//    }
     
     @objc func heartButtonTapped(_ sender: UIButton) {
         let post = postList[sender.tag]
@@ -248,29 +222,6 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
             self?.fetchPost(id: self?.sort ?? "홈데코", cursor: self?.nextCursor)
             
         }
-
-        
-//        let post = postList[sender.tag]
-//        let currentUserId = post.creator.userId
-//        let isHearted = post.isLiked(byUser: currentUserId)
-//
-//        NetworkManager.shared.likePost(status: !isHearted, postID: post.postId) { [weak self] success in
-//            guard let self = self else { return }
-//            if success {
-//                if let index = self.postList.firstIndex(where: { $0.postId == post.postId }) {
-//                    if isHearted {
-//                        // 좋아요 취소된 상태로 업데이트
-//                        self.postList[index].likes?.removeAll(where: { $0 == currentUserId })
-//                    } else {
-//                        // 좋아요 추가된 상태로 업데이트
-//                        self.postList[index].likes?.append(currentUserId)
-//                    }
-//                    self.rootView.orderCollectionView.reloadItems(at: [IndexPath(item: sender.tag, section: 0)])
-//                }
-//            }
-////            print(success)
-////            print("======\(success)")
-//        }
     }
 }
 
@@ -297,16 +248,16 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OrderCollectionViewCell.identifier, for: indexPath) as? OrderCollectionViewCell else {
                 return UICollectionViewCell()
             }
-
+            
             let post = postList[indexPath.item]
             cell.configureCell(data: post)
             
             let status = post.likes?.contains(post.creator.userId) ?? false
-
-//            let isHearted = post.isLiked(byUser: currentUser.id)
+            
+            //            let isHearted = post.isLiked(byUser: currentUser.id)
             let heartImageName = status ? CraftMate.Phrase.heartFillImage : CraftMate.Phrase.heartImage
             cell.heartButton.setImage(UIImage(systemName: heartImageName), for: .normal)
-
+            
             cell.heartButton.tag = indexPath.item
             cell.heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
             return cell
@@ -324,20 +275,16 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
             fetchPost(id: sort, cursor: nextCursor)
         }
     }
-    
-    
-    
-    
 }
 
 extension HomeContentViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         guard let maxIndex = indexPaths.map({ $0.row }).max() else { return }
-           
-           // 현재 postList의 마지막 항목에 근접한 경우 추가 데이터를 로드
-           if maxIndex >= postList.count - 1 {
-               fetchPost(id: sort, cursor: nextCursor)
-           }
+        
+        // 현재 postList의 마지막 항목에 근접한 경우 추가 데이터를 로드
+        if maxIndex >= postList.count - 1 {
+            fetchPost(id: sort, cursor: nextCursor)
+        }
     }
     
     

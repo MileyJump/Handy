@@ -158,7 +158,7 @@ final class NetworkManager {
                    case 200:
                        switch response.result {
                        case .success(let success):
-                           completionHandler(success, nil)
+                           completionHandler(success, success.nextCursor)
                        case .failure(let failure):
                            print(failure.localizedDescription)
                            completionHandler(nil, "Failed to decode response")

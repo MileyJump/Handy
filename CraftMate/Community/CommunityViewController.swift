@@ -16,13 +16,11 @@ import RxCocoa
 
 
 final class CommunityViewController: BaseViewController<CommunityView> {
-    
-//    var mode: CommunityMode = .allPosts
+
     private var nextCursor: String? // 다음 페이지를 위한 커서
     private var isFetching: Bool = false // 중복 요청 방지
     
     var postList: [Post] = []
-    var saveList: [Post] = []
     
     var selectedIndex: Int = 0
     
@@ -31,7 +29,7 @@ final class CommunityViewController: BaseViewController<CommunityView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-
+        fetchAllPosts(cursor: nil)
     }
     
     override func setupUI() {
@@ -48,7 +46,7 @@ final class CommunityViewController: BaseViewController<CommunityView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        fetchPosts()
-        fetchAllPosts(cursor: nil)
+        
     }
     
     override func setupNavigationBar() {
