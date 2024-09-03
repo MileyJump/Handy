@@ -62,17 +62,6 @@ final class CommunityViewController: BaseViewController<CommunityView> {
     }
     
     
-//    func fetchAllPosts() {
-//        
-//        NetworkManager.shared.fetchPost(productId: "커뮤니티") { post, error in
-//            if let postList = post {
-//                let postData = postList.data
-//                self.postList.append(contentsOf: postData)
-//                self.rootView.tableView.reloadData()
-//            }
-//        }
-//    }
-    
     func fetchAllPosts(cursor: String?) {
         guard !isFetching else { return } // 중복 요청 방지
         isFetching = true
@@ -173,7 +162,7 @@ extension CommunityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 450
+        return 560
     }
 }
 extension CommunityViewController: UICollectionViewDataSourcePrefetching {

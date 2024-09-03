@@ -125,7 +125,6 @@ final class DetailViewController: BaseViewController<DetailView> {
     }
 
     func payButtonTapped() {
-
         guard let post = post, let price = post.price, let title = post.title else {
             print("post, price, or title is nil")
             return
@@ -141,7 +140,7 @@ final class DetailViewController: BaseViewController<DetailView> {
                 $0.app_scheme = "miley"
             }
 
-        // WKWebView를 초기화하고, 현재 뷰 계층에 추가합니다.
+//        // WKWebView를 초기화하고, 현재 뷰 계층에 추가합니다.
         let wkWebView = WKWebView(frame: view.bounds)
         wkWebView.backgroundColor = UIColor.clear
         view.addSubview(wkWebView)
@@ -152,8 +151,6 @@ final class DetailViewController: BaseViewController<DetailView> {
             payment: payment) { iamportResponse in
                 guard let imp = iamportResponse?.imp_uid else { return  }
                 NetworkManager.shared.paymentsValidation(impUId: imp, postId: post.postId)
-                
-                
             }
         
     }
@@ -180,6 +177,7 @@ final class DetailViewController: BaseViewController<DetailView> {
 
         let reviewCount = post.comments?.count ?? 0
         rootView.updateReviewButton(with: reviewCount)
+       
 
         rootView.nickNameLabel.text = post.creator.nick
         rootView.titleLabel.text = post.title

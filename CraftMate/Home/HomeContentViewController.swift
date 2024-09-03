@@ -52,6 +52,8 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
     
     
     override func configureView() {
+        view.backgroundColor = .white
+        
         rootView.collectionView.dataSource = self
         rootView.collectionView.delegate = self
         
@@ -102,14 +104,22 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
     }
     
     override func setupNavigationBar() {
+   
         
         let search = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.searchImage), style: .plain, target: nil, action: nil)
         //let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
         
         navigationItem.rightBarButtonItems = [search]
         
-        navigationItem.title = "CraftMate"
+        navigationItem.title = CraftMate.Phrase.serviceName
+        let handyLogoImage = UIImageView(image: UIImage(named: "Handy")?.withTintColor(.blue, renderingMode: .alwaysTemplate))
+        handyLogoImage.contentMode = .scaleAspectFit
+        handyLogoImage.frame = CGRect(x: 0, y: 0, width: 20, height: 40)
+        
+        navigationItem.titleView = handyLogoImage
+        let customFont = UIFont(name: "EF_jejudoldam(OTF)", size: 20)
         if let font = CraftMate.CustomFont.SemiBold20 {
+//        if let font = customFont {
             navigationController?.navigationBar.configureNavigationBarTitle(font: font, textColor: CraftMate.color.mainColor)
         }
         
@@ -282,8 +292,9 @@ extension HomeContentViewController: UICollectionViewDataSourcePrefetching {
         guard let maxIndex = indexPaths.map({ $0.row }).max() else { return }
         
         // 현재 postList의 마지막 항목에 근접한 경우 추가 데이터를 로드
-        if maxIndex >= postList.count - 1 {
+        if maxIndex >= postList.count - 2 {
             fetchPost(id: sort, cursor: nextCursor)
+            print("되고 있어요?")
         }
     }
     

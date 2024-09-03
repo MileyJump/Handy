@@ -89,22 +89,32 @@ final class DetailView: BaseView {
     let tabBarView = UIView().then {
         $0.backgroundColor = .white
     }
-    let heartImage = UIImage(systemName: CraftMate.Phrase.heartImage)?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 12))
+    let heartImage = UIImage(systemName: CraftMate.Phrase.heartFillImage)?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 12))
     
     lazy var heartButton = UIButton().then {
+        // 심볼 이미지를 설정하고, 렌더링 모드를 템플릿으로 변경
+        let heartImage = UIImage(systemName: CraftMate.Phrase.heartFillImage)?
+            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 12))
+            .withRenderingMode(.alwaysTemplate) // 이미지 색상 변경을 위해 템플릿 모드로 설정
+        
+        // 이미지와 이미지 색상 설정
         $0.setImage(heartImage, for: .normal)
-        $0.tintColor = CraftMate.color.darkGrayColor
+        $0.tintColor = .red // 이미지 색상을 빨간색으로 설정
         
         var config = UIButton.Configuration.plain()
         config.imagePlacement = .top // 이미지를 상단에 배치
-        config.imagePadding = 4 // 이미지와 텍스트 사이의 간격
+        config.imagePadding = 4 // 이미지와 텍스트 사이의 간격 설정
         
-        var titleAttr = AttributedString("0")
+        // 제목 텍스트의 색상과 폰트 설정
+        var titleAttr = AttributedString("1")
         titleAttr.font = CraftMate.CustomFont.Light13
+        titleAttr.foregroundColor = CraftMate.color.darkGrayColor // 제목 텍스트 색상을 다크 그레이로 설정
+        
         config.attributedTitle = titleAttr
         
-        config.baseForegroundColor = CraftMate.color.blackColor
         $0.configuration = config
+//        $0.configuration?.contentInsets = .zero // 버튼의 콘텐츠 인셋 설정 (여백 없애기)
+//        $0.contentHorizontalAlignment = .center // 이미지와 텍스트를 버튼의 중앙에 정렬
     }
     
     let payButton = UIButton().then {
@@ -164,9 +174,6 @@ final class DetailView: BaseView {
         reviewTitle.append(reviewSubtitle)
         reviewButton.setAttributedTitle(reviewTitle, for: .normal)
     }
-    
-    
-    
     
     override func configureLayout() {
         scrollView.snp.makeConstraints { make in

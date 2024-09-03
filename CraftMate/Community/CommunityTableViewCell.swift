@@ -42,22 +42,26 @@ final class CommunityTableViewCell: BaseTableViewCell {
     }
 
     
-     let heartButton = UIButton().then {
-        var config = UIButton.Configuration.plain() // 기본 스타일 사용
+    lazy var heartButton = UIButton().then {
+        // 심볼 이미지를 설정하고, 렌더링 모드를 템플릿으로 변경
+        let heartImage = UIImage(systemName: CraftMate.Phrase.heartFillImage)?
+            .withConfiguration(UIImage.SymbolConfiguration(pointSize: 12))
+            .withRenderingMode(.alwaysTemplate) // 이미지 색상 변경을 위해 템플릿 모드로 설정
         
-        config.image = UIImage(systemName: CraftMate.Phrase.heartImage) // 이미지 설정
-        config.title = "0"
-        config.imagePadding = 4 // 이미지와 텍스트 간의 간격 설정
-        config.baseForegroundColor = CraftMate.color.blackColor // 이미지와 텍스트 색상 설정
+        // 이미지와 이미지 색상 설정
+        $0.setImage(heartImage, for: .normal)
+        $0.tintColor = .red // 이미지 색상을 빨간색으로 설정
         
-        // 이미지 크기 조정
-        config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 15) // 이미지 크기를 20 포인트로 설정
-
-        // 폰트 설정
-        config.attributedTitle = AttributedString("0", attributes: AttributeContainer([
-            .font: CraftMate.CustomFont.Light14 ??
-            UIFont.systemFont(ofSize: 14, weight: .medium)
-        ]))
+        var config = UIButton.Configuration.plain()
+        config.imagePlacement = .leading // 이미지를 상단에 배치
+        config.imagePadding = 4 // 이미지와 텍스트 사이의 간격 설정
+        
+        // 제목 텍스트의 색상과 폰트 설정
+        var titleAttr = AttributedString("0")
+        titleAttr.font = CraftMate.CustomFont.Light13
+        titleAttr.foregroundColor = CraftMate.color.darkGrayColor // 제목 텍스트 색상을 다크 그레이로 설정
+        
+        config.attributedTitle = titleAttr
         
         $0.configuration = config
         $0.configuration?.contentInsets = .zero // 버튼의 콘텐츠 인셋 설정 (여백 없애기)
@@ -187,7 +191,7 @@ final class CommunityTableViewCell: BaseTableViewCell {
             make.top.equalTo(profileImageView.snp.bottom).offset(8)
             make.horizontalEdges.equalTo(contentView)
 //            make.horizontalEdges.equalTo(contentView)
-            make.height.equalTo(thumbnailImageView.snp.width).multipliedBy(0.7)
+            make.height.equalTo(thumbnailImageView.snp.width).multipliedBy(1)
         }
         
         heartButton.snp.makeConstraints { make in
