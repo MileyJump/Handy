@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B00A2E452C7C5CAB006A6721 /* CategoryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A2E442C7C5CAB006A6721 /* CategoryButtonView.swift */; };
 		B00A2E472C7C60D4006A6721 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A2E462C7C60D4006A6721 /* CategoryCollectionViewCell.swift */; };
+		B00C33DF2C8769E80089EA90 /* UhBee Se_hyun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B00C33DD2C8769E80089EA90 /* UhBee Se_hyun.ttf */; };
+		B00C33E02C8769E80089EA90 /* UhBee Se_hyun Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B00C33DE2C8769E80089EA90 /* UhBee Se_hyun Bold.ttf */; };
 		B0128A0A2C71ED0000B72622 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A092C71ED0000B72622 /* SignUpViewModel.swift */; };
 		B0128A0C2C71ED6300B72622 /* EmailDuplicateCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */; };
 		B0128A0E2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0D2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift */; };
@@ -63,7 +65,6 @@
 		B09E503D2C8480060016661C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B09E503C2C8480060016661C /* Alamofire */; };
 		B09E50412C8482080016661C /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B09E50402C8482080016661C /* RxCocoa */; };
 		B09E50432C8482080016661C /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B09E50422C8482080016661C /* RxSwift */; };
-		B0B715292C872C5200D5B734 /* EF_jejudoldam(OTF).otf in Resources */ = {isa = PBXBuildFile; fileRef = B0B715282C872C5100D5B734 /* EF_jejudoldam(OTF).otf */; };
 		B0CBD0B02C7EF12A005DF34A /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0AF2C7EF12A005DF34A /* ReviewView.swift */; };
 		B0CBD0B22C7EF13F005DF34A /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0B12C7EF13F005DF34A /* ReviewViewController.swift */; };
 		B0CBD0B52C7EF471005DF34A /* OrderSaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CBD0B42C7EF471005DF34A /* OrderSaveViewController.swift */; };
@@ -116,6 +117,8 @@
 /* Begin PBXFileReference section */
 		B00A2E442C7C5CAB006A6721 /* CategoryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButtonView.swift; sourceTree = "<group>"; };
 		B00A2E462C7C60D4006A6721 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		B00C33DD2C8769E80089EA90 /* UhBee Se_hyun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun.ttf"; sourceTree = "<group>"; };
+		B00C33DE2C8769E80089EA90 /* UhBee Se_hyun Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun Bold.ttf"; sourceTree = "<group>"; };
 		B0128A092C71ED0000B72622 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailDuplicateCheckModel.swift; sourceTree = "<group>"; };
 		B0128A0D2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailDuplicateCheckQuery.swift; sourceTree = "<group>"; };
@@ -163,7 +166,6 @@
 		B03934B42C78B18000EB34CD /* UIButton +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton +.swift"; sourceTree = "<group>"; };
 		B06936BF2C7CBD1400E0EF56 /* CommunityCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCreateViewController.swift; sourceTree = "<group>"; };
 		B06936C12C7CBD1F00E0EF56 /* CommunityCreatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCreatView.swift; sourceTree = "<group>"; };
-		B0B715282C872C5100D5B734 /* EF_jejudoldam(OTF).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EF_jejudoldam(OTF).otf"; sourceTree = "<group>"; };
 		B0CBD0AF2C7EF12A005DF34A /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		B0CBD0B12C7EF13F005DF34A /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		B0CBD0B42C7EF471005DF34A /* OrderSaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSaveViewController.swift; sourceTree = "<group>"; };
@@ -481,7 +483,8 @@
 				B0DF577E2C6F34CC00CAB497 /* Pretendard-Medium.otf */,
 				B0DF57802C6F34CC00CAB497 /* Pretendard-Regular.otf */,
 				B0DF57812C6F34CC00CAB497 /* Pretendard-SemiBold.otf */,
-				B0B715282C872C5100D5B734 /* EF_jejudoldam(OTF).otf */,
+				B00C33DE2C8769E80089EA90 /* UhBee Se_hyun Bold.ttf */,
+				B00C33DD2C8769E80089EA90 /* UhBee Se_hyun.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -593,9 +596,10 @@
 				B0DF57822C6F34CC00CAB497 /* Pretendard-Bold.otf in Resources */,
 				B0DF57672C6CE84E00CAB497 /* Assets.xcassets in Resources */,
 				B0DF576A2C6CE84E00CAB497 /* Base in Resources */,
-				B0B715292C872C5200D5B734 /* EF_jejudoldam(OTF).otf in Resources */,
 				B0DF57842C6F34CC00CAB497 /* Pretendard-Light.otf in Resources */,
+				B00C33DF2C8769E80089EA90 /* UhBee Se_hyun.ttf in Resources */,
 				B0DF57852C6F34CC00CAB497 /* Pretendard-Regular.otf in Resources */,
+				B00C33E02C8769E80089EA90 /* UhBee Se_hyun Bold.ttf in Resources */,
 				B0DF57862C6F34CC00CAB497 /* Pretendard-SemiBold.otf in Resources */,
 				B0DF57652C6CE84C00CAB497 /* Base in Resources */,
 				B0DF57832C6F34CC00CAB497 /* Pretendard-Medium.otf in Resources */,

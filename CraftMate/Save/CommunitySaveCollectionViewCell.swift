@@ -12,7 +12,6 @@ import SnapKit
 final class CommunitySaveCollectionViewCell: BaseCollectionViewCell {
     
     let imageView = UIImageView().then {
-        $0.backgroundColor = .red
         $0.image = UIImage(named: "비즈공예 팔찌")
     }
     

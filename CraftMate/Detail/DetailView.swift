@@ -99,7 +99,7 @@ final class DetailView: BaseView {
         
         // 이미지와 이미지 색상 설정
         $0.setImage(heartImage, for: .normal)
-        $0.tintColor = .red // 이미지 색상을 빨간색으로 설정
+        $0.tintColor = CraftMate.color.pinkColor // 이미지 색상을 빨간색으로 설정
         
         var config = UIButton.Configuration.plain()
         config.imagePlacement = .top // 이미지를 상단에 배치

@@ -11,7 +11,7 @@ extension CraftMate {
     enum Phrase {
         
         // 온보딩
-        static let serviceName = "handy"
+        static let serviceName = "Handy"
 //        static let serviceName = "CraftMate"
         
         static let email = "Email"

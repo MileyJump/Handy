@@ -112,16 +112,21 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
         navigationItem.rightBarButtonItems = [search]
         
         navigationItem.title = CraftMate.Phrase.serviceName
-        let handyLogoImage = UIImageView(image: UIImage(named: "Handy")?.withTintColor(.blue, renderingMode: .alwaysTemplate))
-        handyLogoImage.contentMode = .scaleAspectFit
-        handyLogoImage.frame = CGRect(x: 0, y: 0, width: 20, height: 40)
-        
-        navigationItem.titleView = handyLogoImage
-        let customFont = UIFont(name: "EF_jejudoldam(OTF)", size: 20)
-        if let font = CraftMate.CustomFont.SemiBold20 {
+//        let handyLogoImage = UIImageView(image: UIImage(named: "Handy")?.withTintColor(.blue, renderingMode: .alwaysTemplate))
+//        handyLogoImage.contentMode = .scaleAspectFit
+//        handyLogoImage.frame = CGRect(x: 0, y: 0, width: 20, height: 40)
+//        
+//        navigationItem.titleView = handyLogoImage
+        let customFont = UIFont(name: "UhBee Se_hyun Bold", size: 27) ?? UIFont.systemFont(ofSize: 24)
+//        if let font = CraftMate.CustomFont.SemiBold20 {
 //        if let font = customFont {
-            navigationController?.navigationBar.configureNavigationBarTitle(font: font, textColor: CraftMate.color.mainColor)
-        }
+//            navigationController?.navigationBar.configureNavigationBarTitle(font: font, textColor: CraftMate.color.mainColor)
+//        }
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [
+              NSAttributedString.Key.font: customFont,
+              NSAttributedString.Key.foregroundColor: CraftMate.color.mainColor // 타이틀 색상 설정 (옵션)
+          ]
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         
@@ -267,6 +272,7 @@ extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewD
             //            let isHearted = post.isLiked(byUser: currentUser.id)
             let heartImageName = status ? CraftMate.Phrase.heartFillImage : CraftMate.Phrase.heartImage
             cell.heartButton.setImage(UIImage(systemName: heartImageName), for: .normal)
+            cell.heartButton.tintColor = status ? CraftMate.color.pinkColor : CraftMate.color.whiteColor
             
             cell.heartButton.tag = indexPath.item
             cell.heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)

@@ -13,6 +13,7 @@ extension CraftMate {
     enum color {
 //        static let mainColor = UIColor(hexCode: "BCE365") // 초록
         static let mainColor = UIColor(hexCode: "3FA2F6") // 하늘
+        static let pinkColor = UIColor(hexCode: "EF5A6F")
         static let darkGrayColor = UIColor(hexCode: "4D5652")
         static let MediumGrayColor = UIColor(hexCode: "8C8C8C")
         static let LightGrayColor = UIColor(hexCode: "F2F2F2")

@@ -75,7 +75,7 @@ extension UICollectionViewLayout {
         let sectionSpacing: CGFloat = 10
         let cellSpacing: CGFloat = 8
         let width = UIScreen.main.bounds.width - (sectionSpacing * 2) - (cellSpacing)
-        layout.itemSize = CGSize(width: width/2, height: width)
+        layout.itemSize = CGSize(width: width/2, height: width/1.1)
         layout.minimumLineSpacing = cellSpacing
         layout.minimumInteritemSpacing = cellSpacing
         layout.sectionInset = UIEdgeInsets(top: sectionSpacing, left: sectionSpacing, bottom: sectionSpacing, right: sectionSpacing)

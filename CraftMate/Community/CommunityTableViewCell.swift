@@ -47,25 +47,24 @@ final class CommunityTableViewCell: BaseTableViewCell {
         let heartImage = UIImage(systemName: CraftMate.Phrase.heartFillImage)?
             .withConfiguration(UIImage.SymbolConfiguration(pointSize: 12))
             .withRenderingMode(.alwaysTemplate) // 이미지 색상 변경을 위해 템플릿 모드로 설정
-        
+
         // 이미지와 이미지 색상 설정
         $0.setImage(heartImage, for: .normal)
-        $0.tintColor = .red // 이미지 색상을 빨간색으로 설정
+        $0.tintColor = CraftMate.color.pinkColor // 이미지 색상을 핑크색으로 설정
         
         var config = UIButton.Configuration.plain()
-        config.imagePlacement = .leading // 이미지를 상단에 배치
+        config.imagePlacement = .leading // 이미지를 텍스트 왼쪽에 배치
         config.imagePadding = 4 // 이미지와 텍스트 사이의 간격 설정
         
-        // 제목 텍스트의 색상과 폰트 설정
-        var titleAttr = AttributedString("0")
+        // 타이틀 텍스트의 색상과 폰트 설정
+        var titleAttr = AttributedString("1")
         titleAttr.font = CraftMate.CustomFont.Light13
-        titleAttr.foregroundColor = CraftMate.color.darkGrayColor // 제목 텍스트 색상을 다크 그레이로 설정
-        
         config.attributedTitle = titleAttr
         
         $0.configuration = config
-        $0.configuration?.contentInsets = .zero // 버튼의 콘텐츠 인셋 설정 (여백 없애기)
-        $0.contentHorizontalAlignment = .center // 이미지와 텍스트를 버튼의 중앙에 정렬
+        
+        // 타이틀 색상을 별도로 설정 (tintColor 영향을 받지 않도록)
+        $0.setTitleColor(CraftMate.color.darkGrayColor, for: .normal)
     }
     
      let commentsButton = UIButton().then {
