@@ -107,21 +107,13 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
    
         
         let search = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.searchImage), style: .plain, target: nil, action: nil)
-        //let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
-        
+ 
         navigationItem.rightBarButtonItems = [search]
         
         navigationItem.title = CraftMate.Phrase.serviceName
-//        let handyLogoImage = UIImageView(image: UIImage(named: "Handy")?.withTintColor(.blue, renderingMode: .alwaysTemplate))
-//        handyLogoImage.contentMode = .scaleAspectFit
-//        handyLogoImage.frame = CGRect(x: 0, y: 0, width: 20, height: 40)
-//        
-//        navigationItem.titleView = handyLogoImage
+
         let customFont = UIFont(name: "UhBee Se_hyun Bold", size: 27) ?? UIFont.systemFont(ofSize: 24)
-//        if let font = CraftMate.CustomFont.SemiBold20 {
-//        if let font = customFont {
-//            navigationController?.navigationBar.configureNavigationBarTitle(font: font, textColor: CraftMate.color.mainColor)
-//        }
+
         
         self.navigationController?.navigationBar.titleTextAttributes = [
               NSAttributedString.Key.font: customFont,
@@ -141,15 +133,21 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
     
     
     func bind() {
-        rootView.floatingButton.floatingButton
-            .rx
-            .tap
-            .bind(with: self) { owner, _ in
+        
+        
+        let input = HomeViewModel.Input(floatingButtonTap: rootView.floatingButton.floatingButton.rx.tap)
+        let output = viewModel.transForm(input: input)
+        
+        
+        
+        output.screenTransitionTrigger
+            .observe(on: MainScheduler.instance)
+            .subscribe(with: self) { owner, _ in
+                print("플로팅 버튼 클릭")
                 let vc = WritePostViewController()
                 let naviVc = UINavigationController(rootViewController: vc)
                 naviVc.modalPresentationStyle = .fullScreen
                 owner.present(naviVc, animated: true)
-                
             }
             .disposed(by: disposeBag)
     }

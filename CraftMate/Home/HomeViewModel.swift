@@ -12,43 +12,33 @@ import RxCocoa
 
 final class HomeViewModel {
     
-    var postsList: [Post] = []
+//    var postsList: [Post] = []
     let disposeBag = DisposeBag()
     
+    let screenTransitionTrigger = PublishSubject<Void>()
+    
     struct Input {
-        let recentData: BehaviorSubject<Post>
+//        let recentData: BehaviorSubject<Post>
+        let floatingButtonTap: ControlEvent<Void>
+//        let searchButtonTap: ControlEvent<Void>
+        
     }
     
     struct Output {
-        let postsList: Observable<[Post]>
+//        let postsList: Observable<[Post]>
+        let screenTransitionTrigger: Observable<Void>
     }
     
-//    func transform(input: Input) -> Output {
-//        let postsLists = BehaviorSubject(value: postsList)
-////        
-////        NetworkManager.fetchPost { value, error in
-////            if let posts = value {
-////                self.postsList.append(posts)
-////            }
-//        }
-//        
-//        
-//        input.recentData
-//            .subscribe(with: self) { owner, value in
-//                owner.postsList.append(value)
-//                postsLists.onNext(owner.postsList)
-//            }
-//            .disposed(by: disposeBag)
-//        
-//     return Output(postsList: postsLists)
-//    }
+    func transForm(input: Input) -> Output {
+        
+        input.floatingButtonTap
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.screenTransitionTrigger.onNext(())
+            })
+            .disposed(by: disposeBag)
+        
+        
+        return Output(screenTransitionTrigger: screenTransitionTrigger.asObserver())
+    }
     
-//    func fetchPosts() {
-//        NetworkManager.fetchPost { post, errorMessage in
-//            if let posts = post {
-//                self.posts.append(posts)
-//                
-//            }
-//        }
-//    }
 }
