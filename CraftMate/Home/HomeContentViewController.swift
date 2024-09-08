@@ -36,6 +36,7 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
         super.viewDidLoad()
         bind()
         fetchPost(id: sort, cursor: nil)
+        configureViewCell()
         
     }
     
@@ -53,13 +54,6 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
     
     override func configureView() {
         view.backgroundColor = .white
-        
-        rootView.collectionView.dataSource = self
-        rootView.collectionView.delegate = self
-        
-        rootView.orderCollectionView.delegate = self
-        rootView.orderCollectionView.dataSource = self
-        rootView.orderCollectionView.prefetchDataSource = self
         
         rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         rootView.orderCollectionView.register(OrderCollectionViewCell.self, forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
@@ -104,7 +98,6 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
     }
     
     override func setupNavigationBar() {
-   
         
         let search = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.searchImage), style: .plain, target: nil, action: nil)
  
@@ -113,34 +106,23 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
         navigationItem.title = CraftMate.Phrase.serviceName
 
         let customFont = UIFont(name: "UhBee Se_hyun Bold", size: 27) ?? UIFont.systemFont(ofSize: 24)
-
-        
         self.navigationController?.navigationBar.titleTextAttributes = [
               NSAttributedString.Key.font: customFont,
-              NSAttributedString.Key.foregroundColor: CraftMate.color.mainColor // 타이틀 색상 설정 (옵션)
+              NSAttributedString.Key.foregroundColor: CraftMate.color.mainColor
           ]
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        
-        
-        search.rx.tap
-            .bind(with: self) { owner, _ in
-                let vc = SearchPageViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
-            }
-            .disposed(by: disposeBag)
     }
     
     
     func bind() {
         
+        let searchTap = navigationItem.rightBarButtonItems?.first?.rx.tap ?? ControlEvent(events: Observable.empty())
         
-        let input = HomeViewModel.Input(floatingButtonTap: rootView.floatingButton.floatingButton.rx.tap)
+        let input = HomeViewModel.Input(floatingButtonTap: rootView.floatingButton.floatingButton.rx.tap, searchButtonTap: searchTap, orderItemSelected: rootView.orderCollectionView.rx.itemSelected, categoryItemSelected: rootView.collectionView.rx.itemSelected)
         let output = viewModel.transForm(input: input)
         
-        
-        
-        output.screenTransitionTrigger
+        output.floatingScreenTrigger
             .observe(on: MainScheduler.instance)
             .subscribe(with: self) { owner, _ in
                 print("플로팅 버튼 클릭")
@@ -150,7 +132,82 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
                 owner.present(naviVc, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        output.searchScreenTrigger
+            .observe(on: MainScheduler.instance)
+            .subscribe(with: self) { owner, _ in
+                print("검색 버튼 탭드")
+                let vc = SearchPageViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.selectedPost
+            .observe(on: MainScheduler.instance)
+            .bind(with: self) { owner, post in
+                let vc = DetailViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.selectedCategory
+            .observe(on: MainScheduler.instance)
+            .subscribe(with: self) { owner, category in
+                owner.sort = category
+                owner.fetchPost(id: category, cursor: owner.nextCursor)
+            }
+            .disposed(by: disposeBag)
     }
+    
+//    func fetchPost(id: String, cursor: String?) {
+//        guard !isFetching else {
+//            // 중복 요청 방지
+//            return
+//        }
+//        
+//        // 처음에 cursor가 nil인 경우는 호출을 허용
+//        if cursor != nil {
+//            // 동일한 nextCursor로 인해 과호출이 발생하지 않도록 방지
+//            guard cursor != self.nextCursor else {
+//                print("동일한 커서로 호출 되지 않습니다!")
+//                return
+//            }
+//        }
+//        
+//        isFetching = true
+//        
+//        let query = FetchPostQuery(next: cursor, limit: "20", product_id: id)
+//        NetworkManager.shared.fetchPost(query: query) { [weak self] result, newCursor in
+//            guard let self = self else { return }
+//            self.isFetching = false
+//            
+//            if let result = result {
+//                // 중복된 postId가 있는지 확인
+//                let newPosts = result.data.filter { newPost in
+//                    !self.postList.contains(where: { $0.postId == newPost.postId })
+//                }
+//                
+//                // 새로운 게시물을 기존 리스트에 추가
+//                self.postList.append(contentsOf: newPosts)
+//                
+//                // 만약 newCursor가 nil이거나 이전과 동일하다면 추가 요청을 중지
+//                if newCursor == nil || newCursor == self.nextCursor {
+//                    print("Reached end of data or cursor has not changed.")
+//                    return
+//                }
+//                
+//                // nextCursor 업데이트
+//                self.nextCursor = newCursor
+//                print("------------------------\(String(describing: newCursor))------------------------")
+//                print(self.postList)
+//                
+//                // UI 업데이트
+//                self.rootView.orderCollectionView.reloadData()
+//            } else {
+//                print("오류")
+//            }
+//        }
+//    }
     
     func fetchPost(id: String, cursor: String?) {
         guard !isFetching else {
@@ -182,6 +239,11 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
                 
                 // 새로운 게시물을 기존 리스트에 추가
                 self.postList.append(contentsOf: newPosts)
+                
+                // **여기서 postListSubject에 값을 emit**
+                var currentPosts = try? self.viewModel.postListSubject.value()
+                currentPosts?.append(contentsOf: newPosts)
+                self.viewModel.postListSubject.onNext(currentPosts ?? [])
                 
                 // 만약 newCursor가 nil이거나 이전과 동일하다면 추가 요청을 중지
                 if newCursor == nil || newCursor == self.nextCursor {
@@ -236,60 +298,37 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
             
         }
     }
+    
+    func configureViewCell() {
+
+        // 카테고리 CollectionView 바인딩
+        Observable.just(viewModel.items)
+            .bind(to: rootView.collectionView.rx.items(cellIdentifier: HomeCollectionViewCell.identifier, cellType: HomeCollectionViewCell.self)) { row, element, cell in
+                cell.configureCell(title: element, image: self.viewModel.sortImages[row])
+            }
+            .disposed(by: disposeBag)
+
+        
+        // 포스트 CollectionView 바인딩
+        viewModel.postListSubject
+            .observe(on: MainScheduler.instance) // UI 업데이트는 메인 스레드에서
+            .bind(to: rootView.orderCollectionView.rx.items(cellIdentifier: OrderCollectionViewCell.identifier, cellType: OrderCollectionViewCell.self)) { row, post, cell in
+                
+                cell.configureCell(data: post)
+                
+                let status = post.likes?.contains(post.creator.userId) ?? false
+                let heartImageName = status ? CraftMate.Phrase.heartFillImage : CraftMate.Phrase.heartImage
+                cell.heartButton.setImage(UIImage(systemName: heartImageName), for: .normal)
+                cell.heartButton.tintColor = status ? CraftMate.color.pinkColor : CraftMate.color.whiteColor
+                
+                cell.heartButton.tag = row
+                cell.heartButton.addTarget(self, action: #selector(self.heartButtonTapped), for: .touchUpInside)
+            }
+            .disposed(by: disposeBag)
+    }
 }
 
 
-extension HomeContentViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == rootView.collectionView {
-            return items.count
-        } else if collectionView == rootView.orderCollectionView {
-            return postList.count
-        } else {
-            return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == rootView.collectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.identifier, for: indexPath) as? HomeCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-            cell.configureCell(title: items[indexPath.row], image: sortImages[indexPath.row])
-            return cell
-        } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OrderCollectionViewCell.identifier, for: indexPath) as? OrderCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-            
-            let post = postList[indexPath.item]
-            cell.configureCell(data: post)
-            
-            let status = post.likes?.contains(post.creator.userId) ?? false
-            
-            //            let isHearted = post.isLiked(byUser: currentUser.id)
-            let heartImageName = status ? CraftMate.Phrase.heartFillImage : CraftMate.Phrase.heartImage
-            cell.heartButton.setImage(UIImage(systemName: heartImageName), for: .normal)
-            cell.heartButton.tintColor = status ? CraftMate.color.pinkColor : CraftMate.color.whiteColor
-            
-            cell.heartButton.tag = indexPath.item
-            cell.heartButton.addTarget(self, action: #selector(heartButtonTapped), for: .touchUpInside)
-            return cell
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == rootView.orderCollectionView {
-            let result = postList[indexPath.item]
-            let vc = DetailViewController()
-            vc.post = result
-            navigationController?.pushViewController(vc, animated: true)
-        } else {
-            self.sort = items[indexPath.item]
-            fetchPost(id: sort, cursor: nextCursor)
-        }
-    }
-}
 
 extension HomeContentViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
@@ -301,8 +340,6 @@ extension HomeContentViewController: UICollectionViewDataSourcePrefetching {
             print("되고 있어요?")
         }
     }
-    
-    
 }
 
 

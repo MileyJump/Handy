@@ -29,6 +29,7 @@ class LoginViewController: BaseViewController<LoginView> {
                 
                 NetworkManager.shared.createLogin(email: email, password: password) { value, isEnabled  in
                     if isEnabled {
+                        print("로그인 가능?")
                         owner.changeRootViewController(MainTabBarController())
                     }
                 }
