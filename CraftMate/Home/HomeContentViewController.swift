@@ -9,11 +9,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol SortedSeletedProtocol  {
-    func sortsletedString(_ sort: String)
-}
+//protocol SortedSeletedProtocol  {
+//    func sortsletedString(_ sort: String)
+//}
 
-final class HomeContentViewController: BaseViewController<HomeView>, SortedSeletedProtocol {
+final class HomeContentViewController: BaseViewController<HomeView> {
     
     private let disposeBag = DisposeBag()
     private let viewModel = HomeViewModel()
@@ -118,9 +118,9 @@ final class HomeContentViewController: BaseViewController<HomeView>, SortedSelet
             .disposed(by: disposeBag)
     }
     
-    func sortsletedString(_ sort: String) {
-        // 이 메서드는 더 이상 필요하지 않을 수 있습니다. ViewModel에서 카테고리 변경을 처리합니다.
-    }
+//    func sortsletedString(_ sort: String) {
+//        // 이 메서드는 더 이상 필요하지 않을 수 있습니다. ViewModel에서 카테고리 변경을 처리합니다.
+//    }
 }
 
 extension HomeContentViewController: UICollectionViewDelegate {

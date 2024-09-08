@@ -11,6 +11,8 @@
 		B00A2E472C7C60D4006A6721 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A2E462C7C60D4006A6721 /* CategoryCollectionViewCell.swift */; };
 		B00C33DF2C8769E80089EA90 /* UhBee Se_hyun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B00C33DD2C8769E80089EA90 /* UhBee Se_hyun.ttf */; };
 		B00C33E02C8769E80089EA90 /* UhBee Se_hyun Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B00C33DE2C8769E80089EA90 /* UhBee Se_hyun Bold.ttf */; };
+		B00C33EF2C8DBEE00089EA90 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C33EE2C8DBEE00089EA90 /* ReviewViewModel.swift */; };
+		B00C33F12C8DCB130089EA90 /* Notification +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C33F02C8DCB120089EA90 /* Notification +.swift */; };
 		B0128A0A2C71ED0000B72622 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A092C71ED0000B72622 /* SignUpViewModel.swift */; };
 		B0128A0C2C71ED6300B72622 /* EmailDuplicateCheckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */; };
 		B0128A0E2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0128A0D2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift */; };
@@ -107,7 +109,6 @@
 		B0DF57982C6F3B0800CAB497 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF57972C6F3B0800CAB497 /* TabBar.swift */; };
 		B0DF579B2C6F3F0B00CAB497 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF579A2C6F3F0B00CAB497 /* BaseView.swift */; };
 		B0DF579D2C6F3F4900CAB497 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DF579C2C6F3F4900CAB497 /* BaseViewController.swift */; };
-		B0EB626A2C8342B4005686E0 /* TestViewControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB62692C8342B4005686E0 /* TestViewControll.swift */; };
 		B0EB626E2C843F98005686E0 /* PaymentsValidationQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB626D2C843F98005686E0 /* PaymentsValidationQuery.swift */; };
 		B0EB62702C844088005686E0 /* PaymentsValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB626F2C844088005686E0 /* PaymentsValidationModel.swift */; };
 		B0EB62722C845142005686E0 /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB62712C845142005686E0 /* CommunityViewModel.swift */; };
@@ -118,6 +119,8 @@
 		B00A2E462C7C60D4006A6721 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B00C33DD2C8769E80089EA90 /* UhBee Se_hyun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun.ttf"; sourceTree = "<group>"; };
 		B00C33DE2C8769E80089EA90 /* UhBee Se_hyun Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun Bold.ttf"; sourceTree = "<group>"; };
+		B00C33EE2C8DBEE00089EA90 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		B00C33F02C8DCB120089EA90 /* Notification +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification +.swift"; sourceTree = "<group>"; };
 		B0128A092C71ED0000B72622 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		B0128A0B2C71ED6300B72622 /* EmailDuplicateCheckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailDuplicateCheckModel.swift; sourceTree = "<group>"; };
 		B0128A0D2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailDuplicateCheckQuery.swift; sourceTree = "<group>"; };
@@ -209,7 +212,6 @@
 		B0DF57972C6F3B0800CAB497 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		B0DF579A2C6F3F0B00CAB497 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		B0DF579C2C6F3F4900CAB497 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		B0EB62692C8342B4005686E0 /* TestViewControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewControll.swift; sourceTree = "<group>"; };
 		B0EB626D2C843F98005686E0 /* PaymentsValidationQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsValidationQuery.swift; sourceTree = "<group>"; };
 		B0EB626F2C844088005686E0 /* PaymentsValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsValidationModel.swift; sourceTree = "<group>"; };
 		B0EB62712C845142005686E0 /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
@@ -289,8 +291,8 @@
 			children = (
 				B02CFDEA2C6FA5FE00462EF9 /* DetailView.swift */,
 				B02CFDEC2C6FA61800462EF9 /* DetailViewController.swift */,
-				B0EB62692C8342B4005686E0 /* TestViewControll.swift */,
 				B0CBD0AF2C7EF12A005DF34A /* ReviewView.swift */,
+				B00C33EE2C8DBEE00089EA90 /* ReviewViewModel.swift */,
 				B0CBD0B12C7EF13F005DF34A /* ReviewViewController.swift */,
 				B0CBD0C32C7F6559005DF34A /* ReviewTableViewCell.swift */,
 			);
@@ -468,6 +470,7 @@
 				B03934B42C78B18000EB34CD /* UIButton +.swift */,
 				B0CBD0DB2C806D13005DF34A /* Formatter.swift */,
 				B0CBD0DD2C8076F1005DF34A /* UIImage +.swift */,
+				B00C33F02C8DCB120089EA90 /* Notification +.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				B0128A0C2C71ED6300B72622 /* EmailDuplicateCheckModel.swift in Sources */,
 				B016BFCD2C7C536F00C01DC1 /* OrderCollectionViewCell.swift in Sources */,
 				B037B09B2C70E04D00A17CD7 /* FetchPostModel.swift in Sources */,
+				B00C33F12C8DCB130089EA90 /* Notification +.swift in Sources */,
 				B016BFCF2C7C539F00C01DC1 /* CommunityViewController.swift in Sources */,
 				B00A2E472C7C60D4006A6721 /* CategoryCollectionViewCell.swift in Sources */,
 				B06936C22C7CBD1F00E0EF56 /* CommunityCreatView.swift in Sources */,
@@ -661,7 +665,6 @@
 				B0CBD0C82C7F7EFA005DF34A /* LikePostModel.swift in Sources */,
 				B02CFDC72C6F404500462EF9 /* BaseCollectionViewCell.swift in Sources */,
 				B02CFDF82C70C65600462EF9 /* Router.swift in Sources */,
-				B0EB626A2C8342B4005686E0 /* TestViewControll.swift in Sources */,
 				B0128A0E2C71EF2B00B72622 /* EmailDuplicateCheckQuery.swift in Sources */,
 				B0CBD0B72C7EF477005DF34A /* OrderSaveView.swift in Sources */,
 				B0DF575E2C6CE84C00CAB497 /* AppDelegate.swift in Sources */,
@@ -687,6 +690,7 @@
 				B02CFDE62C6F96E700462EF9 /* SearchPageView.swift in Sources */,
 				B0128A3C2C76342C00B72622 /* HomeCollectionViewCell.swift in Sources */,
 				B0CBD0B22C7EF13F005DF34A /* ReviewViewController.swift in Sources */,
+				B00C33EF2C8DBEE00089EA90 /* ReviewViewModel.swift in Sources */,
 				B0CBD0B92C7EF51D005DF34A /* CommunitySaveView.swift in Sources */,
 				B0DF579B2C6F3F0B00CAB497 /* BaseView.swift in Sources */,
 				B0DF579D2C6F3F4900CAB497 /* BaseViewController.swift in Sources */,

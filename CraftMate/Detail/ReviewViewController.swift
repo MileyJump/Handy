@@ -11,98 +11,54 @@ import RxCocoa
 
 final class ReviewViewController: BaseViewController<ReviewView> {
     
-//    var post: Post?
-    var postSubject = BehaviorSubject<Post?>(value: nil)
+    var postSubject = BehaviorSubject<Post?>(value: nil)  // Post 데이터를 전달받을 Subject 추가
     
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = false
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = true
-        
-    }
+    private let viewModel = ReviewViewModel()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchPostDetails()
-    }
-    
-    func fetchPostDetails() {
-        if let post = try? postSubject.value() {
-            NetworkManager.shared.fetchPostDetails(postId: post.postId) { post in
-//                self.post = post
-                self.postSubject.onNext(post)
-                DispatchQueue.main.async {
-                    print("reload")
-                    self.rootView.tableView.reloadData()
-                }
-            }
-        }
-    
-    }
-    
-    override func setupAddTarget() {
-        rootView.sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc func sendButtonTapped() {
-        self.fetchPostDetails()
-        rootView.textField.text = ""
+        
+        bindViewModel()
+        
+        postSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] post in
+                self?.viewModel.loadPostDetails(postId: post?.postId ?? "")
+            })
+            .disposed(by: disposeBag)
     }
     
     override func configureView() {
-        rootView.tableView.delegate = self
-        rootView.tableView.dataSource = self
+        rootView.textField.delegate = self
         
         rootView.tableView.register(ReviewTableViewCell.self, forCellReuseIdentifier: ReviewTableViewCell.identifier)
+    }
+    
+    func bindViewModel() {
+        let input = ReviewViewModel.Input(
+            sendButtonTap: rootView.sendButton.rx.tap.asObservable(),
+            textFieldInput: rootView.textField.rx.text.asObservable()
+        )
         
-        rootView.tableView.rowHeight = 80
-
-        rootView.textField.delegate = self
-    }
-    
-}
-
-extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let comments = try? postSubject.value()?.comments else { return 0 }
-        return comments.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.identifier, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
-        if let review = try? postSubject.value()?.comments?[indexPath.row] {
-            cell.configureCell(review)
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let output = viewModel.transform(input: input)
         
-        if editingStyle == .delete {
-            if let post = try? postSubject.value() {
-                if let comments = post.comments {
-                    NetworkManager.shared.commentsDelete(postID: post.postId, commentID: comments[indexPath.row].content)
-                    fetchPostDetails()
-                    print("삭제")
-                }
+        output.postDetails
+            .drive(onNext: { [weak self] post in
+                self?.rootView.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        output.comments
+            .drive(rootView.tableView.rx.items(cellIdentifier: ReviewTableViewCell.identifier, cellType: ReviewTableViewCell.self)) { row, comment, cell in
+                cell.configureCell(comment)
             }
-//
-//            self.post?.comments?.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-        } else if editingStyle == .insert {
-            
-        }
+            .disposed(by: disposeBag)
+        
+        output.sendButtonEnabled
+            .drive(rootView.sendButton.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
-    
-    
-    
 }
 
 extension ReviewViewController: UITextFieldDelegate {
@@ -110,9 +66,14 @@ extension ReviewViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text, let post = try? postSubject.value() {
             NetworkManager.shared.writeComments(comments: text, postid: post.postId)
-            self.fetchPostDetails()
+//            self.fetchPostDetails()
+            viewModel.loadPostDetails(postId: post.postId)
+            print("=========")
+            self.rootView.tableView.reloadData()
             
             textField.text = ""  // 전송 후 텍스트 필드 초기화
+            
+            NotificationCenter.default.post(name: .postDetailsChanged, object: nil, userInfo: ["postId": post.postId])
         }
         return true
     }

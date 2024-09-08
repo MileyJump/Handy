@@ -15,26 +15,42 @@ import WebKit
 final class DetailViewController: BaseViewController<DetailView> {
     
     var postSubject = BehaviorSubject<Post?>(value: nil)
-
-//    var post: Post?
-
+    
     let userCode = "imp57573124"
     
-    var delegate: SortedSeletedProtocol?
 
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         bindView()
+        NotificationCenter.default.addObserver(self, selector:  #selector(handlePostDetailsChanged(_:)), name: .postDetailsChanged, object: nil)
     }
+    
+    @objc private func handlePostDetailsChanged(_ notification: Notification) {
+        if let userInfo = notification.userInfo, let postId = userInfo["postId"] as? String {
+            // 현재 postId와 비교하여 네트워크 통신을 결정
+            if let currentPostId = try? postSubject.value()?.postId, currentPostId != postId {
+                NetworkManager.shared.fetchPostDetails(postId: postId) { post in
+                    self.postSubject.onNext(post)
+                    print("다시 보냈어요!")
+                }
+
+            }
+        }
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
-        if let productId = try? postSubject.value()?.productId {
-            delegate?.sortsletedString(productId)
-        }
+//        if let productId = try? postSubject.value()?.productId {
+//            delegate?.sortsletedString(productId)
+//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
