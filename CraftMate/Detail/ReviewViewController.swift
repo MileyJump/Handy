@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class ReviewViewController: BaseViewController<ReviewView> {
     
-    var post: Post?
+//    var post: Post?
+    var postSubject = BehaviorSubject<Post?>(value: nil)
     
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -30,9 +33,10 @@ final class ReviewViewController: BaseViewController<ReviewView> {
     }
     
     func fetchPostDetails() {
-        if let post {
+        if let post = try? postSubject.value() {
             NetworkManager.shared.fetchPostDetails(postId: post.postId) { post in
-                self.post = post
+//                self.post = post
+                self.postSubject.onNext(post)
                 DispatchQueue.main.async {
                     print("reload")
                     self.rootView.tableView.reloadData()
@@ -66,13 +70,13 @@ final class ReviewViewController: BaseViewController<ReviewView> {
 
 extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let comments = post?.comments else { return 0 }
+        guard let comments = try? postSubject.value()?.comments else { return 0 }
         return comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.identifier, for: indexPath) as? ReviewTableViewCell else { return UITableViewCell() }
-        if let review = post?.comments?[indexPath.row] {
+        if let review = try? postSubject.value()?.comments?[indexPath.row] {
             cell.configureCell(review)
         }
         return cell
@@ -81,7 +85,7 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            if let post {
+            if let post = try? postSubject.value() {
                 if let comments = post.comments {
                     NetworkManager.shared.commentsDelete(postID: post.postId, commentID: comments[indexPath.row].content)
                     fetchPostDetails()
@@ -104,7 +108,7 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
 extension ReviewViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let text = textField.text, let post {
+        if let text = textField.text, let post = try? postSubject.value() {
             NetworkManager.shared.writeComments(comments: text, postid: post.postId)
             self.fetchPostDetails()
             

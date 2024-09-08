@@ -12,7 +12,6 @@ final class HomeView: BaseView {
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.itemCollectionViewLayout())
     let orderCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.orderCollectionViewLayout())
     
-    
     let floatingButton = FloatingButton()
     
     override init(frame: CGRect) {
@@ -36,11 +35,6 @@ final class HomeView: BaseView {
             make.horizontalEdges.equalTo(safeAreaLayoutGuide)
             make.height.equalTo(100)
         }
-        
-//        tableView.snp.makeConstraints { make in
-//            make.top.equalTo(collectionView.snp.bottom).offset(2)
-//            make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
-//        }
         
         orderCollectionView.snp.makeConstraints { make in
             make.top.equalTo(collectionView.snp.bottom).offset(2)

@@ -13,8 +13,10 @@ import iamport_ios
 import WebKit
 
 final class DetailViewController: BaseViewController<DetailView> {
+    
+    var postSubject = BehaviorSubject<Post?>(value: nil)
 
-    var post: Post?
+//    var post: Post?
 
     let userCode = "imp57573124"
     
@@ -24,12 +26,13 @@ final class DetailViewController: BaseViewController<DetailView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindView()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
-        if let productId = post?.productId {
+        if let productId = try? postSubject.value()?.productId {
             delegate?.sortsletedString(productId)
         }
     }
@@ -70,6 +73,18 @@ final class DetailViewController: BaseViewController<DetailView> {
         navigationItem.backButtonTitle = ""
     }
 
+    private func bindView() {
+        postSubject
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { post in
+                if let post = post {
+                    self.setupView(with: post)
+                    
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func ellipsisTapped() {
 
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -95,7 +110,7 @@ final class DetailViewController: BaseViewController<DetailView> {
 
     func deleteButtonTapped() {
         print(#function)
-        if let postId = post?.postId {
+        if let postId = try? postSubject.value()?.postId {
             NetworkManager.shared.deletePost(postId: postId)
             print("\(postId)삭제 완료")
         }
@@ -106,7 +121,8 @@ final class DetailViewController: BaseViewController<DetailView> {
         rootView.reviewButton.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = ReviewViewController()
-                vc.post = self.post
+                let post = try? owner.postSubject.value()
+                vc.postSubject.onNext(post)
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
@@ -125,6 +141,7 @@ final class DetailViewController: BaseViewController<DetailView> {
     }
 
     func payButtonTapped() {
+        let post = try? postSubject.value()
         guard let post = post, let price = post.price, let title = post.title else {
             print("post, price, or title is nil")
             return
@@ -171,9 +188,8 @@ final class DetailViewController: BaseViewController<DetailView> {
         }
     }
 
-    override func setupUI() {
-
-        guard let post = self.post else { return }
+    func setupView(with post: Post) {
+        guard let post = try? postSubject.value() else { return }
 
         let reviewCount = post.comments?.count ?? 0
         rootView.updateReviewButton(with: reviewCount)

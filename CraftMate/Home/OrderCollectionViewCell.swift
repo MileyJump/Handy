@@ -8,10 +8,11 @@
 import UIKit
 import Then
 import SnapKit
-
-
+import RxSwift
 
 final class OrderCollectionViewCell: BaseCollectionViewCell {
+    
+     var disposeBag = DisposeBag()
     
     let profileImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
@@ -64,6 +65,11 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
+    
+    override func prepareForReuse() {
+            super.prepareForReuse()
+            disposeBag = DisposeBag()  // 셀이 재사용될 때 disposeBag을 새로 생성
+        }
     
     func configureCell(data: Post) {
         titleLabel.text = data.title
@@ -128,9 +134,7 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
             make.trailing.equalTo(contentImageView.snp.trailing)
             make.bottom.equalTo(contentImageView.snp.bottom)
             make.size.equalTo(40)
-            
         }
-        
         
         contentImageView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(5)
@@ -157,3 +161,5 @@ final class OrderCollectionViewCell: BaseCollectionViewCell {
         }
     }
 }
+
+

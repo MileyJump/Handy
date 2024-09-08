@@ -41,7 +41,6 @@ final class OrderSaveViewController: BaseViewController<OrderSaveView> {
             
             // 필터링된 데이터를 새로운 FetchPostModel에 담음
             self.likePsot = FetchPostModel(data: filteredData, nextCursor: "")
-            print(self.likePsot)
             
             // 데이터를 받아온 후, 컬렉션 뷰를 갱신
             DispatchQueue.main.async {
@@ -69,8 +68,11 @@ extension OrderSaveViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
-        vc.post = likePsot?.data[indexPath.item]
+        
+        if let post = likePsot?.data[indexPath.item] {
+            vc.postSubject.onNext(post)
+        }
+        
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }

@@ -113,8 +113,6 @@ final class DetailView: BaseView {
         config.attributedTitle = titleAttr
         
         $0.configuration = config
-//        $0.configuration?.contentInsets = .zero // 버튼의 콘텐츠 인셋 설정 (여백 없애기)
-//        $0.contentHorizontalAlignment = .center // 이미지와 텍스트를 버튼의 중앙에 정렬
     }
     
     let payButton = UIButton().then {

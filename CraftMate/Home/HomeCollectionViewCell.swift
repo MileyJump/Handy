@@ -53,11 +53,9 @@ final class HomeCollectionViewCell: BaseCollectionViewCell {
             make.edges.equalTo(bgView).inset(10)
         }
         
-        
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(bgView.snp.bottom).offset(4)
             make.horizontalEdges.equalToSuperview()
         }
     }
-    
 }
