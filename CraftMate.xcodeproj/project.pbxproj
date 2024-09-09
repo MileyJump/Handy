@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B004631A2C8F217300858E1B /* CommunityCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00463192C8F217300858E1B /* CommunityCreateViewModel.swift */; };
+		B004631C2C8F285C00858E1B /* Reactive +.swift in Sources */ = {isa = PBXBuildFile; fileRef = B004631B2C8F285C00858E1B /* Reactive +.swift */; };
 		B00A2E452C7C5CAB006A6721 /* CategoryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A2E442C7C5CAB006A6721 /* CategoryButtonView.swift */; };
 		B00A2E472C7C60D4006A6721 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A2E462C7C60D4006A6721 /* CategoryCollectionViewCell.swift */; };
 		B00C33DF2C8769E80089EA90 /* UhBee Se_hyun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B00C33DD2C8769E80089EA90 /* UhBee Se_hyun.ttf */; };
@@ -115,6 +117,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B00463192C8F217300858E1B /* CommunityCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCreateViewModel.swift; sourceTree = "<group>"; };
+		B004631B2C8F285C00858E1B /* Reactive +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive +.swift"; sourceTree = "<group>"; };
 		B00A2E442C7C5CAB006A6721 /* CategoryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButtonView.swift; sourceTree = "<group>"; };
 		B00A2E462C7C60D4006A6721 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B00C33DD2C8769E80089EA90 /* UhBee Se_hyun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee Se_hyun.ttf"; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 				B016BFCE2C7C539F00C01DC1 /* CommunityViewController.swift */,
 				B06936C12C7CBD1F00E0EF56 /* CommunityCreatView.swift */,
 				B06936BF2C7CBD1400E0EF56 /* CommunityCreateViewController.swift */,
+				B00463192C8F217300858E1B /* CommunityCreateViewModel.swift */,
 				B02CFDDD2C6F927C00462EF9 /* CommunityTableViewCell.swift */,
 			);
 			path = Community;
@@ -471,6 +476,7 @@
 				B0CBD0DB2C806D13005DF34A /* Formatter.swift */,
 				B0CBD0DD2C8076F1005DF34A /* UIImage +.swift */,
 				B00C33F02C8DCB120089EA90 /* Notification +.swift */,
+				B004631B2C8F285C00858E1B /* Reactive +.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -659,6 +665,7 @@
 				B0CBD0B52C7EF471005DF34A /* OrderSaveViewController.swift in Sources */,
 				B0CBD0C62C7F7EE5005DF34A /* LikePostQuery.swift in Sources */,
 				B016BFBD2C79B80100C01DC1 /* ImageUploadQuery.swift in Sources */,
+				B004631A2C8F217300858E1B /* CommunityCreateViewModel.swift in Sources */,
 				B0DF57782C6CE8C600CAB497 /* BaseURL.swift in Sources */,
 				B02CFDEB2C6FA5FE00462EF9 /* DetailView.swift in Sources */,
 				B03934B52C78B18000EB34CD /* UIButton +.swift in Sources */,
@@ -680,6 +687,7 @@
 				B0EB62702C844088005686E0 /* PaymentsValidationModel.swift in Sources */,
 				B0CBD0B02C7EF12A005DF34A /* ReviewView.swift in Sources */,
 				B02CFDC52C6F403200462EF9 /* BaseTableViewCell.swift in Sources */,
+				B004631C2C8F285C00858E1B /* Reactive +.swift in Sources */,
 				B037B09F2C70E5DE00A17CD7 /* SignUpModel.swift in Sources */,
 				B02CFDF52C70781500462EF9 /* WritePostView.swift in Sources */,
 				B037B0962C70D00F00A17CD7 /* UserDefaultsManager.swift in Sources */,

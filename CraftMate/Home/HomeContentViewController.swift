@@ -36,6 +36,38 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         rootView.orderCollectionView.delegate = nil
     }
     
+   
+        
+        
+        override func setupNavigationBar() {
+       
+            
+            let search = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.searchImage), style: .plain, target: nil, action: nil)
+            //let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
+            
+            navigationItem.rightBarButtonItems = [search]
+            
+            navigationItem.title = CraftMate.Phrase.serviceName
+
+    
+            let customFont = UIFont(name: "UhBee Se_hyun Bold", size: 27) ?? UIFont.systemFont(ofSize: 24)
+            
+            self.navigationController?.navigationBar.titleTextAttributes = [
+                  NSAttributedString.Key.font: customFont,
+                  NSAttributedString.Key.foregroundColor: CraftMate.color.mainColor // 타이틀 색상 설정 (옵션)
+              ]
+            
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+            
+            
+            search.rx.tap
+                .bind(with: self) { owner, _ in
+                    let vc = SearchPageViewController()
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
+                .disposed(by: disposeBag)
+        }
+    
     func bind() {
         let prefetchRows = rootView.orderCollectionView.rx.prefetchItems.asObservable()
         let categoryChanged = PublishSubject<String>()

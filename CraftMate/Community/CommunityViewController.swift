@@ -89,6 +89,16 @@ final class CommunityViewController: BaseViewController<CommunityView> {
                 self?.showAlert(message: error)
             })
             .disposed(by: disposeBag)
+        
+        // 플로팅 버튼 클릭 이벤트 핸들링
+        rootView.floatingButton.floatingButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = CommunityCreateViewController()
+                let naviVc = UINavigationController(rootViewController: vc)
+                naviVc.modalPresentationStyle = .fullScreen
+                owner.present(naviVc, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 
     private func showAlert(message: String) {

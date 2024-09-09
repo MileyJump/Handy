@@ -87,7 +87,6 @@ final class CommunityCreatView: BaseView {
             make.top.equalTo(imageView.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(titleTextField)
             make.height.equalTo(200)
-//            make.bottom.equalToSuperview().inset(20)
             
         }
     }
