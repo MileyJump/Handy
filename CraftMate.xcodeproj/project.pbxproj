@@ -412,6 +412,8 @@
 			children = (
 				B0DF57712C6CE87500CAB497 /* .gitignore */,
 				B0DF575C2C6CE84C00CAB497 /* CraftMate */,
+				B0CBD0C92C7F8AE4005DF34A /* MyPage */,
+				B0CBD0BE2C7F061E005DF34A /* Profile */,
 				B0DF575B2C6CE84C00CAB497 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -429,8 +431,6 @@
 			children = (
 				B02CFDDA2C6F778700462EF9 /* Home */,
 				B016BFC92C7C516A00C01DC1 /* Community */,
-				B0CBD0C92C7F8AE4005DF34A /* MyPage */,
-				B0CBD0BE2C7F061E005DF34A /* Profile */,
 				B0CBD0B32C7EF2D0005DF34A /* Save */,
 				B037B0A02C70E83300A17CD7 /* SignUp */,
 				B037B0992C70E03400A17CD7 /* ResponseModel */,

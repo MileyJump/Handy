@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RxSwift
 import Then
 import SnapKit
 
 final class CommunityTableViewCell: BaseTableViewCell {
+    
+    var disposeBag = DisposeBag()
     
     private let profileImageView = UIImageView().then {
         $0.contentMode = .scaleToFill
@@ -102,9 +105,14 @@ final class CommunityTableViewCell: BaseTableViewCell {
         $0.setTitleColor(CraftMate.color.MediumGrayColor, for: .normal)
         $0.titleLabel?.font = CraftMate.CustomFont.SemiBold13
         $0.contentHorizontalAlignment = .leading
+     }
+    
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()  // 셀이 재사용될 때 DisposeBag을 새롭게 할당
     }
     
-  
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
