@@ -239,11 +239,11 @@
 			isa = PBXGroup;
 			children = (
 				B0128A402C763B4D00B72622 /* CommunityView.swift */,
+				B0EB62712C845142005686E0 /* CommunityViewModel.swift */,
 				B016BFCE2C7C539F00C01DC1 /* CommunityViewController.swift */,
 				B06936C12C7CBD1F00E0EF56 /* CommunityCreatView.swift */,
 				B06936BF2C7CBD1400E0EF56 /* CommunityCreateViewController.swift */,
 				B02CFDDD2C6F927C00462EF9 /* CommunityTableViewCell.swift */,
-				B0EB62712C845142005686E0 /* CommunityViewModel.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -260,6 +260,7 @@
 		B02CFDDA2C6F778700462EF9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B02CFDE92C6FA5F400462EF9 /* Detail */,
 				B016BFCC2C7C536F00C01DC1 /* OrderCollectionViewCell.swift */,
 				B02CFDDB2C6F779A00462EF9 /* HomeView.swift */,
 				B02CFDE22C6F932900462EF9 /* HomeViewModel.swift */,
@@ -427,17 +428,16 @@
 			isa = PBXGroup;
 			children = (
 				B02CFDDA2C6F778700462EF9 /* Home */,
+				B016BFC92C7C516A00C01DC1 /* Community */,
 				B0CBD0C92C7F8AE4005DF34A /* MyPage */,
 				B0CBD0BE2C7F061E005DF34A /* Profile */,
 				B0CBD0B32C7EF2D0005DF34A /* Save */,
-				B016BFC92C7C516A00C01DC1 /* Community */,
 				B037B0A02C70E83300A17CD7 /* SignUp */,
 				B037B0992C70E03400A17CD7 /* ResponseModel */,
 				B037B0902C70CA3A00A17CD7 /* RequestModel */,
 				B02CFDF62C70C64900462EF9 /* Network */,
 				B02CFDF12C70778400462EF9 /* WritePost */,
 				B02CFDEE2C706A6100462EF9 /* Component */,
-				B02CFDE92C6FA5F400462EF9 /* Detail */,
 				B02CFDE42C6F96D800462EF9 /* SearchPage */,
 				B02CFDDF2C6F92E700462EF9 /* Protocol */,
 				B02CFDC82C6F40CB00462EF9 /* Login */,
