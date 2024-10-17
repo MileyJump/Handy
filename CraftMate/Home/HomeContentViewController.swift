@@ -9,10 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-//protocol SortedSeletedProtocol  {
-//    func sortsletedString(_ sort: String)
-//}
-
 final class HomeContentViewController: BaseViewController<HomeView> {
     
     private let disposeBag = DisposeBag()
@@ -31,19 +27,13 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         rootView.collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.identifier)
         rootView.orderCollectionView.register(OrderCollectionViewCell.self, forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
         
-        // Clear existing delegates
         rootView.collectionView.delegate = nil
         rootView.orderCollectionView.delegate = nil
     }
     
-   
-        
-        
         override func setupNavigationBar() {
        
-            
             let search = UIBarButtonItem(image: UIImage(systemName: CraftMate.Phrase.searchImage), style: .plain, target: nil, action: nil)
-            //let shoppingBag = UIBarButtonItem(image: UIImage(named: "쇼핑백"), style: .plain, target: nil, action: nil)
             
             navigationItem.rightBarButtonItems = [search]
             
@@ -59,7 +49,6 @@ final class HomeContentViewController: BaseViewController<HomeView> {
             
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
             
-            
             search.rx.tap
                 .bind(with: self) { owner, _ in
                     let vc = SearchPageViewController()
@@ -67,6 +56,8 @@ final class HomeContentViewController: BaseViewController<HomeView> {
                 }
                 .disposed(by: disposeBag)
         }
+    
+
     
     func bind() {
         let prefetchRows = rootView.orderCollectionView.rx.prefetchItems.asObservable()
@@ -89,11 +80,11 @@ final class HomeContentViewController: BaseViewController<HomeView> {
         // Bind outputs
         output.floatingScreenTrigger
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
+            .bind(with: self, onNext: { owner, _ in
                 let vc = WritePostViewController()
                 let naviVc = UINavigationController(rootViewController: vc)
                 naviVc.modalPresentationStyle = .fullScreen
-                self?.present(naviVc, animated: true)
+                owner.present(naviVc, animated: true)
             })
             .disposed(by: disposeBag)
 
@@ -149,10 +140,6 @@ final class HomeContentViewController: BaseViewController<HomeView> {
             .setDelegate(self)
             .disposed(by: disposeBag)
     }
-    
-//    func sortsletedString(_ sort: String) {
-//        // 이 메서드는 더 이상 필요하지 않을 수 있습니다. ViewModel에서 카테고리 변경을 처리합니다.
-//    }
 }
 
 extension HomeContentViewController: UICollectionViewDelegate {

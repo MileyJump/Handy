@@ -39,5 +39,4 @@ final class CommunityView: BaseView {
             make.size.equalTo(60)
         }
     }
-
 }

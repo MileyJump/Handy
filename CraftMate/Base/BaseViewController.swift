@@ -17,21 +17,21 @@ class BaseViewController<RootView: UIView>: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureHierarchy()
-        configureLayout()
+//        configureHierarchy()
+//        configureLayout()
         configureView()
         setupAddTarget()
         setupUI()
         setupNavigationBar()
     }
     
-    func configureHierarchy() {
-        
-    }
-    
-    func configureLayout() { 
-      
-    }
+//    func configureHierarchy() {
+//        
+//    }
+//    
+//    func configureLayout() { 
+//      
+//    }
     
     func setupUI() { }
     
