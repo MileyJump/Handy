@@ -81,7 +81,8 @@ Movielity
 
 ## 주요 기술
 
--   **iOS** : Swift 5.1, Xcode 15.4 (Minimum version 16.0)
+-   **iOS** :
+-   Swift 5.1, Xcode 15.4 (Minimum version 16.0)
     
 -   **UI**:
 	- RxSwift
