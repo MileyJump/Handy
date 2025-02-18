@@ -80,33 +80,75 @@ Movielity
 ```
 -->
 
+## 사용 기술 (Tech Stack)
+> ### Architectur & Design Pattern
+- MVVM, Input-Output
+- Routor, Singleton
+
+> ### Swift Framework
+- UIKit
+
+> ### OpenSource Libaries
+- RxSwift, RxCocoa
+- Alamofire
+- Kingfisher
+- SnapKit, Then
+- Tabman, Pageboy
+
+> ### Management
+- Git, Github
+<br/> <br/>
+
+## 주요 기능 (Main Feature)
+#### 홈 화면
+   - 사용자가 게시한 판매글 확인
+     
+#### 구매 화면
+   - 홈에서 선택한 판매글의 상세페이지
+   - PG연동을 통해 해당 물품을 구매 가능
+     
+#### 커뮤니티 화면
+   - 취미를 공유할 수 있는 커뮤니티 화면
+   - 커뮤니티 글 게시 작성 및 확인
+     
+#### 저장 목록 화면
+   - 상단 탭바를 통해, 판매글 및 커뮤니티 저장 목록 구분하여 확인
+
+#### 판매글 자성 화면
+   - 직접 만든 핸드메이드 작품 판매 게시글 작성
+
 ## 주요 기술
+> ### 아키텍쳐 (Architecture)
+- View와 Business Logic을 분리하여 ViewController 간결화 <br/> 
+- MVVM Input-Output 패턴을 적용해 ViewModel에서 데이터를 변환하고 UI 상태를 관리하도록 구현 <br/> 
+- Router Pattern을 활용해 API 요청을 구조화하고, 반복되는 네트워크 작업을 추상화 <br/> 
+<br/>
 
--   **iOS** :
--   Swift 5.1, Xcode 15.4 (Minimum version 16.0)
-    
--   **UI**:
-	- RxSwift
-   
--   **Architecture**: 
-	- MVVM(Model-View-ViewModel) 패턴을 적용하여 뷰와 비즈니스 로직의 분리를 통해 코드의 유지보수성과 재사용성을 높였습니다.
-   
+> ### PG 기반 결제 시스템 구현
+- PG연동을 통해 결제 시스템을 구현
+- 결제 데이터를 전달하여 웹뷰 기반 결제 화면을 제공
+<br/>
 
--   **Network**
-	- Alamofire를 사용해 서버와의 통신 및 데이터 요청을 처리했습니다.
-    
+> ### JWT와 엑세스 토큰을 활용한 사용자 인증 기능
+- 사용자가 로그인 후 서버에서 발급 받은 엑세스 토큰을 UserDefaults에 저장해, 관리하고 API 통신 시 헤더에 포함시켜 인증을 처리
 
-## 트러블 슈팅
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/56163d3a-1a3b-4581-afa7-245dfbae515b" width="600"/>
+</p>
 
-### 1. 마지막 페이지에 도달했음에도 페이지네이션이 계속 되는 현상
-**문제 인식** : 
 
-HomeViewController의 판매글 목록을 불러오는 과정에서 커서 기반 페이지네이션을 구현했으나, 마지막 페이지에 도달했음에도 추가 데이터 요청이 반복되는 문제가 발생했습니다. 이로 인해 데이터 로딩이 무한히 반복되는 현상이 나타났으며, 사용자 경험에 불편을 초래하는 상황이었습니다.
+> ### Access Token 갱신 및 RefreshToken 만료 처리
+- 엑세스 토큰이 만료되면 서버에서 상태 오류 코드를 반환하여 만료된 토큰을 확인하고, 저장된 RefreshToken을 사용해 새로운 엑세스 토큰을 요청
+- RefreshToken이 만료되었을 경우, 자동으로 로그인 화면으로 전환되어 재로그인 할 수 있도록 구현
 
-**고민 및 설계** :
-1. nextCursor가 0일 경우 처리
-- 마지막 페이지에 도달했을 때 서버가 nextCursor를 어떻게 전달하는지 확인하기 위해 print문을 통해 디버깅을 시도했습니다. 이 과정에서 nextCursor가 0으로 전달되었음에도 첫 번째 페이지의 데이터를 반복하여 전송하고 있는 것을 발견했고, 이로 인해 데이터가 무한히 로드되는 문제가 발생했습니다.
-- 이를 해결하기 위해 nextCursor가 0일 경우 추가 데이터 요청을 중단하는 로직을 추가했습니다.
-  
-**해결 방법**
-1. .... 
+> ### Multipart/form-data 형식의 이미지 전송
+- 게시글 작성 화면에서 선택한 이미지를 Data 형식으로 변환하고, Multipart/form-data 형식으로 이미지와 텍스트를 동시에 서버에 전송할 수 있도록 구현
+
+## 회고
+> ### JWT 토큰 - Access Token과 Refresh Token
+- JWT 토큰 기반 로그인 기능을 처음 구현하면서, Access Token과 Refresh Token을 왜 분리하는지 궁금했으나, 개인정보를 다루는 만큼 보안이 중요한 요소이며, 이를 고려해 토큰을 분리해서 관리한다는 점을 이해하게 되었다.
+- 처음에는 Token을 UserDefaults에 저장하는 방법을 사용 했지만, 과연 UserDefaults에 저장하는 방법이 보안 측면에서 좋은 방법일지에 대해 고민을 하게 되었다.
+- 추후에는 UserDefaults 대신 Keychain을 활용해 보안을 강화하는 방식으로 개선해보고 싶다고 생각했다.
+
+
+
