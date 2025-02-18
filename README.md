@@ -3,6 +3,15 @@
   <img src="https://github.com/user-attachments/assets/43b20d83-4126-4d7c-9ca3-9e272b518532" alt="appstore" width="200"/>
 </p>
 
+<p align="center">
+	 <img src="https://img.shields.io/badge/Swift-F05138?style=flat-square&logo=Swift&logoColor=white"/>
+  <img src="https://img.shields.io/badge/iOS-16.0-lightgrey?style=flat&color=181717" alt="iOS 16.0" />
+  <img src="https://img.shields.io/badge/Swift-5.0-F05138.svg?style=flat&color=F05138" alt="Swift 5.0" />
+  <img src="https://img.shields.io/badge/Xcode-16.1-147EFB.svg?style=flat&color=147EFB" alt="Xcode 15.3" />
+</p>
+
+
+
 ## 프로젝트 소개
 *" 당신의 손길로 만든 작품들을 세상에 전하고, 같은 꿈을 가진 이들과 함께 이야기를 나누어보세요! "*
 > 사용자가 직접 만든 핸드메이드 작품을 판매하거나 구매할 수 있으며, 같은 취미를 가진 사람들과 소통할 수 있는 앱
